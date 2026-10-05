@@ -668,6 +668,8 @@ html[data-locale="en"] [data-lang="da"]{display:none}
 .radar a.rSys:focus-visible .rHit{stroke:var(--ink);stroke-width:1.2}
 .radar:has(a.rSys[data-i="0"]:hover) .rAx[data-i="0"],.radar:has(a.rSys[data-i="0"]:focus-visible) .rAx[data-i="0"],.radar:has(a.rSys[data-i="1"]:hover) .rAx[data-i="1"],.radar:has(a.rSys[data-i="1"]:focus-visible) .rAx[data-i="1"],.radar:has(a.rSys[data-i="2"]:hover) .rAx[data-i="2"],.radar:has(a.rSys[data-i="2"]:focus-visible) .rAx[data-i="2"],.radar:has(a.rSys[data-i="3"]:hover) .rAx[data-i="3"],.radar:has(a.rSys[data-i="3"]:focus-visible) .rAx[data-i="3"],.radar:has(a.rSys[data-i="4"]:hover) .rAx[data-i="4"],.radar:has(a.rSys[data-i="4"]:focus-visible) .rAx[data-i="4"],.radar:has(a.rSys[data-i="5"]:hover) .rAx[data-i="5"],.radar:has(a.rSys[data-i="5"]:focus-visible) .rAx[data-i="5"]{stroke:var(--rNavy);stroke-width:1.3}
 .bmSys button{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--navH,72px) + 28px)}
+/* homepage: the What-we-test content is shown here without its closing "one number" section */
+#mMaalerSlot .mOneNumber{display:none}
 /* hero: the secondary link under the booking button */
 .heroBio{margin-top:18px}
 .heroBio .lnk{font-size:15px}
@@ -1057,7 +1059,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     </div>
     </div>
   </section>
-  <section class="wrap" style="padding-block:clamp(52px,8vw,128px)">
+  <section class="wrap mOneNumber" style="padding-block:clamp(52px,8vw,128px)">
     <div class="split sp6238 alStart">
       <div>
         <h1 class="s d2 fg measS" data-da="Ét tal fortæller sjældent noget alene." data-en="A single number rarely tells you much on its own.">A single number rarely tells you much on its own.</h1>
