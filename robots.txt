@@ -1,0 +1,3 @@
+# Temporary preview of the Pandonia website. Not for search engines. The real site is https://www.pandonia.com/
+User-agent: *
+Disallow: /
