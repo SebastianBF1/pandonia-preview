@@ -480,7 +480,9 @@ body{font-size:16.5px;line-height:1.55}
 .rc-opt{background:var(--rOpt)}.rc-ref{background:var(--rRef)}.rc-out{background:var(--rOut)}
 .trend{display:block;width:100%;height:auto}
 .trend text{font-family:var(--sans)}
-.trendBeside .trend text{font-size:16px}
+@media(min-width:1024px){.sp5050{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.rcard.rcWide{width:auto;max-width:none}
+@media(min-width:1024px) and (max-width:1279px){.rpPair .rcards{grid-template-columns:1fr}}
 .prev{display:flex;gap:clamp(14px,2vw,26px);align-items:flex-end}
 .prev div{display:grid;gap:5px}
 .prev small{font-size:11px;letter-spacing:.06em;color:var(--ink3)}
@@ -1174,8 +1176,8 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     
   </div></section>
 
-  <!-- B · ONE MARKER + OVER TIME — the report's bar anatomy and its three ranges, beside the score over time -->
-  <section class="gSand"><div class="wrap std"><div class="split sp6238 alStart">
+  <!-- B · ONE MARKER + OVER TIME — the report's bar anatomy and its three ranges, beside one marker over time -->
+  <section class="gSand rpPair"><div class="wrap std"><div class="split sp5050 alStart">
     <div>
       <p class="lab" data-da="Én markør" data-en="One marker">One marker</p>
       <h2 class="s d3 fg" style="margin-top:12px" data-da="Sådan læser du en måling." data-en="How to read a measurement.">How to read a measurement.</h2>
@@ -1193,7 +1195,21 @@ html[data-locale="en"] [data-lang="da"]{display:none}
       <p class="lab" data-da="Over tid" data-en="Over time">Over time</p>
       <h2 class="s d3 fg" style="margin-top:12px" data-da="Score over tid." data-en="Score over time.">Score over time.</h2>
       <p class="bd meas" style="margin-top:16px" data-da="Hver ny måling lægger et punkt til din samlede score. Du ser udviklingen fra test til test." data-en="Each new test adds a point to your overall score, so you can see how it develops from one test to the next.">Each new test adds a point to your overall score, so you can see how it develops from one test to the next.</p>
-      <div class="sheet" style="margin-top:24px"><div class="trendSlot trendBeside"></div></div>
+      <div style="margin-top:24px">
+        <figure class="rcard rcWide" aria-labelledby="rcTitleRp">
+          <div class="rcHead">
+            <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
+            <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
+          </div>
+          <p class="rcTitle" id="rcTitleRp" data-da="Det, der har flyttet sig." data-en="What has changed.">What has changed.</p>
+          <div class="rbarSlot" data-kind="glu" style="margin-top:20px"></div>
+          <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--ruleSoft)">
+            <p class="lab" style="margin-bottom:6px" data-da="Score over tid" data-en="Score over time">Score over time</p>
+            <div class="trendSlot" data-small="1"></div>
+          </div>
+          <figcaption class="rcCap" data-da="Målingen er rapportens eget vejledningseksempel. Forløbet er skematisk." data-en="The value is the worked example from the report's own guide. The trend is schematic.">The value is the worked example from the report's own guide. The trend is schematic.</figcaption>
+        </figure>
+      </div>
     </div>
   </div></div></section>
 
