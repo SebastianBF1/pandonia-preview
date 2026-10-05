@@ -444,6 +444,13 @@ body{font-size:16.5px;line-height:1.55}
 .sysCtx{color:var(--ink3)}.sysAct{color:var(--ink2)}.sysPlus{color:var(--ink3)}
 .sysRow>details[open] .sysPlus,.sysRow>details[open]>summary .sysAct{color:var(--ink)}
 .sysBody p{color:var(--ink2)}
+/* the six systems and "The body doesn't fit into neat boxes." on black: the page's ink tokens
+   flip inside, so rows, radar labels and scores turn light without separate rules */
+.sysDark{--ink:#FAFAF7;--forest:#FAFAF7;--ink2:var(--onDeepMuted);--ink3:var(--onDeepQuiet);--rule:var(--ruleInv);--ruleSoft:var(--ruleInvSoft);--rRadar:rgba(250,250,247,.06);--rNavy:#FAFAF7}
+.sysDark .sysRow>details>summary:hover{background:rgba(250,250,247,.045)}
+.sysDark .radar [stroke="#C9CED6"]{stroke:rgba(250,250,247,.26)}
+/* on black the hovered or focused system name turns acid (white on white would not show a change) */
+.sysDark .radar a.rSys:hover .rLbl,.sysDark .radar a.rSys:focus-visible .rLbl{fill:var(--acid)}
 
 /* ── REPORT LANGUAGE ─────────────────────────────────────────────
    Pandonia's health report in web form: the six-system radar, the zoned
@@ -961,15 +968,15 @@ html[data-locale="en"] [data-lang="da"]{display:none}
 <!-- ═══════════ HVAD VI MÅLER ═══════════ -->
 <div data-page="maaler" hidden>
   <!-- The full biomarker list now lives in the biomarker library (#/biomarkers). -->
-  <section class="gSheet"><div class="wrap std">
-    <div class="split sp5545 alCenter" style="margin-bottom:clamp(28px,4vw,48px)">
+  <section class="gDeep sysDark"><div class="wrap std">
+    <ul id="sysPage"></ul>
+    <div class="split sp5545 alCenter" style="margin-top:clamp(56px,7vw,104px)">
       <div>
         <h2 class="s d3 fg measS" data-da="Kroppen arbejder ikke i kasser." data-en="The body doesn't fit into neat boxes.">The body doesn't fit into neat boxes.</h2>
         <p class="bd measN" style="margin-top:16px" data-da="Pandonia-modellen beskriver seks systemer. En markør hører sjældent kun ét sted til. Rapporten giver hvert system sin egen score." data-en="The Pandonia model describes six systems. A marker rarely belongs to just one. The report gives each system its own score.">The Pandonia model describes six systems. A marker rarely belongs to just one. The report gives each system its own score.</p>
       </div>
       <div><div class="radarSlot"></div></div>
     </div>
-    <ul id="sysPage"></ul>
     
     
   </div></section>
