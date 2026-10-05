@@ -480,9 +480,41 @@ body{font-size:16.5px;line-height:1.55}
 .rc-opt{background:var(--rOpt)}.rc-ref{background:var(--rRef)}.rc-out{background:var(--rOut)}
 .trend{display:block;width:100%;height:auto}
 .trend text{font-family:var(--sans)}
-@media(min-width:1024px){.sp5050{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
-.rcard.rcWide{width:auto;max-width:none}
-@media(min-width:1024px) and (max-width:1279px){.rpPair .rcards{grid-template-columns:1fr}}
+/* Your report — 2×2 panels on a light gutter (one column below 1024px). Panels are size
+   containers, so each composition adapts to its own width, not the window's. */
+.rpWrap{background:#F1F0EB}
+.rpGrid{--gut:clamp(14px,1.3vw,20px);--pp:clamp(24px,3vw,56px);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gut);max-width:1760px;margin:0 auto;padding:var(--gut) var(--gut) calc(var(--gut) * 2.4);counter-reset:rp}
+@media(min-width:1024px){.rpGrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.rpP{container-type:inline-size;display:grid;background:var(--cream);border-radius:10px;overflow:hidden;counter-increment:rp}
+.rpIn{display:flex;flex-direction:column;gap:clamp(26px,3vw,44px);padding:var(--pp)}
+/* headings scale with their panel; the max-widths give the report's own line breaks (measured in em) */
+.rpH{margin-top:12px;font-size:clamp(32px,4.4cqi + 12px,46px)}
+.rpP1 .rpH{max-width:7.5em}.rpP2 .rpH{max-width:6.6em}.rpP3 .rpH{max-width:6.2em}
+.rpTx p.bd{margin-top:16px;max-width:46ch}.rpTx p.bd+p.bd{margin-top:12px}
+@media(max-width:1023px){.rpTx>.lab:first-child::before{content:"0" counter(rp) " · "}}
+.rpP1 .rpIn{padding:0;gap:0}.rpP1 .rpTx{padding:var(--pp)}
+.rpP1 .rpIn{height:100%}
+.rpImg{position:relative;flex:1 0 auto;min-height:max(240px,62cqi);overflow:hidden}
+.rpImg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:34% 50%}
+.rpP2 .rpVis{display:flex;flex-direction:column;justify-content:center}
+.rpP2 .radar{max-width:440px}
+.rpP3 .sheet{padding:clamp(18px,2.2vw,30px)}
+.rpP3 .rcards{grid-template-columns:minmax(0,1fr);margin-top:8px}
+.rpP3 .rcards>div{padding:18px 18px 20px}
+.rpP3 .rcards h3{font-size:15px}.rpP3 .rcards p{font-size:14px}
+.rpP4 .rpIn{height:100%}.rpP4 .trendSlot{width:100%}
+@container (min-width:600px){
+  .rpP1 .rpIn{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+  .rpP1 .rpImg{min-height:0}
+  .rpP2 .rpIn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:center;height:100%}
+  .rpP2 .rpTx{align-self:start}
+  /* side by side with the marker panel, the chart sheet spans the same height as the marker visual */
+  .rpP4 .rpVis{flex:1;display:flex;flex-direction:column}.rpP4 .sheet{flex:1;display:flex;align-items:center}
+  .rpP3 .rcards{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .rpP3 .rcards>div{padding:16px 15px 18px}
+  .rpP3 .rcards p{font-size:13.5px}
+}
+@container (max-width:520px){.rpP4 .trend text{font-size:18px}}
 .prev{display:flex;gap:clamp(14px,2vw,26px);align-items:flex-end}
 .prev div{display:grid;gap:5px}
 .prev small{font-size:11px;letter-spacing:.06em;color:var(--ink3)}
@@ -1144,25 +1176,25 @@ html[data-locale="en"] [data-lang="da"]{display:none}
 
 <!-- ═══════════ DIN RAPPORT ═══════════ -->
 <div data-page="rapport" hidden>
-  <section class="wrap" style="padding-block:clamp(36px,6vw,80px) clamp(24px,3vw,44px)">
-    <div class="split sp6238 alStart">
-      <div>
-        <h1 class="s d2 fg" style="max-width:19ch" data-da="Det, du får, er ikke en liste med tal." data-en="What you get is not a list of numbers.">What you get is not a list of numbers.</h1>
-        <p class="bodyL measN" style="margin-top:28px" data-da="Hver måling står med sit optimale område og sit referenceområde. Seks systemer får hver sin score. Og en læge læser det med dig, hvis du vil." data-en="Every measurement is shown alongside its optimal range and its reference range. Each of the six systems gets its own score. And, if you like, a doctor will go through it with you.">Every measurement is shown alongside its optimal range and its reference range. Each of the six systems gets its own score. And, if you like, a doctor will go through it with you.</p>
+  <!-- YOUR REPORT — four panels on a light gutter, 2×2 from 1024px, one sequence below:
+       the report · six systems · one marker · score over time -->
+  <section class="rpWrap"><div class="rpGrid">
+    <div class="rpP rpP1"><div class="rpIn">
+      <div class="rpTx">
+        <p class="lab" data-da="Din rapport" data-en="Your report">Your report</p>
+        <h1 class="s d3 fg rpH" data-da="Det, du får, er ikke en liste med tal." data-en="What you get is not a list of numbers.">What you get is not a list of numbers.</h1>
+        <p class="bd" data-da="Hver måling står med sit optimale område og sit referenceområde. Seks systemer får hver sin score. Og en læge læser det med dig, hvis du vil." data-en="Every measurement is shown alongside its optimal range and its reference range. Each of the six systems gets its own score. And, if you like, a doctor will go through it with you.">Every measurement is shown alongside its optimal range and its reference range. Each of the six systems gets its own score. And, if you like, a doctor will go through it with you.</p>
       </div>
-      <div class="phBox" style="aspect-ratio:1339/1036"><img loading="lazy" decoding="async" class="ph" src="/pandonia-preview/images/report-deck.webp" data-alt-da="En kvinde ser Pandonias rapport på en bærbar computer." data-alt-en="A woman looking at the Pandonia report on a laptop." alt="A woman looking at the Pandonia report on a laptop."></div>
-    </div>
-  </section>
-  <!-- A · OVERVIEW — the report's "Health assessment overview" -->
-  <section class="gSheet" id="rp-overview"><div class="wrap std">
-    <div class="split sp4258 alStart">
-      <div>
+      <div class="rpImg"><img loading="lazy" decoding="async" class="ph" src="/pandonia-preview/images/report-deck.webp" data-alt-da="En kvinde ser Pandonias rapport på en bærbar computer." data-alt-en="A woman looking at the Pandonia report on a laptop." alt="A woman looking at the Pandonia report on a laptop."></div>
+    </div></div>
+    <div class="rpP rpP2" id="rp-overview"><div class="rpIn">
+      <div class="rpTx">
         <p class="lab" data-da="Oversigt" data-en="Overview">Overview</p>
-        <h2 class="s d3 fg" style="margin-top:12px;max-width:14ch" data-da="Seks systemer. Én samlet score." data-en="Six systems. One overall score.">Six systems. One overall score.</h2>
-        <p class="bd meas" style="margin-top:18px" data-da="Hvert område afspejler et centralt system i kroppen. Det scores ud fra, hvor tæt dine værdier ligger på Pandonias optimale områder." data-en="Each health area reflects a core system in your body. It is scored on how close your values are to Pandonia's optimal ranges.">Each health area reflects a core system in your body. It is scored on how close your values are to Pandonia's optimal ranges.</p>
-        <p class="bd meas" style="margin-top:12px" data-da="Pilen ved hver score viser, hvordan den har ændret sig siden din sidste måling." data-en="The arrow beside each score shows how it has changed since your last measurement.">The arrow beside each score shows how it has changed since your last measurement.</p>
+        <h2 class="s d3 fg rpH" data-da="Seks systemer. Én samlet score." data-en="Six systems. One overall score.">Six systems. One overall score.</h2>
+        <p class="bd" data-da="Hvert område afspejler et centralt system i kroppen. Det scores ud fra, hvor tæt dine værdier ligger på Pandonias optimale områder." data-en="Each health area reflects a core system in your body. It is scored on how close your values are to Pandonia's optimal ranges.">Each health area reflects a core system in your body. It is scored on how close your values are to Pandonia's optimal ranges.</p>
+        <p class="bd" data-da="Pilen ved hver score viser, hvordan den har ændret sig siden din sidste måling." data-en="The arrow beside each score shows how it has changed since your last measurement.">The arrow beside each score shows how it has changed since your last measurement.</p>
       </div>
-      <div class="sheet">
+      <div class="rpVis">
         <div class="radarSlot"></div>
         <div class="rLegend">
           <span><i class="tri up"></i><span data-da="Forbedret" data-en="Improved">Improved</span></span>
@@ -1171,48 +1203,33 @@ html[data-locale="en"] [data-lang="da"]{display:none}
         </div>
         <p class="lab" style="text-align:center;margin-top:16px" data-da="Eksempel fra Pandonias rapport-UI" data-en="Example from Pandonia's report UI">Example from Pandonia's report UI</p>
       </div>
-    </div>
-    
-    
+    </div></div>
+    <div class="rpP rpP3"><div class="rpIn">
+      <div class="rpTx">
+        <p class="lab" data-da="Én markør" data-en="One marker">One marker</p>
+        <h2 class="s d3 fg rpH" data-da="Sådan læser du en måling." data-en="How to read a measurement.">How to read a measurement.</h2>
+      </div>
+      <div class="rpVis">
+        <div class="sheet"><div class="rbarSlot" data-kind="glu" data-anno="1"></div></div>
+        <div class="rcards">
+          <div class="rc-opt"><h3 data-da="Optimalt område" data-en="Optimal range">Optimal range</h3><p data-da="Viser de niveauer, hvor vi vurderer, at kroppen fungerer mest balanceret og robust — både her og nu og på lang sigt." data-en="The levels at which we consider the body to work at its most balanced and robust, both now and in the long term.">The levels at which we consider the body to work at its most balanced and robust, both now and in the long term.</p></div>
+          <div class="rc-ref"><h3 data-da="Referenceområde" data-en="Reference range">Reference range</h3><p data-da="De værdier, sundhedsvæsenet i Danmark bruger som normale. For nogle biomarkører svarer referenceområdet til det optimale område." data-en="The values the Danish healthcare system treats as normal. For some biomarkers, the reference range and the optimal range are the same.">The values the Danish healthcare system treats as normal. For some biomarkers, the reference range and the optimal range are the same.</p></div>
+          <div class="rc-out"><h3 data-da="Uden for området" data-en="Outside range">Outside range</h3><p data-da="Værdier uden for de anbefalede grænser. Det kan være tegn på en ubalance eller mangel og bør ses i sammenhæng med dit samlede helbred." data-en="Values outside the recommended limits. This may be a sign of an imbalance or deficiency and should be viewed in the context of your overall health.">Values outside the recommended limits. This may be a sign of an imbalance or deficiency and should be viewed in the context of your overall health.</p></div>
+        </div>
+        <p class="lab" style="margin-top:14px" data-da="Definitionerne er fra Pandonias rapport · eksemplet er rapportens eget" data-en="Definitions from Pandonia's report · the example is the report's own">Definitions from Pandonia's report · the example is the report's own</p>
+      </div>
+    </div></div>
+    <div class="rpP rpP4"><div class="rpIn">
+      <div class="rpTx">
+        <p class="lab" data-da="Over tid" data-en="Over time">Over time</p>
+        <h2 class="s d3 fg rpH" data-da="Score over tid." data-en="Score over time.">Score over time.</h2>
+        <p class="bd" data-da="Hver ny måling lægger et punkt til din samlede score. Du ser udviklingen fra test til test." data-en="Each new test adds a point to your overall score, so you can see how it develops from one test to the next.">Each new test adds a point to your overall score, so you can see how it develops from one test to the next.</p>
+      </div>
+      <div class="rpVis">
+        <div class="sheet"><div class="trendSlot"></div></div>
+      </div>
+    </div></div>
   </div></section>
-
-  <!-- B · ONE MARKER + OVER TIME — the report's bar anatomy and its three ranges, beside one marker over time -->
-  <section class="gSand rpPair"><div class="wrap std"><div class="split sp5050 alStart">
-    <div>
-      <p class="lab" data-da="Én markør" data-en="One marker">One marker</p>
-      <h2 class="s d3 fg" style="margin-top:12px" data-da="Sådan læser du en måling." data-en="How to read a measurement.">How to read a measurement.</h2>
-      <div class="sheet" style="margin-top:clamp(24px,3vw,36px)">
-        <div class="rbarSlot" data-kind="glu" data-anno="1"></div>
-      </div>
-      <div class="rcards" style="margin-top:8px">
-        <div class="rc-opt"><h3 data-da="Optimalt område" data-en="Optimal range">Optimal range</h3><p data-da="Viser de niveauer, hvor vi vurderer, at kroppen fungerer mest balanceret og robust — både her og nu og på lang sigt." data-en="The levels at which we consider the body to work at its most balanced and robust, both now and in the long term.">The levels at which we consider the body to work at its most balanced and robust, both now and in the long term.</p></div>
-        <div class="rc-ref"><h3 data-da="Referenceområde" data-en="Reference range">Reference range</h3><p data-da="De værdier, sundhedsvæsenet i Danmark bruger som normale. For nogle biomarkører svarer referenceområdet til det optimale område." data-en="The values the Danish healthcare system treats as normal. For some biomarkers, the reference range and the optimal range are the same.">The values the Danish healthcare system treats as normal. For some biomarkers, the reference range and the optimal range are the same.</p></div>
-        <div class="rc-out"><h3 data-da="Uden for området" data-en="Outside range">Outside range</h3><p data-da="Værdier uden for de anbefalede grænser. Det kan være tegn på en ubalance eller mangel og bør ses i sammenhæng med dit samlede helbred." data-en="Values outside the recommended limits. This may be a sign of an imbalance or deficiency and should be viewed in the context of your overall health.">Values outside the recommended limits. This may be a sign of an imbalance or deficiency and should be viewed in the context of your overall health.</p></div>
-      </div>
-      <p class="lab" style="margin-top:14px" data-da="Definitionerne er fra Pandonias rapport · eksemplet er rapportens eget" data-en="Definitions from Pandonia's report · the example is the report's own">Definitions from Pandonia's report · the example is the report's own</p>
-    </div>
-    <div>
-      <p class="lab" data-da="Over tid" data-en="Over time">Over time</p>
-      <h2 class="s d3 fg" style="margin-top:12px" data-da="Score over tid." data-en="Score over time.">Score over time.</h2>
-      <p class="bd meas" style="margin-top:16px" data-da="Hver ny måling lægger et punkt til din samlede score. Du ser udviklingen fra test til test." data-en="Each new test adds a point to your overall score, so you can see how it develops from one test to the next.">Each new test adds a point to your overall score, so you can see how it develops from one test to the next.</p>
-      <div style="margin-top:24px">
-        <figure class="rcard rcWide" aria-labelledby="rcTitleRp">
-          <div class="rcHead">
-            <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
-            <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
-          </div>
-          <p class="rcTitle" id="rcTitleRp" data-da="Det, der har flyttet sig." data-en="What has changed.">What has changed.</p>
-          <div class="rbarSlot" data-kind="glu" style="margin-top:20px"></div>
-          <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--ruleSoft)">
-            <p class="lab" style="margin-bottom:6px" data-da="Score over tid" data-en="Score over time">Score over time</p>
-            <div class="trendSlot" data-small="1"></div>
-          </div>
-          <figcaption class="rcCap" data-da="Målingen er rapportens eget vejledningseksempel. Forløbet er skematisk." data-en="The value is the worked example from the report's own guide. The trend is schematic.">The value is the worked example from the report's own guide. The trend is schematic.</figcaption>
-        </figure>
-      </div>
-    </div>
-  </div></div></section>
-
 </div>
 
 <!-- ═══════════ FAQ ═══════════ -->
