@@ -480,6 +480,7 @@ body{font-size:16.5px;line-height:1.55}
 .rc-opt{background:var(--rOpt)}.rc-ref{background:var(--rRef)}.rc-out{background:var(--rOut)}
 .trend{display:block;width:100%;height:auto}
 .trend text{font-family:var(--sans)}
+.trendBeside .trend text{font-size:16px}
 .prev{display:flex;gap:clamp(14px,2vw,26px);align-items:flex-end}
 .prev div{display:grid;gap:5px}
 .prev small{font-size:11px;letter-spacing:.06em;color:var(--ink3)}
@@ -1173,41 +1174,28 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     
   </div></section>
 
-  <!-- B · ONE MARKER — the report's bar anatomy and its three ranges -->
-  <section class="gSand"><div class="wrap std">
-    <p class="lab" data-da="Én markør" data-en="One marker">One marker</p>
-    <h2 class="s d3 fg" style="margin-top:12px" data-da="Sådan læser du en måling." data-en="How to read a measurement.">How to read a measurement.</h2>
-    <div class="sheet" style="margin-top:clamp(24px,3vw,36px)">
-      <div class="rbarSlot" data-kind="glu" data-anno="1"></div>
-    </div>
-    <div class="rcards" style="margin-top:8px">
-      <div class="rc-opt"><h3 data-da="Optimalt område" data-en="Optimal range">Optimal range</h3><p data-da="Viser de niveauer, hvor vi vurderer, at kroppen fungerer mest balanceret og robust — både her og nu og på lang sigt." data-en="The levels at which we consider the body to work at its most balanced and robust, both now and in the long term.">The levels at which we consider the body to work at its most balanced and robust, both now and in the long term.</p></div>
-      <div class="rc-ref"><h3 data-da="Referenceområde" data-en="Reference range">Reference range</h3><p data-da="De værdier, sundhedsvæsenet i Danmark bruger som normale. For nogle biomarkører svarer referenceområdet til det optimale område." data-en="The values the Danish healthcare system treats as normal. For some biomarkers, the reference range and the optimal range are the same.">The values the Danish healthcare system treats as normal. For some biomarkers, the reference range and the optimal range are the same.</p></div>
-      <div class="rc-out"><h3 data-da="Uden for området" data-en="Outside range">Outside range</h3><p data-da="Værdier uden for de anbefalede grænser. Det kan være tegn på en ubalance eller mangel og bør ses i sammenhæng med dit samlede helbred." data-en="Values outside the recommended limits. This may be a sign of an imbalance or deficiency and should be viewed in the context of your overall health.">Values outside the recommended limits. This may be a sign of an imbalance or deficiency and should be viewed in the context of your overall health.</p></div>
-    </div>
-    <p class="lab" style="margin-top:14px" data-da="Definitionerne er fra Pandonias rapport · eksemplet er rapportens eget" data-en="Definitions from Pandonia's report · the example is the report's own">Definitions from Pandonia's report · the example is the report's own</p>
-    
-    
-  </div></section>
-
-  <!-- C · OVER TIME — score over time, results worth paying attention to -->
-  <section class="gSheet"><div class="wrap std">
-    <div class="split sp5545 alStart">
-      <div>
-        <p class="lab" data-da="Over tid" data-en="Over time">Over time</p>
-        <h2 class="s d3 fg" style="margin-top:12px" data-da="Score over tid." data-en="Score over time.">Score over time.</h2>
-        <p class="bd meas" style="margin-top:16px" data-da="Hver ny måling lægger et punkt til din samlede score. Du ser udviklingen fra test til test." data-en="Each new test adds a point to your overall score, so you can see how it develops from one test to the next.">Each new test adds a point to your overall score, so you can see how it develops from one test to the next.</p>
-        <div class="sheet" style="margin-top:24px"><div class="trendSlot"></div></div>
+  <!-- B · ONE MARKER + OVER TIME — the report's bar anatomy and its three ranges, beside the score over time -->
+  <section class="gSand"><div class="wrap std"><div class="split sp6238 alStart">
+    <div>
+      <p class="lab" data-da="Én markør" data-en="One marker">One marker</p>
+      <h2 class="s d3 fg" style="margin-top:12px" data-da="Sådan læser du en måling." data-en="How to read a measurement.">How to read a measurement.</h2>
+      <div class="sheet" style="margin-top:clamp(24px,3vw,36px)">
+        <div class="rbarSlot" data-kind="glu" data-anno="1"></div>
       </div>
-      <div>
-        <p class="lab" data-da="Opmærksomhed" data-en="Attention">Attention</p>
-        <h2 class="s d3 fg" style="margin-top:12px" data-da="Resultater værd at holde øje med." data-en="Results worth paying attention to.">Results worth paying attention to.</h2>
-        <p class="bd meas" style="margin-top:16px" data-da="Målinger uden for området samles ét sted — med dine tidligere målinger ved siden af." data-en="Results outside the range are gathered in one place, next to your previous measurements.">Results outside the range are gathered in one place, next to your previous measurements.</p>
-        <div class="sheet" style="margin-top:24px"><div class="rbarSlot" data-kind="gen"></div></div>
-        <p class="lab" style="margin-top:12px" data-da="Eksempel · anonymiseret" data-en="Example · anonymised">Example · anonymised</p>
+      <div class="rcards" style="margin-top:8px">
+        <div class="rc-opt"><h3 data-da="Optimalt område" data-en="Optimal range">Optimal range</h3><p data-da="Viser de niveauer, hvor vi vurderer, at kroppen fungerer mest balanceret og robust — både her og nu og på lang sigt." data-en="The levels at which we consider the body to work at its most balanced and robust, both now and in the long term.">The levels at which we consider the body to work at its most balanced and robust, both now and in the long term.</p></div>
+        <div class="rc-ref"><h3 data-da="Referenceområde" data-en="Reference range">Reference range</h3><p data-da="De værdier, sundhedsvæsenet i Danmark bruger som normale. For nogle biomarkører svarer referenceområdet til det optimale område." data-en="The values the Danish healthcare system treats as normal. For some biomarkers, the reference range and the optimal range are the same.">The values the Danish healthcare system treats as normal. For some biomarkers, the reference range and the optimal range are the same.</p></div>
+        <div class="rc-out"><h3 data-da="Uden for området" data-en="Outside range">Outside range</h3><p data-da="Værdier uden for de anbefalede grænser. Det kan være tegn på en ubalance eller mangel og bør ses i sammenhæng med dit samlede helbred." data-en="Values outside the recommended limits. This may be a sign of an imbalance or deficiency and should be viewed in the context of your overall health.">Values outside the recommended limits. This may be a sign of an imbalance or deficiency and should be viewed in the context of your overall health.</p></div>
       </div>
+      <p class="lab" style="margin-top:14px" data-da="Definitionerne er fra Pandonias rapport · eksemplet er rapportens eget" data-en="Definitions from Pandonia's report · the example is the report's own">Definitions from Pandonia's report · the example is the report's own</p>
     </div>
-  </div></section>
+    <div>
+      <p class="lab" data-da="Over tid" data-en="Over time">Over time</p>
+      <h2 class="s d3 fg" style="margin-top:12px" data-da="Score over tid." data-en="Score over time.">Score over time.</h2>
+      <p class="bd meas" style="margin-top:16px" data-da="Hver ny måling lægger et punkt til din samlede score. Du ser udviklingen fra test til test." data-en="Each new test adds a point to your overall score, so you can see how it develops from one test to the next.">Each new test adds a point to your overall score, so you can see how it develops from one test to the next.</p>
+      <div class="sheet" style="margin-top:24px"><div class="trendSlot trendBeside"></div></div>
+    </div>
+  </div></div></section>
 
 </div>
 
