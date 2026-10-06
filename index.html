@@ -445,10 +445,16 @@ body{font-size:16.5px;line-height:1.55}
 .sysRow>details[open] .sysPlus,.sysRow>details[open]>summary .sysAct{color:var(--ink)}
 .sysBody p{color:var(--ink2)}
 /* the six systems and "The body doesn't fit into neat boxes." on black: the page's ink tokens
-   flip inside, so rows, radar labels and scores turn light without separate rules */
-.sysDark{--ink:#FAFAF7;--forest:#FAFAF7;--ink2:var(--onDeepMuted);--ink3:var(--onDeepQuiet);--rule:var(--ruleInv);--ruleSoft:var(--ruleInvSoft);--rRadar:rgba(250,250,247,.06);--rNavy:#FAFAF7}
-.sysDark .sysRow>details>summary:hover{background:rgba(250,250,247,.045)}
-.sysDark .radar [stroke="#C9CED6"]{stroke:rgba(250,250,247,.26)}
+   flip inside, so rows, headings and the radar's outer labels turn light without separate rules */
+.sysDark{--ink:#FAFAF7;--forest:#FAFAF7;--ink2:var(--onDeepMuted);--ink3:var(--onDeepQuiet);--rule:var(--ruleInv);--ruleSoft:var(--ruleInvSoft)}
+/* an editorial index: no background behind a row, the action and + are the cues */
+.sysDark .sysRow>details>summary:hover{background:none}
+.sysDark .sysPlus{color:var(--inkInv)}
+.sysDark .sysRow>details>summary:hover .sysAct{color:var(--inkInv)}
+/* two lines, as in the report: "Kroppen arbejder / ikke i kasser." · "The body doesn't fit / into neat boxes." */
+.sysDark h2.measS{max-width:8em}
+/* the radar keeps its pale report ground and navy trace; the score in its centre stays dark */
+.sysDark .radar>text{fill:#0A0A0A}
 /* on black the hovered or focused system name turns acid (white on white would not show a change) */
 .sysDark .radar a.rSys:hover .rLbl,.sysDark .radar a.rSys:focus-visible .rLbl{fill:var(--acid)}
 
