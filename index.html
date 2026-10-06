@@ -324,25 +324,25 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 .testSub{margin-top:clamp(18px,2.2vw,32px);font-family:var(--serif);font-size:clamp(20px,1.2vw + 14px,30px);line-height:1.25;letter-spacing:-.01em;background:linear-gradient(90deg,#9EC3F7 0%,#F0A9C8 48%,#F6C79A 74%,#F1EC7A 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .testSub span{display:block}
 /* ── HOW IT WORKS ─────────────────────────────────────────────────
-   One black screen under the light header. Desktop: four columns with dark hairlines and a quiet
-   arrow on each line. Phones: the same steps stacked, divided by hairlines. */
-.hw{background:var(--deep);color:var(--inkInv);--ink:#FAFAF7;--forest:#FAFAF7;--ink2:rgba(250,250,247,.66);--ink3:var(--onDeepQuiet);--rule:var(--ruleInv);--ruleSoft:var(--ruleInvSoft)}
-.hw .btn1{background:var(--inkInv);color:#0A0A0A;gap:12px}
+   Warm beige under the light header, dark type, then straight into the black footer. Desktop:
+   four columns with fine hairlines and a quiet arrow on each line. Phones: stacked, hairlines between. */
+.hw{background:var(--sand);color:var(--ink);--hwLine:rgba(10,10,10,.16)}
+.hw .btn1{gap:12px}
 .hwIn{padding-block:clamp(40px,7vh,84px) clamp(48px,8vh,96px)}
 .hwKick::before{content:"[ "}.hwKick::after{content:" ]"}
 .hwT{margin-top:clamp(14px,2vh,22px);font-size:clamp(38px,3.2vw + 14px,76px);line-height:1.02;letter-spacing:-.03em}
 .hwLead{margin-top:clamp(10px,1.6vh,18px);font-size:clamp(17px,.7vw + 11px,22px);line-height:1.45;color:var(--ink2);max-width:68ch}
 .hwSteps{list-style:none;margin:clamp(36px,6vh,64px) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr)}
-.hwS{position:relative;padding-block:28px 32px;border-top:1px solid var(--ruleSoft)}
-.hwS:last-child{border-bottom:1px solid var(--ruleSoft)}
-.hwNo{display:inline-block;font-size:13px;letter-spacing:.08em;color:var(--inkInv);padding-bottom:10px;border-bottom:1px solid rgba(250,250,247,.6)}
+.hwS{position:relative;padding-block:28px 32px;border-top:1px solid var(--hwLine)}
+.hwS:last-child{border-bottom:1px solid var(--hwLine)}
+.hwNo{display:inline-block;font-size:13px;letter-spacing:.08em;color:var(--ink);padding-bottom:10px;border-bottom:1px solid rgba(10,10,10,.6)}
 .hwLab{margin-top:clamp(14px,2vh,22px)}
 .hwHw{position:relative;margin-top:12px}
 .hwH{font-size:clamp(32px,1.6vw + 18px,48px);line-height:1.04;letter-spacing:-.025em}
 .hwH span{display:block}
 .hwTx{margin-top:14px;font-size:16px;line-height:1.55;color:var(--ink2);max-width:40ch}
-.hwNote{margin-top:18px;padding-top:14px;border-top:1px solid var(--ruleSoft);max-width:40ch}
-.hwNote .lab{margin-top:12px;color:var(--inkInv)}.hwNote .lab:first-child{margin-top:0}
+.hwNote{margin-top:18px;padding-top:14px;border-top:1px solid var(--hwLine);max-width:40ch}
+.hwNote .lab{margin-top:12px;color:var(--ink)}.hwNote .lab:first-child{margin-top:0}
 .hwNote p:not(.lab){margin-top:4px;font-size:14px;line-height:1.5;color:var(--ink2)}
 .hwAct{margin-top:22px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
 .hwArw{display:none}
@@ -350,9 +350,9 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
   .hwSteps{grid-template-columns:repeat(4,minmax(0,1fr))}
   .hwS{--pad:clamp(18px,2.4vw,44px);padding:0 var(--pad);border:0}
   .hwS:first-child{padding-left:0}.hwS:last-child{padding-right:0;border-bottom:0}
-  .hwS+.hwS{border-left:1px solid rgba(250,250,247,.16)}
+  .hwS+.hwS{border-left:1px solid var(--hwLine)}
   /* the arrow sits on the hairline, centred on the step title, on a patch of the ground */
-  .hwArw{display:block;position:absolute;left:calc(-1 * var(--pad));top:50%;transform:translate(-50%,-50%);padding:10px 0;background:var(--deep);font-size:22px;line-height:1;color:rgba(250,250,247,.8)}
+  .hwArw{display:block;position:absolute;left:calc(-1 * var(--pad));top:50%;transform:translate(-50%,-50%);padding:10px 0;background:var(--sand);font-size:22px;line-height:1;color:var(--ink)}
   .hwH{font-size:clamp(30px,1.3vw + 16px,46px)}
   .hwTx{font-size:clamp(15px,.25vw + 12px,17px)}
 }
@@ -1154,7 +1154,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
 
 <!-- ═══════════ SÅDAN FUNGERER DET ═══════════ -->
 <div data-page="saadan" hidden>
-  <!-- HOW IT WORKS — one black screen under the light header: intro, then 01 → 02 → 03 → 04
+  <!-- HOW IT WORKS — one beige screen under the light header, ending on the black footer: intro, then 01 → 02 → 03 → 04
        side by side from 1024px (thin dividers, a quiet arrow on each), stacked on phones. -->
   <section class="hw" aria-labelledby="hwTitle"><div class="wrap hwIn">
     <p class="lab hwKick" data-da="Sådan fungerer det" data-en="How it works">How it works</p>
