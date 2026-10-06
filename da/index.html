@@ -324,75 +324,38 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 .testSub{margin-top:clamp(18px,2.2vw,32px);font-family:var(--serif);font-size:clamp(20px,1.2vw + 14px,30px);line-height:1.25;letter-spacing:-.01em;background:linear-gradient(90deg,#9EC3F7 0%,#F0A9C8 48%,#F6C79A 74%,#F1EC7A 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .testSub span{display:block}
 /* ── HOW IT WORKS ─────────────────────────────────────────────────
-   Base (phones, tablets, reduced motion, no script): one black page, a list of five steps that
-   open in place. .hwOn (desktop, set by script): the section is pinned under the header and the
-   panels move right to left as the page scrolls; a quiet step line sits under them. */
-.hw{background:var(--deep);color:var(--inkInv);--ink:#FAFAF7;--forest:#FAFAF7;--ink2:var(--onDeepMuted);--ink3:var(--onDeepQuiet);--rule:var(--ruleInv);--ruleSoft:var(--ruleInvSoft)}
-.hw .btn1{background:var(--inkInv);color:#0A0A0A}
-.hwTrack{max-width:1320px;margin:0 auto;padding:clamp(40px,8vw,72px) clamp(20px,4vw,64px) clamp(56px,10vw,96px)}
+   One black screen under the light header. Desktop: four columns with dark hairlines and a quiet
+   arrow on each line. Phones: the same steps stacked, divided by hairlines. */
+.hw{background:var(--deep);color:var(--inkInv);--ink:#FAFAF7;--forest:#FAFAF7;--ink2:rgba(250,250,247,.66);--ink3:var(--onDeepQuiet);--rule:var(--ruleInv);--ruleSoft:var(--ruleInvSoft)}
+.hw .btn1{background:var(--inkInv);color:#0A0A0A;gap:12px}
+.hwIn{padding-block:clamp(40px,7vh,84px) clamp(48px,8vh,96px)}
 .hwKick::before{content:"[ "}.hwKick::after{content:" ]"}
-.hwT{margin-top:18px;font-size:clamp(38px,5vw + 18px,64px);line-height:1.02;max-width:8em}
-.hwLead{margin-top:18px;font-size:16px;line-height:1.55;color:var(--ink2);max-width:36ch}
-.hwCue,.hwBar{display:none}
-.hwIntro{margin-bottom:clamp(32px,6vw,48px)}
-.hwS{border-top:1px solid var(--ruleSoft)}.hwS:last-child{border-bottom:1px solid var(--ruleSoft)}
-.hwS>summary{display:grid;grid-template-columns:36px minmax(0,1fr) 22px;align-items:center;gap:16px;min-height:64px;padding-block:10px;cursor:pointer;list-style:none}
-.hwS>summary::-webkit-details-marker{display:none}
-.hwS>summary:focus-visible{outline:2px solid var(--inkInv);outline-offset:2px}
-.hwNo{display:grid;place-content:center;width:36px;height:36px;border:1px solid var(--ruleInv);border-radius:50%;font-size:11px;letter-spacing:.04em;color:var(--ink2)}
-.hwLab{display:none}
-.hwH{font-family:var(--sans);font-weight:500;font-size:19px;line-height:1.15;letter-spacing:-.02em}
-.hwPlus{justify-self:end;font-size:20px;line-height:1;color:var(--inkInv);transition:transform 140ms cubic-bezier(.2,.6,.2,1)}
-.hwS[open]>summary .hwPlus{transform:rotate(45deg)}
-.hwBody{padding:2px 0 24px 52px}
-.hwTx,.hwNote p{font-size:15.5px;line-height:1.6;color:var(--ink2);max-width:46ch}
-.hwNote{margin-top:16px;padding-top:12px;border-top:1px solid var(--ruleSoft)}
-.hwNote .lab{margin-bottom:6px}
-.hwNote p+p{margin-top:6px}
-.hwAct{margin-top:18px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-@media(prefers-reduced-motion:reduce){.hwPlus{transition:none}}
-/* desktop journey */
-.hwOn .hwPin{position:sticky;top:var(--hwTop,0px);height:calc(100vh - var(--hwTop,0px));display:flex;flex-direction:column;overflow:clip;background:var(--deep)}
-.hwOn .hwTrack{flex:1 1 auto;min-height:0;display:flex;max-width:none;margin:0;padding:0;will-change:transform}
-.hwOn .hwP{flex:0 0 clamp(380px,29vw,500px);height:100%;margin:0;padding:clamp(32px,9vh,104px) clamp(28px,3vw,52px) clamp(28px,5vh,52px);display:flex;flex-direction:column;border:0;overflow:hidden}
-.hwOn .hwIntro{flex-basis:clamp(440px,36vw,620px)}
-.hwOn .hwWide{flex-basis:clamp(500px,36vw,600px)}
-/* nothing in a panel shrinks: if a window is too low the panel shows it, it does not overlap */
-.hwOn .hwP>*{flex-shrink:0}
-.hwOn .hwLight{background:var(--sand);color:var(--ink);--ink:#0A0A0A;--forest:#0A0A0A;--ink2:#5E5E58;--ink3:#65655F;--rule:#0A0A0A;--ruleSoft:#E1DCCE}
-.hwOn .hwLight+.hwLight{border-left:1px solid #DCD6C8}
-.hwOn .hwLight .btn1{background:#0A0A0A;color:var(--cream)}
-.hwOn .hwS>summary{display:block;min-height:0;padding:0;cursor:default}
-.hwOn .hwNo,.hwOn .hwPlus{display:none}
-.hwOn .hwLab{display:block}
-.hwOn .hwH,.hwOn .hwT{font-family:var(--serif);font-weight:400;letter-spacing:-.025em;text-wrap:balance}
-.hwOn .hwH{margin-top:clamp(16px,2.6vh,26px);font-size:clamp(32px,2vw + 3.2vh,52px);line-height:1.04;max-width:6.4em}
-/* every step heading holds two lines, so the text under it starts at one height across the panels */
-.hwOn .hwS .hwH{min-height:2.08em}
-.hwOn .hwT{font-size:clamp(40px,2.4vw + 3.6vh,64px)}
-.hwOn .hwLead{font-size:clamp(16px,.5vw + 10px,19px);color:var(--inkInv)}
-.hwOn .hwBody{padding:clamp(22px,4.5vh,48px) 0 0}
-.hwOn .hwTx{font-size:clamp(15px,.3vw + 11px,16.5px);max-width:32ch}
-.hwOn .hwNote p{font-size:13.5px;line-height:1.55;max-width:44ch}
-.hwOn .hwNote{margin-top:clamp(14px,2.6vh,24px)}
-.hwOn .hwAct{margin-top:clamp(20px,4vh,36px)}
-.hwOn .hwCue{display:flex;align-items:center;gap:16px;margin-top:auto;font-size:14px;color:var(--ink2)}
-.hwCueO{display:grid;place-content:center;width:42px;height:42px;border:1px solid var(--ruleInv);border-radius:50%;font-size:16px;color:var(--inkInv)}
-.hwOn .hwBar{flex:0 0 clamp(78px,11vh,104px);display:flex;align-items:center;gap:clamp(24px,4vw,64px);padding:0 clamp(28px,3vw,52px) 0 clamp(60px,8vw,150px);border-top:1px solid var(--ruleInvSoft)}
-.hwDots{flex:1;display:flex;justify-content:space-between;position:relative;list-style:none;margin:0;padding:0}
-.hwDots::before{content:"";position:absolute;left:22px;right:22px;top:22px;height:1px;background:rgba(250,250,247,.34)}
-.hwDot{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:44px;padding:0;background:none;border:0;color:var(--ink2);font:inherit;font-size:12.5px;cursor:pointer}
-.hwDot i{display:grid;place-content:center;width:44px;height:44px}
-.hwDot i::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--inkInv);transition:background-color 160ms,transform 160ms}
-.hwDot.on{color:var(--inkInv)}
-.hwDot.on i::after{background:#F0A9C8;transform:scale(1.35)}
-.hwDot:focus-visible,.hwArr button:focus-visible{outline:2px solid var(--inkInv);outline-offset:2px}
-.hwArr{display:flex;gap:12px}
-.hwArr button{display:grid;place-content:center;width:44px;height:44px;border:1px solid rgba(250,250,247,.5);border-radius:50%;background:none;color:var(--inkInv);font-size:17px;cursor:pointer}
-.hwArr button:disabled{opacity:.32;cursor:default}
-@media(prefers-reduced-motion:reduce){.hwDot i::after{transition:none}}
-/* low windows (laptops at 720–800px): the same content, set tighter */
-@media(max-height:820px){.hwOn .hwP{padding-top:clamp(28px,5vh,48px);padding-bottom:22px}.hwOn .hwBody{padding-top:clamp(16px,2.6vh,26px)}.hwOn .hwNote{margin-top:10px;padding-top:9px}.hwOn .hwNote p{line-height:1.45}.hwOn .hwNote p+p{margin-top:4px}.hwOn .hwBar{flex-basis:76px}}
+.hwT{margin-top:clamp(14px,2vh,22px);font-size:clamp(38px,3.2vw + 14px,76px);line-height:1.02;letter-spacing:-.03em}
+.hwLead{margin-top:clamp(10px,1.6vh,18px);font-size:clamp(17px,.7vw + 11px,22px);line-height:1.45;color:var(--ink2);max-width:68ch}
+.hwSteps{list-style:none;margin:clamp(36px,6vh,64px) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr)}
+.hwS{position:relative;padding-block:28px 32px;border-top:1px solid var(--ruleSoft)}
+.hwS:last-child{border-bottom:1px solid var(--ruleSoft)}
+.hwNo{display:inline-block;font-size:13px;letter-spacing:.08em;color:var(--inkInv);padding-bottom:10px;border-bottom:1px solid rgba(250,250,247,.6)}
+.hwLab{margin-top:clamp(14px,2vh,22px)}
+.hwHw{position:relative;margin-top:12px}
+.hwH{font-size:clamp(32px,1.6vw + 18px,48px);line-height:1.04;letter-spacing:-.025em}
+.hwH span{display:block}
+.hwTx{margin-top:14px;font-size:16px;line-height:1.55;color:var(--ink2);max-width:40ch}
+.hwNote{margin-top:18px;padding-top:14px;border-top:1px solid var(--ruleSoft);max-width:40ch}
+.hwNote .lab{margin-top:12px;color:var(--inkInv)}.hwNote .lab:first-child{margin-top:0}
+.hwNote p:not(.lab){margin-top:4px;font-size:14px;line-height:1.5;color:var(--ink2)}
+.hwAct{margin-top:22px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.hwArw{display:none}
+@media(min-width:1024px){
+  .hwSteps{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .hwS{--pad:clamp(18px,2.4vw,44px);padding:0 var(--pad);border:0}
+  .hwS:first-child{padding-left:0}.hwS:last-child{padding-right:0;border-bottom:0}
+  .hwS+.hwS{border-left:1px solid rgba(250,250,247,.16)}
+  /* the arrow sits on the hairline, centred on the step title, on a patch of the ground */
+  .hwArw{display:block;position:absolute;left:calc(-1 * var(--pad));top:50%;transform:translate(-50%,-50%);padding:10px 0;background:var(--deep);font-size:22px;line-height:1;color:rgba(250,250,247,.8)}
+  .hwH{font-size:clamp(30px,1.3vw + 16px,46px)}
+  .hwTx{font-size:clamp(15px,.25vw + 12px,17px)}
+}
 @media(max-width:1023px){.heroCard{aspect-ratio:auto;min-height:260px;margin-top:0}}
 .heroLine{padding-top:clamp(8px,1.5vw,24px);font-size:clamp(40px,4.6vw + 12px,80px)}   /* one clause per line on desktop */
 
@@ -1191,65 +1154,50 @@ html[data-locale="en"] [data-lang="da"]{display:none}
 
 <!-- ═══════════ SÅDAN FUNGERER DET ═══════════ -->
 <div data-page="saadan" hidden>
-  <!-- HOW IT WORKS — one journey: intro · 01 collect · 02 transport · 03 report · 04 review.
-       Desktop: the section is pinned and vertical scrolling moves the panels right to left (hwOn,
-       set by script). Without it — phones, tablets, short windows, reduced motion, no script —
-       the same markup is a black list of steps that open in place. -->
-  <section class="hw" id="hw" aria-labelledby="hwTitle"><div class="hwPin">
-    <div class="hwTrack">
-      <div class="hwP hwIntro hwDark">
-        <p class="lab hwKick" data-da="Sådan fungerer det" data-en="How it works">Sådan fungerer det</p>
-        <h1 class="s hwT" id="hwTitle" data-da="Hvad der sker med din prøve." data-en="What happens to your sample.">Hvad der sker med din prøve.</h1>
-        <p class="hwLead" data-da="Fire trin, på én dag: indsamling, transport, analyse og gennemgang." data-en="Four steps, in one day: collect, transport, analyse, review.">Fire trin, på én dag: indsamling, transport, analyse og gennemgang.</p>
-        <p class="hwCue"><span class="hwCueO" aria-hidden="true">↓</span><span data-da="Scroll for at se processen" data-en="Scroll to see the process">Scroll for at se processen</span></p>
-      </div>
-      <details class="hwP hwS hwLight hwWide">
-        <summary><span class="hwNo" aria-hidden="true">01</span><span class="lab hwLab" data-da="01 · Indsamling" data-en="01 · Collect">01 · Indsamling</span><h2 class="hwH" data-da="Vi kommer til dig" data-en="We come to you">Vi kommer til dig</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
-        <div class="hwBody">
-          <p class="hwTx" data-da="Vores blodprøvetagere har erfaring fra flere forskellige hospitaler og arbejder under tæt supervision af vores ansvarlige læge." data-en="Our phlebotomists have experience from several hospitals and work under the close supervision of the doctor responsible for our service.">Vores blodprøvetagere har erfaring fra flere forskellige hospitaler og arbejder under tæt supervision af vores ansvarlige læge.</p>
-          <div class="hwNote">
-            <p class="lab" data-da="Aftenen inden" data-en="The evening before">Aftenen inden</p>
-            <p data-da="Fast i mindst 12 timer, og undgå både kaffe og kosttilskud før prøven. Hård fysisk aktivitet frarådes de sidste 48 timer." data-en="Fast for at least 12 hours, and avoid coffee and supplements before the test. Avoid strenuous exercise for 48 hours beforehand.">Fast i mindst 12 timer, og undgå både kaffe og kosttilskud før prøven. Hård fysisk aktivitet frarådes de sidste 48 timer.</p>
-            <p data-da="Vi anbefaler at prøven tages tidligt på dagen, da flere biomarkører naturligt topper om morgenen." data-en="We recommend taking the sample early in the day, as several biomarkers naturally peak in the morning.">Vi anbefaler at prøven tages tidligt på dagen, da flere biomarkører naturligt topper om morgenen.</p>
-          </div>
-          <div class="hwNote">
-            <p class="lab" data-da="Vi kommer i disse områder" data-en="We come to these areas">Vi kommer i disse områder</p>
-            <p>København K, N, NV, V, S, SV, Ø, Frederiksberg <span data-da="og Hellerup — eller på vores laboratorium." data-en="and Hellerup — or come to our laboratory.">og Hellerup — eller på vores laboratorium.</span></p>
-          </div>
+  <!-- HOW IT WORKS — one black screen under the light header: intro, then 01 → 02 → 03 → 04
+       side by side from 1024px (thin dividers, a quiet arrow on each), stacked on phones. -->
+  <section class="hw" aria-labelledby="hwTitle"><div class="wrap hwIn">
+    <p class="lab hwKick" data-da="Sådan fungerer det" data-en="How it works">Sådan fungerer det</p>
+    <h1 class="s hwT" id="hwTitle" data-da="Hvad der sker med din prøve." data-en="What happens to your sample.">Hvad der sker med din prøve.</h1>
+    <p class="hwLead" data-da="Fire trin, på én dag: indsamling, transport, analyse og gennemgang." data-en="Four steps, in one day: collect, transport, analyse, review.">Fire trin, på én dag: indsamling, transport, analyse og gennemgang.</p>
+    <ol class="hwSteps">
+      <li class="hwS">
+        <p class="hwNo">01</p>
+        <p class="lab hwLab" data-da="Indsamling" data-en="Collection">Indsamling</p>
+        <div class="hwHw"><h2 class="s hwH"><span data-da="Vi kommer" data-en="We come">Vi kommer</span> <span data-da="til dig." data-en="to you.">til dig.</span></h2></div>
+        <p class="hwTx" data-da="Vores blodprøvetagere har erfaring fra flere forskellige hospitaler og arbejder under tæt supervision af vores ansvarlige læge." data-en="Our phlebotomists have experience from several hospitals and work under the close supervision of the doctor responsible for our service.">Vores blodprøvetagere har erfaring fra flere forskellige hospitaler og arbejder under tæt supervision af vores ansvarlige læge.</p>
+        <div class="hwNote">
+          <p class="lab" data-da="Aftenen inden" data-en="The evening before">Aftenen inden</p>
+          <p data-da="Fast i mindst 12 timer, og undgå både kaffe og kosttilskud før prøven. Hård fysisk aktivitet frarådes de sidste 48 timer." data-en="Fast for at least 12 hours, and avoid coffee and supplements before the test. Avoid strenuous exercise for 48 hours beforehand.">Fast i mindst 12 timer, og undgå både kaffe og kosttilskud før prøven. Hård fysisk aktivitet frarådes de sidste 48 timer.</p>
+          <p data-da="Vi anbefaler at prøven tages tidligt på dagen, da flere biomarkører naturligt topper om morgenen." data-en="We recommend taking the sample early in the day, as several biomarkers naturally peak in the morning.">Vi anbefaler at prøven tages tidligt på dagen, da flere biomarkører naturligt topper om morgenen.</p>
+          <p class="lab" data-da="Vi kommer i disse områder" data-en="We come to these areas">Vi kommer i disse områder</p>
+          <p>København K, N, NV, V, S, SV, Ø, Frederiksberg <span data-da="og Hellerup — eller på vores laboratorium." data-en="and Hellerup — or come to our laboratory.">og Hellerup — eller på vores laboratorium.</span></p>
         </div>
-      </details>
-      <details class="hwP hwS hwLight" id="laboratoriet">
-        <summary><span class="hwNo" aria-hidden="true">02</span><span class="lab hwLab" data-da="02 · Transport" data-en="02 · Transport">02 · Transport</span><h2 class="hwH" data-da="Direkte til laboratoriet" data-en="Straight to the laboratory">Direkte til laboratoriet</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
-        <div class="hwBody">
-          <p class="hwTx" data-da="Prøven bringes direkte til vores eget laboratorium. Den sendes ikke videre til et eksternt laboratorium." data-en="Your sample goes straight to our own laboratory. It is not sent on to an outside lab.">Prøven bringes direkte til vores eget laboratorium. Den sendes ikke videre til et eksternt laboratorium.</p>
+      </li>
+      <li class="hwS" id="laboratoriet">
+        <p class="hwNo">02</p>
+        <p class="lab hwLab" data-da="Transport" data-en="Transport">Transport</p>
+        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH"><span data-da="Direkte til" data-en="Straight to">Direkte til</span> <span data-da="laboratoriet." data-en="the laboratory.">laboratoriet.</span></h2></div>
+        <p class="hwTx" data-da="Prøven bringes direkte til vores eget laboratorium. Den sendes ikke videre til et eksternt laboratorium." data-en="Your sample goes straight to our own laboratory. It is not sent on to an outside lab.">Prøven bringes direkte til vores eget laboratorium. Den sendes ikke videre til et eksternt laboratorium.</p>
+      </li>
+      <li class="hwS">
+        <p class="hwNo">03</p>
+        <p class="lab hwLab" data-da="Analyse" data-en="Analysis">Analyse</p>
+        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH"><span data-da="Avanceret" data-en="Advanced">Avanceret</span> <span data-da="analyse." data-en="analysis.">analyse.</span></h2></div>
+        <p class="hwTx" data-da="Analyseret i vores eget laboratorium. Kvalitetskontrolleret og godkendt." data-en="Processed in our own lab. Quality controlled, signed off.">Analyseret i vores eget laboratorium. Kvalitetskontrolleret og godkendt.</p>
+      </li>
+      <li class="hwS">
+        <p class="hwNo">04</p>
+        <p class="lab hwLab" data-da="Rapport &amp; samtalen" data-en="Report &amp; consultation">Rapport &amp; samtalen</p>
+        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH"><span data-da="Din rapport" data-en="Your report">Din rapport</span> <span data-da="og gennemgang." data-en="and review.">og gennemgang.</span></h2></div>
+        <p class="hwTx" data-da="Den er skrevet til at blive læst af dig — ikke af en læge." data-en="It's written for you to read — not for a doctor.">Den er skrevet til at blive læst af dig — ikke af en læge.</p>
+        <p class="hwTx" data-da="Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret. Tyve minutter online." data-en="Book the consultation whenever suits you, as long as it is at least three hours after you receive your results. It takes twenty minutes, online.">Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret. Tyve minutter online.</p>
+        <div class="hwAct">
+          <a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer"><span data-da="Book din blodprøve" data-en="Book your blood test">Book din blodprøve</span> <span aria-hidden="true">→</span></a>
+          <a class="lnk" data-route="rapport"><span data-da="Se hele rapporten" data-en="See the full report">Se hele rapporten</span> <span aria-hidden="true">→</span></a>
         </div>
-      </details>
-      <details class="hwP hwS hwLight">
-        <summary><span class="hwNo" aria-hidden="true">03</span><span class="lab hwLab" data-da="03 · Rapport" data-en="03 · Report">03 · Rapport</span><h2 class="hwH" data-da="Rapporten" data-en="The report">Rapporten</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
-        <div class="hwBody">
-          <p class="hwTx" data-da="Den er skrevet til at blive læst af dig — ikke af en læge." data-en="It's written for you to read — not for a doctor.">Den er skrevet til at blive læst af dig — ikke af en læge.</p>
-          <div class="hwAct"><a class="lnk" data-route="rapport"><span data-da="Se hele rapporten" data-en="See the full report">Se hele rapporten</span> <span aria-hidden="true">→</span></a></div>
-        </div>
-      </details>
-      <details class="hwP hwS hwLight">
-        <summary><span class="hwNo" aria-hidden="true">04</span><span class="lab hwLab" data-da="04 · Gennemgang" data-en="04 · Review">04 · Gennemgang</span><h2 class="hwH" data-da="Samtalen" data-en="The conversation">Samtalen</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
-        <div class="hwBody">
-          <p class="hwTx" data-da="Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret. Tyve minutter online." data-en="Book the consultation whenever suits you, as long as it is at least three hours after you receive your results. It takes twenty minutes, online.">Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret. Tyve minutter online.</p>
-          <div class="hwAct">
-            <a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer" data-da="Book din blodprøve" data-en="Book your blood test">Book din blodprøve</a>
-            <a class="lnk" data-route="faq"><span data-da="Praktiske spørgsmål" data-en="Practical questions">Praktiske spørgsmål</span> <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </details>
-    </div>
-    <!-- where you are in the story; a dot or an arrow moves the page to that stage -->
-    <nav class="hwBar" aria-labelledby="hwBarL"><span class="sr" id="hwBarL" data-da="Trin i processen" data-en="Steps in the process">Trin i processen</span>
-      <ol class="hwDots"><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>Intro</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>01</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>02</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>03</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>04</span></button></li></ol>
-      <div class="hwArr">
-        <button type="button" class="hwPrev"><span aria-hidden="true">←</span><span class="sr" data-da="Forrige trin" data-en="Previous step">Forrige trin</span></button>
-        <button type="button" class="hwNext"><span aria-hidden="true">→</span><span class="sr" data-da="Næste trin" data-en="Next step">Næste trin</span></button>
-      </div>
-    </nav>
+      </li>
+    </ol>
   </div></section>
 </div>
 
@@ -1870,58 +1818,6 @@ function linkify(){document.querySelectorAll('a[data-route]:not([href]),a[data-n
   var h=routeHref(a);if(h)a.setAttribute('href',h);});}
 function parseHash(h){var m=/^#\/([a-z]+)(?:\/([A-Za-z0-9_-]+))?/.exec(h||'');
   if(!m||!document.querySelector('[data-page="'+m[1]+'"]'))return null;return {page:m[1],anchor:m[2]||null};}
-// How it works: the desktop journey. Vertical scrolling moves the pinned panels right to left,
-// one pixel of scroll for one pixel of travel, so the trackpad, wheel, keyboard and scrollbar
-// all behave as usual and scrolling back simply runs it backwards.
-(function(){
-  var sec=document.getElementById('hw');if(!sec)return;
-  var pin=sec.querySelector('.hwPin'),track=sec.querySelector('.hwTrack'),panels=[].slice.call(track.children),N=panels.length;
-  var dots=[].slice.call(sec.querySelectorAll('.hwDot')),prev=sec.querySelector('.hwPrev'),next=sec.querySelector('.hwNext');
-  var mq=window.matchMedia('(min-width:1024px) and (min-height:720px) and (prefers-reduced-motion:no-preference)');
-  var on=false,travel=0,cur=-1,ticking=false;
-  function navH(){var n=document.querySelector('.nav');return n?n.getBoundingClientRect().height:0;}
-  function startY(){return sec.getBoundingClientRect().top+window.scrollY-navH();}
-  function update(){ticking=false;if(!on)return;
-    var x=Math.max(0,Math.min(travel,window.scrollY-startY()));
-    track.style.transform='translate3d('+(-x)+'px,0,0)';
-    var i=travel?Math.round(x/travel*(N-1)):0;
-    if(i!==cur){cur=i;dots.forEach(function(d,k){d.classList.toggle('on',k===i);if(k===i)d.setAttribute('aria-current','step');else d.removeAttribute('aria-current');});
-      prev.disabled=i===0;next.disabled=i===N-1;}}
-  function layout(){
-    var want=mq.matches;
-    if(want!==on){on=want;sec.classList.toggle('hwOn',on);cur=-1;
-      sec.querySelectorAll('details').forEach(function(d){d.open=on;var su=d.querySelector('summary');if(on)su.setAttribute('tabindex','-1');else su.removeAttribute('tabindex');});
-      if(!on){sec.style.height='';track.style.transform='';}}
-    if(!on||!sec.offsetParent)return;
-    sec.style.setProperty('--hwTop',navH()+'px');
-    // the panels' own widths, not scrollWidth (which some engines report short of the last panel)
-    travel=Math.max(0,Math.round(panels.reduce(function(a,q){return a+q.getBoundingClientRect().width;},0)-pin.clientWidth));
-    sec.style.height=(pin.offsetHeight+travel)+'px';
-    update();}
-  function goStage(i,smooth){i=Math.max(0,Math.min(N-1,i));window.scrollTo({top:startY()+travel*i/(N-1),behavior:smooth?'smooth':'instant'});}
-  window.addEventListener('scroll',function(){if(on&&!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true});
-  window.addEventListener('resize',layout);
-  if(mq.addEventListener)mq.addEventListener('change',layout);else mq.addListener(layout);
-  // re-measure when the panels change size (fonts, language, the page being shown); after the frame, never inside the observer
-  var lq=false;function later(){if(lq)return;lq=true;requestAnimationFrame(function(){lq=false;layout();});}
-  if('ResizeObserver' in window){var ro=new ResizeObserver(later);ro.observe(pin);panels.forEach(function(q){ro.observe(q);});}
-  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(later);
-  window.addEventListener('load',later);
-  dots.forEach(function(d,k){d.addEventListener('click',function(){goStage(k,true);});});
-  prev.addEventListener('click',function(){goStage(cur-1,true);});
-  next.addEventListener('click',function(){goStage(cur+1,true);});
-  // on desktop every step is open: its heading is not a toggle there
-  sec.addEventListener('click',function(e){if(on&&e.target.closest('summary'))e.preventDefault();});
-  // tabbing to a link in a panel that is out of view brings that stage in
-  track.addEventListener('focusin',function(e){if(!on)return;var p=e.target.closest('.hwP'),k=panels.indexOf(p);if(k<0)return;
-    var r=p.getBoundingClientRect();if(r.left<0||r.right>pin.clientWidth+1)goStage(k,false);});
-  // a link to a stage (the footer's Laboratoriet) lands on that stage; in the list it opens it
-  window.hwGo=function(el){var p=el.closest&&el.closest('.hwP');if(!p||!sec.contains(p))return false;
-    if(on){layout();goStage(panels.indexOf(p),false);return true;}
-    if(p.tagName==='DETAILS')p.open=true;return false;};
-  window.hwLayout=layout;
-  layout();
-})();
 function show(p,anchor,opt){
   opt=opt||{};
   page=p;
@@ -1935,9 +1831,7 @@ function show(p,anchor,opt){
   requestAnimationFrame(function(){
     var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var el=anchor?document.getElementById(anchor):null;
-    if(el&&window.hwLayout)window.hwLayout();
-    if(el&&window.hwGo&&window.hwGo(el)){}
-    else if(el){el.scrollIntoView({behavior:reduce?'instant':'smooth',block:'start'});}
+    if(el){el.scrollIntoView({behavior:reduce?'instant':'smooth',block:'start'});}
     else window.scrollTo({top:0,behavior:'instant'});
     // After a navigation the new page's first heading takes focus, so keyboard and
     // screen-reader users land on the page they asked for. Not on first load.
