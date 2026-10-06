@@ -349,7 +349,6 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 .hwNote{margin-top:16px;padding-top:12px;border-top:1px solid var(--ruleSoft)}
 .hwNote .lab{margin-bottom:6px}
 .hwNote p+p{margin-top:6px}
-.hwSub{margin-top:0;font-size:clamp(21px,1.2vw + 15px,28px);text-align:left}
 .hwAct{margin-top:18px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
 @media(prefers-reduced-motion:reduce){.hwPlus{transition:none}}
 /* desktop journey */
@@ -360,7 +359,6 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 .hwOn .hwWide{flex-basis:clamp(500px,36vw,600px)}
 /* nothing in a panel shrinks: if a window is too low the panel shows it, it does not overlap */
 .hwOn .hwP>*{flex-shrink:0}
-.hwOn .hwTest{flex-basis:clamp(420px,32vw,560px)}
 .hwOn .hwLight{background:var(--sand);color:var(--ink);--ink:#0A0A0A;--forest:#0A0A0A;--ink2:#5E5E58;--ink3:#65655F;--rule:#0A0A0A;--ruleSoft:#E1DCCE}
 .hwOn .hwLight+.hwLight{border-left:1px solid #DCD6C8}
 .hwOn .hwLight .btn1{background:#0A0A0A;color:var(--cream)}
@@ -370,7 +368,7 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 .hwOn .hwH,.hwOn .hwT{font-family:var(--serif);font-weight:400;letter-spacing:-.025em;text-wrap:balance}
 .hwOn .hwH{margin-top:clamp(16px,2.6vh,26px);font-size:clamp(32px,2vw + 3.2vh,52px);line-height:1.04;max-width:6.4em}
 /* every step heading holds two lines, so the text under it starts at one height across the panels */
-.hwOn .hwS:not(.hwTest) .hwH{min-height:2.08em}
+.hwOn .hwS .hwH{min-height:2.08em}
 .hwOn .hwT{font-size:clamp(40px,2.4vw + 3.6vh,64px)}
 .hwOn .hwLead{font-size:clamp(16px,.5vw + 10px,19px);color:var(--inkInv)}
 .hwOn .hwBody{padding:clamp(22px,4.5vh,48px) 0 0}
@@ -378,8 +376,6 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 .hwOn .hwNote p{font-size:13.5px;line-height:1.55;max-width:44ch}
 .hwOn .hwNote{margin-top:clamp(14px,2.6vh,24px)}
 .hwOn .hwAct{margin-top:clamp(20px,4vh,36px)}
-.hwOn .hwTest .hwH{font-family:var(--sans);font-weight:700;font-size:clamp(96px,7vw + 6vh,176px);line-height:.88;letter-spacing:-.065em;max-width:none;color:var(--inkInv)}
-.hwOn .hwTest .hwBody{padding-top:clamp(18px,3vh,30px)}
 .hwOn .hwCue{display:flex;align-items:center;gap:16px;margin-top:auto;font-size:14px;color:var(--ink2)}
 .hwCueO{display:grid;place-content:center;width:42px;height:42px;border:1px solid var(--ruleInv);border-radius:50%;font-size:16px;color:var(--inkInv)}
 .hwOn .hwBar{flex:0 0 clamp(78px,11vh,104px);display:flex;align-items:center;gap:clamp(24px,4vw,64px);padding:0 clamp(28px,3vw,52px) 0 clamp(60px,8vw,150px);border-top:1px solid var(--ruleInvSoft)}
@@ -1195,7 +1191,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
 
 <!-- ═══════════ SÅDAN FUNGERER DET ═══════════ -->
 <div data-page="saadan" hidden>
-  <!-- HOW IT WORKS — one journey: intro · 01 collect · 02 transport · 03 test · 04 report · 05 review.
+  <!-- HOW IT WORKS — one journey: intro · 01 collect · 02 transport · 03 report · 04 review.
        Desktop: the section is pinned and vertical scrolling moves the panels right to left (hwOn,
        set by script). Without it — phones, tablets, short windows, reduced motion, no script —
        the same markup is a black list of steps that open in place. -->
@@ -1222,27 +1218,21 @@ html[data-locale="en"] [data-lang="da"]{display:none}
           </div>
         </div>
       </details>
-      <details class="hwP hwS hwLight">
+      <details class="hwP hwS hwLight" id="laboratoriet">
         <summary><span class="hwNo" aria-hidden="true">02</span><span class="lab hwLab" data-da="02 · Transport" data-en="02 · Transport">02 · Transport</span><h2 class="hwH" data-da="Direkte til laboratoriet" data-en="Straight to the laboratory">Straight to the laboratory</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
         <div class="hwBody">
           <p class="hwTx" data-da="Prøven bringes direkte til vores eget laboratorium. Den sendes ikke videre til et eksternt laboratorium." data-en="Your sample goes straight to our own laboratory. It is not sent on to an outside lab.">Your sample goes straight to our own laboratory. It is not sent on to an outside lab.</p>
         </div>
       </details>
-      <details class="hwP hwS hwDark hwTest" id="laboratoriet">
-        <summary><span class="hwNo" aria-hidden="true">03</span><span class="lab hwLab" data-da="03 · Analyse" data-en="03 · Analysis">03 · Analysis</span><h2 class="hwH" lang="en">Test.</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
-        <div class="hwBody">
-          <p class="testSub hwSub" lang="en"><span>It's the cheapest way</span><span>to a better decision.</span></p>
-        </div>
-      </details>
       <details class="hwP hwS hwLight">
-        <summary><span class="hwNo" aria-hidden="true">04</span><span class="lab hwLab" data-da="04 · Rapport" data-en="04 · Report">04 · Report</span><h2 class="hwH" data-da="Rapporten" data-en="The report">The report</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
+        <summary><span class="hwNo" aria-hidden="true">03</span><span class="lab hwLab" data-da="03 · Rapport" data-en="03 · Report">03 · Report</span><h2 class="hwH" data-da="Rapporten" data-en="The report">The report</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
         <div class="hwBody">
           <p class="hwTx" data-da="Den er skrevet til at blive læst af dig — ikke af en læge." data-en="It's written for you to read — not for a doctor.">It's written for you to read — not for a doctor.</p>
           <div class="hwAct"><a class="lnk" data-route="rapport"><span data-da="Se hele rapporten" data-en="See the full report">See the full report</span> <span aria-hidden="true">→</span></a></div>
         </div>
       </details>
       <details class="hwP hwS hwLight">
-        <summary><span class="hwNo" aria-hidden="true">05</span><span class="lab hwLab" data-da="05 · Gennemgang" data-en="05 · Review">05 · Review</span><h2 class="hwH" data-da="Samtalen" data-en="The conversation">The conversation</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
+        <summary><span class="hwNo" aria-hidden="true">04</span><span class="lab hwLab" data-da="04 · Gennemgang" data-en="04 · Review">04 · Review</span><h2 class="hwH" data-da="Samtalen" data-en="The conversation">The conversation</h2><span class="hwPlus" aria-hidden="true">+</span></summary>
         <div class="hwBody">
           <p class="hwTx" data-da="Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret. Tyve minutter online." data-en="Book the consultation whenever suits you, as long as it is at least three hours after you receive your results. It takes twenty minutes, online.">Book the consultation whenever suits you, as long as it is at least three hours after you receive your results. It takes twenty minutes, online.</p>
           <div class="hwAct">
@@ -1254,7 +1244,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     </div>
     <!-- where you are in the story; a dot or an arrow moves the page to that stage -->
     <nav class="hwBar" aria-labelledby="hwBarL"><span class="sr" id="hwBarL" data-da="Trin i processen" data-en="Steps in the process">Steps in the process</span>
-      <ol class="hwDots"><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>Intro</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>01</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>02</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>03</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>04</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>05</span></button></li></ol>
+      <ol class="hwDots"><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>Intro</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>01</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>02</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>03</span></button></li><li><button type="button" class="hwDot"><i aria-hidden="true"></i><span>04</span></button></li></ol>
       <div class="hwArr">
         <button type="button" class="hwPrev"><span aria-hidden="true">←</span><span class="sr" data-da="Forrige trin" data-en="Previous step">Previous step</span></button>
         <button type="button" class="hwNext"><span aria-hidden="true">→</span><span class="sr" data-da="Næste trin" data-en="Next step">Next step</span></button>
