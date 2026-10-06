@@ -323,6 +323,66 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 .testBlock .x{font-size:clamp(96px,15vw + 20px,250px);line-height:.88;letter-spacing:-.065em;color:var(--inkInv)}
 .testSub{margin-top:clamp(18px,2.2vw,32px);font-family:var(--serif);font-size:clamp(20px,1.2vw + 14px,30px);line-height:1.25;letter-spacing:-.01em;background:linear-gradient(90deg,#9EC3F7 0%,#F0A9C8 48%,#F6C79A 74%,#F1EC7A 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .testSub span{display:block}
+/* ── PHONES: product first ──────────────────────────────────────────
+   Nothing here shows from 760px up: .mOnly, .heroHow and the product page's own blocks are new;
+   the hero rules sit inside the phone query. */
+.mOnly,.heroHow{display:none}
+.mTests{background:var(--sand);padding-block:44px 52px}
+.mtH{margin-top:10px;font-size:clamp(34px,9vw,44px);line-height:1.02;letter-spacing:-.025em}
+.mtI{margin-top:12px;font-size:16px;line-height:1.55;color:var(--ink2)}
+.mtG{margin-top:34px}
+.mtL{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--rule)}
+.mtR{padding-block:20px 22px;border-bottom:1px solid var(--ruleSoft)}
+.mtHd{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.mtN{font-family:var(--serif);font-weight:400;font-size:23px;line-height:1.15;letter-spacing:-.015em}
+.mtP{flex:none;font-size:18px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+.mtP small{font-size:12px;font-weight:400;color:var(--ink3)}
+.mtD{margin-top:6px;font-size:14.5px;line-height:1.5;color:var(--ink2)}
+.mtM{margin-top:6px;font-size:13px;letter-spacing:.02em;color:var(--ink3)}
+.mtA{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.mtA .btn{min-height:46px;padding:12px 14px;font-size:15px;gap:10px}
+.tPg{background:var(--sand)}
+#tDetail{max-width:640px;padding-block:20px 56px}
+.tBack{margin-bottom:22px}
+.tHead .lab{margin-top:4px}
+.tName{margin-top:10px;font-size:clamp(34px,9vw,48px);line-height:1.04;letter-spacing:-.025em}
+.tLead{margin-top:12px;font-size:17px;line-height:1.55;color:var(--ink2)}
+.tPrice{margin-top:22px;font-size:30px;font-weight:500;letter-spacing:-.015em}
+.tAct{margin-top:18px}.tAct .btn{width:100%;min-height:52px;gap:12px}
+.tSec{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule)}
+.tGet{margin:14px 0 0}
+.tGet div{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.6fr);gap:14px;padding-block:12px;border-bottom:1px solid var(--ruleSoft)}
+.tGet dt{font-size:13px;color:var(--ink3)}.tGet dd{margin:0;font-size:15px;line-height:1.5}
+.tTx{margin-top:12px;font-size:16px;line-height:1.55;color:var(--ink2)}
+.tGo{margin-top:12px}
+.tImg{margin-top:14px;aspect-ratio:4/3;overflow:hidden}.tImg img{display:block;width:100%;height:100%;object-fit:cover;object-position:35% 50%}
+.tHow{list-style:none;margin:12px 0 0;padding:0}
+.tHow li{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-areas:"n l" "n t";gap:2px 12px;padding-block:12px;border-bottom:1px solid var(--ruleSoft)}
+.tNo{grid-area:n;font-size:12px;letter-spacing:.06em;padding-top:3px}.tHow .lab{grid-area:l}
+.tSt{grid-area:t;font-family:var(--serif);font-size:21px;line-height:1.2;letter-spacing:-.01em}
+.tEnd{margin-top:44px;padding:26px 0 0;border-top:1px solid var(--rule)}
+.tEndN{font-family:var(--serif);font-size:26px;line-height:1.15;letter-spacing:-.015em}
+@media(max-width:759px){
+  .mOnly{display:block}
+  /* the hero: the phone photograph full-bleed, the hero text over it */
+  .heroSec{position:relative;max-width:none;padding:0!important;overflow:hidden}
+  .heroSec>.split{display:block}
+  /* short enough that "Tests og priser" starts on the first screen */
+  .heroSec>.split>div:first-child{position:relative;z-index:1;min-height:clamp(600px,calc(100svh - 190px),700px);display:flex;flex-direction:column;justify-content:flex-end;padding:150px 22px 38px}
+  .heroSec .heroPhoto{position:absolute;inset:0;margin:0;aspect-ratio:auto;height:auto}
+  /* the photograph shows clearly at the top (the phone and its report) and settles into a dark
+     ground under the text, so every line reads at full contrast */
+  .heroSec .heroPhoto img{object-position:50% 12%}
+  .heroSec .heroPhoto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.04) 0%,rgba(10,10,10,.3) 20%,rgba(10,10,10,.84) 38%,rgba(10,10,10,.9) 100%)}
+  .heroSec .heroLine,.heroSec .heroLine span{color:#FAFAF7}
+  .heroSec .heroLine{font-size:clamp(46px,13vw,58px)}
+  .heroSec .bodyL{color:rgba(250,250,247,.9);max-width:34ch;margin-top:20px!important;font-size:16.5px;line-height:1.5}
+  .heroSec .btn1{background:#0A0A0A;color:#FAFAF7;border:1px solid rgba(250,250,247,.8);gap:12px}
+  .heroSec .btn1::after{content:"→"}
+  .heroSec .lnk{color:#FAFAF7;border-bottom-color:rgba(250,250,247,.75)}
+  .heroSec .heroBio{display:none}
+  .heroSec .heroHow{display:block;margin-top:14px}
+}
 /* ── HOW IT WORKS ─────────────────────────────────────────────────
    Warm beige under the light header, dark type, then straight into the black footer. Desktop:
    four columns with fine hairlines and a quiet arrow on each line. Phones: stacked, hairlines between. */
@@ -798,7 +858,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
 <!-- ═══════════ HOME ═══════════ -->
 <div data-page="home"><span id="top"></span>
 
-<section class="wrap" style="padding-block:clamp(28px,5vw,66px) clamp(40px,6vw,80px)">
+<section class="wrap heroSec" style="padding-block:clamp(28px,5vw,66px) clamp(40px,6vw,80px)">
   <div class="split sp6238 alStart">
     <div>
       <!-- Pandonia's own line, used in English on the Danish site as well -->
@@ -813,6 +873,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
         <a class="lnk heroSee" data-route="maaler"><span data-da="Se hvad vi måler" data-en="See what we test">See what we test</span> <span aria-hidden="true">→</span></a>
       </div>
       <p class="heroBio"><a class="lnk" data-route="biomarkers"><span data-da="Se liste over biomarkører" data-en="See list of biomarkers">See list of biomarkers</span> <span aria-hidden="true">→</span></a></p>
+      <p class="heroHow"><a class="lnk" data-route="saadan"><span data-da="Se hvordan det fungerer" data-en="See how it works">See how it works</span> <span aria-hidden="true">→</span></a></p>
     </div>
     <!-- Pandonia's own line from the feed, in English on both sites like the hero -->
     <!-- hero photograph: the report in someone's hand (right of the headline on desktop, after the CTA on phones) -->
@@ -823,6 +884,13 @@ html[data-locale="en"] [data-lang="da"]{display:none}
   </div>
 </section>
 
+<!-- Phones only: the tests and their prices, straight after the hero (filled by renderTests). -->
+<section class="mOnly mTests" id="mTests" aria-labelledby="mTestsH"><div class="wrap">
+  <p class="lab" data-da="Vores tests" data-en="Our tests">Our tests</p>
+  <h2 class="s mtH" id="mTestsH" data-da="Tests og priser." data-en="Tests and prices.">Tests and prices.</h2>
+  <p class="mtI" data-da="Health Test giver det samlede overblik. De fokuserede tests svarer på ét bestemt spørgsmål. Prøven tages på samme måde — hjemme hos dig eller på vores laboratorium." data-en="The Health Test gives the full overview. The focused tests answer one specific question. The sample is taken the same way — at your home or at our laboratory.">The Health Test gives the full overview. The focused tests answer one specific question. The sample is taken the same way — at your home or at our laboratory.</p>
+  <div id="mTestList"></div>
+</div></section>
 <!-- The Hvad vi måler page is moved in here (see placeMaaler). -->
 <div id="mMaalerSlot"></div>
 
@@ -1200,6 +1268,9 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     </ol>
   </div></section>
 </div>
+
+<!-- ═══════════ TEST (product page, reached from the phone catalogue) ═══════════ -->
+<div data-page="test" hidden><section class="tPg"><div class="wrap" id="tDetail"></div></section></div>
 
 <!-- ═══════════ DIN RAPPORT ═══════════ -->
 <div data-page="rapport" hidden>
@@ -1710,6 +1781,7 @@ function renderAll(){
       '</div></details>';}).join('')+'</div></div></div>';}).join('')+
     '<div style="margin-top:40px"><a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer">'+(loc==='da'?'Book din blodprøve':'Book your blood test')+'</a></div>';
 
+  renderTests();if(page==='test')renderTest(tCur);
   var pr=document.getElementById('priceRows');
   if(pr) pr.innerHTML=HTS.map(function(s){return [s.en,s.p,Math.round(s.p/1.25),loc==='da'?s.tagDa:s.tagEn,loc==='da'?s.lDa:s.lEn];})
     .map(function(p){return '<div style="display:grid;grid-template-columns:1fr;gap:20px 40px;align-items:start;padding-block:clamp(22px,3vw,32px);border-bottom:1px solid var(--rule)" class="g2"><div><p class="lab" style="margin-bottom:8px">'+p[3]+'</p><h2 style="font-size:clamp(21px,1.1vw + 17px,28px);font-weight:500;letter-spacing:-.015em">'+p[0]+'</h2><p class="bdS measN" style="margin-top:10px">'+p[4]+'</p></div><div>'+(p[1]===null?'<p class="val" style="font-size:clamp(20px,1.6vw + 12px,26px)">'+(loc==='da'?'Pris ved booking':'Price at booking')+'</p>':'<p class="val" style="font-size:clamp(26px,3vw,34px)">'+dkk(p[1])+'</p><p class="lab" style="margin-top:5px">'+(loc==='da'?'inkl. moms · '+new Intl.NumberFormat('da-DK').format(p[2])+' ekskl.':'incl. VAT · '+new Intl.NumberFormat('en-GB').format(p[2])+' excl.')+'</p>')+'<div style="margin-top:16px"><a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer">'+(loc==='da'?'Vælg tid':'Choose a time')+'</a></div></div></div>';}).join('');
@@ -1801,8 +1873,8 @@ if(phoneMq.addEventListener)phoneMq.addEventListener('change',placeMaaler);else 
 // Hash routes survive a reload on a static host (GitHub Pages) with no rewrites.
 var DEFAULT_ROUTE='home';
 var PAGE_TITLES={
-  da:{biomarkers:'Biomarkører',maaler:'Hvad vi måler',saadan:'Sådan fungerer det',rapport:'Din rapport',faq:'FAQ',book:'Priser',booking:'Book din blodprøve'},
-  en:{biomarkers:'Biomarkers',maaler:'What we test',saadan:'How it works',rapport:'Your report',faq:'FAQ',book:'Pricing',booking:'Book your blood test'}};
+  da:{biomarkers:'Biomarkører',maaler:'Hvad vi måler',saadan:'Sådan fungerer det',rapport:'Din rapport',faq:'FAQ',book:'Priser',test:'Tests og priser',booking:'Book din blodprøve'},
+  en:{biomarkers:'Biomarkers',maaler:'What we test',saadan:'How it works',rapport:'Your report',faq:'FAQ',book:'Pricing',test:'Tests and prices',booking:'Book your blood test'}};
 function setTitle(){var t=PAGE_TITLES[loc][page];
   document.title=t?t+' — Pandonia':(loc==='da'?'Pandonia — blodprøver hjemme hos dig i København':'Pandonia — blood tests at your home in Copenhagen');}
 function routeHref(a){var anchor=a.getAttribute('data-anchor'),route=a.getAttribute('data-route')||a.getAttribute('data-nav');
@@ -1811,10 +1883,65 @@ function linkify(){document.querySelectorAll('a[data-route]:not([href]),a[data-n
   var h=routeHref(a);if(h)a.setAttribute('href',h);});}
 function parseHash(h){var m=/^#\/([a-z]+)(?:\/([A-Za-z0-9_-]+))?/.exec(h||'');
   if(!m||!document.querySelector('[data-page="'+m[1]+'"]'))return null;return {page:m[1],anchor:m[2]||null};}
+// ── Phones: the tests catalogue and a product page per test ───────────
+// Everything shown comes from SVC/ESS/HTS/MB/CMP (the Prices page's own data) and existing copy.
+// EasyPractice has one booking page for every service, so "Book" opens it (no per-test deep link).
+var EP_BOOK='https://system.easypractice.net/book/pandonia#choose-service',tCur=null;
+var TX={
+ da:{all:'Alle tests',more:'Læs mere',book:'Book',bookT:'Book din blodprøve',get:'Hvad får du?',meas:'Hvad måler vi?',rep:'Din rapport',how:'Sådan fungerer det',
+  bm:'Se liste over biomarkører',fullRep:'Se hele rapporten',seeHow:'Se hvordan det fungerer',mb:'Bliv medlem',perM:'pr. måned',oneSample:'Én blodprøve',
+  ht:'Pandonia Health Test',et:'Essential Tests',mbG:'Medlemskab',mbD:'Følg din sundhed løbende',mbName:'The Pandonia Membership',
+  measTx:'Pandonia-modellen beskriver seks systemer. En markør hører sjældent kun ét sted til. Rapporten giver hvert system sin egen score.',
+  repHt:'Hver måling står med sit optimale område og sit referenceområde. Seks systemer får hver sin score. Og en læge læser det med dig, hvis du vil.',
+  repEt:'Den er skrevet til at blive læst af dig — ikke af en læge.',alt:'En kvinde ser Pandonias rapport på en bærbar computer.',
+  steps:[['01','Indsamling','Vi kommer til dig.'],['02','Transport','Direkte til laboratoriet.'],['03','Analyse','Avanceret analyse.'],['04','Rapport & samtalen','Din rapport og gennemgang.']]},
+ en:{all:'All tests',more:'Learn more',book:'Book',bookT:'Book your blood test',get:'What do you get?',meas:'What do we measure?',rep:'Your report',how:'How it works',
+  bm:'See list of biomarkers',fullRep:'See the full report',seeHow:'See how it works',mb:'Become a member',perM:'per month',oneSample:'One blood sample',
+  ht:'Pandonia Health Test',et:'Essential Tests',mbG:'Membership',mbD:'Follow your health over time',mbName:'The Pandonia Membership',
+  measTx:'The Pandonia model describes six systems. A marker rarely belongs to just one. The report gives each system its own score.',
+  repHt:'Every measurement is shown alongside its optimal range and its reference range. Each of the six systems gets its own score. And, if you like, a doctor will go through it with you.',
+  repEt:"It's written for you to read — not for a doctor.",alt:'A woman looking at the Pandonia report on a laptop.',
+  steps:[['01','Collection','We come to you.'],['02','Transport','Straight to the laboratory.'],['03','Analysis','Advanced analysis.'],['04','Report & consultation','Your report and review.']]}};
+function tSvc(id){return SVC.filter(function(s){return s.id===id;})[0];}
+function tName(s){return s.id==='ht'?TX[loc].ht:(loc==='da'?s.da:s.en);}
+function tVat(p){return loc==='da'?'inkl. moms · '+new Intl.NumberFormat('da-DK').format(Math.round(p/1.25))+' ekskl.':'incl. VAT · '+new Intl.NumberFormat('en-GB').format(Math.round(p/1.25))+' excl.';}
+function tEsc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function tBook(cls,label,url){return '<a class="btn btn1 '+(cls||'')+'" href="'+(url||EP_BOOK)+'" target="_blank" rel="noopener noreferrer"><span>'+label+'</span> <span aria-hidden="true">→</span></a>';}
+function tLink(href,route,anchor,label){return '<a class="lnk" href="'+href+'" data-route="'+route+'"'+(anchor?' data-anchor="'+anchor+'"':'')+'><span>'+label+'</span> <span aria-hidden="true">→</span></a>';}
+function tIsHt(s){return s.tab==='ht';}
+function renderTests(){
+  var el=document.getElementById('mTestList');if(!el)return;var X=TX[loc],da=loc==='da';
+  function row(s){return '<li class="mtR"><div class="mtHd"><h3 class="mtN">'+tEsc(tName(s))+'</h3><p class="mtP">'+dkk(s.p)+'</p></div>'+
+    '<p class="mtD">'+tEsc(da?s.mDa:s.mEn)+'</p>'+((s.id==='ht'||s.id==='htc')?'<p class="mtM">'+(da?'35+ biomarkører':'35+ biomarkers')+' · '+X.oneSample+'</p>':'')+
+    '<div class="mtA"><a class="btn btn2" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'">'+X.more+'</a>'+tBook('',X.book)+'</div></li>';}
+  var ht=['ht','htc','hcfh','hcfht'].map(tSvc);
+  el.innerHTML='<p class="lab mtG">'+X.ht+'</p><ul class="mtL">'+ht.map(row).join('')+'</ul>'+
+    '<p class="lab mtG">'+X.et+'</p><ul class="mtL">'+ESS.map(row).join('')+'</ul>'+
+    '<p class="lab mtG">'+X.mbG+'</p><ul class="mtL"><li class="mtR"><div class="mtHd"><h3 class="mtN">'+X.mbName+'</h3><p class="mtP">'+dkk(MB.inc)+'<small> '+X.perM+'</small></p></div>'+
+    '<p class="mtD">'+X.mbD+'</p><div class="mtA"><a class="btn btn2" href="#/book/pr-mb" data-route="book" data-anchor="pr-mb">'+X.more+'</a>'+tBook('',X.mb,MB.url)+'</div></li></ul>';
+}
+function renderTest(id){
+  var el=document.getElementById('tDetail');if(!el)return;tCur=id;var s=id&&tSvc(id),X=TX[loc],da=loc==='da';
+  var back='<p class="tBack"><a class="lnk" href="#/home/mTests" data-route="home" data-anchor="mTests"><span aria-hidden="true">←</span> <span>'+X.all+'</span></a></p>';
+  if(!s){el.innerHTML=back;return;}
+  var col=tIsHt(s)?0:1,rows=CMP.rows[loc].filter(function(r){return !r[2];}).slice(0,4).filter(function(r){return r[0]!==(da?'Passer til':'Suits');});
+  var price='<p class="tPrice">'+dkk(s.p)+'</p><p class="lab">'+tVat(s.p)+'</p>';
+  var get='<section class="tSec"><p class="lab">'+X.get+'</p><dl class="tGet">'+
+    // the package line says more than the short line only for Health Test + Consultation
+    (s.id==='htc'?'<div><dt>'+(da?'Indhold':'Contents')+'</dt><dd>'+tEsc(da?s.lDa:s.lEn)+'</dd></div>':'')+
+    rows.map(function(r){return '<div><dt>'+r[0]+'</dt><dd>'+tEsc(r[1][col])+'</dd></div>';}).join('')+'</dl></section>';
+  var meas=tIsHt(s)?'<section class="tSec"><p class="lab">'+X.meas+'</p><p class="tTx">'+X.measTx+'</p><p class="tGo">'+tLink('#/biomarkers','biomarkers','',X.bm)+'</p></section>':'';
+  var rep='<section class="tSec"><p class="lab">'+X.rep+'</p>'+(tIsHt(s)?'<div class="tImg"><img loading="lazy" decoding="async" src="/pandonia-preview/images/report-deck.webp" alt="'+X.alt+'"></div><p class="tTx">'+X.repHt+'</p><p class="tGo">'+tLink('#/rapport','rapport','',X.fullRep)+'</p>':'<p class="tTx">'+X.repEt+'</p>')+'</section>';
+  // the four steps are the blood-sample journey; glucose monitoring is a sensor, so it has none
+  var how=s.id==='gm'?'':'<section class="tSec"><p class="lab">'+X.how+'</p><ol class="tHow">'+X.steps.map(function(x){return '<li><span class="tNo">'+x[0]+'</span><span class="lab">'+tEsc(x[1])+'</span><span class="tSt">'+x[2]+'</span></li>';}).join('')+'</ol><p class="tGo">'+tLink('#/saadan','saadan','',X.seeHow)+'</p></section>';
+  el.innerHTML=back+'<header class="tHead">'+(s.id==='ht'?'':'<p class="lab">'+(tIsHt(s)?X.ht:X.et)+'</p>')+'<h1 class="s tName">'+tEsc(tName(s))+'</h1><p class="tLead">'+tEsc(da?s.mDa:s.mEn)+'</p>'+price+'<div class="tAct">'+tBook('',X.bookT)+'</div></header>'+
+    get+meas+rep+how+'<section class="tEnd"><p class="tEndN">'+tEsc(tName(s))+'</p>'+price+'<div class="tAct">'+tBook('',X.bookT)+'</div></section>';
+}
 function show(p,anchor,opt){
   opt=opt||{};
   page=p;
   if(p==="biomarkers")bmRoute(anchor);
+  if(p==="test")renderTest(anchor);
   placeMaaler();
   document.querySelectorAll('[data-page]').forEach(function(x){x.hidden=x.getAttribute('data-page')!==p;});
   document.querySelectorAll('.navlinks a').forEach(function(a){var on=a.getAttribute('data-nav')===p;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
