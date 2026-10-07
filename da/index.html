@@ -368,6 +368,32 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
   .mOnly{display:block}
   /* the phone homepage stops at the first decision; What we test keeps the systems and trends */
   [data-page="home"] #mMaalerSlot{display:none}
+  /* the tests as cards: off-white ground, beige (--sand) and black (--deep) cards */
+  .mTests{background:var(--cream);padding-block:40px 48px}
+  .mtG{margin-top:30px}
+  .mtL{display:grid;gap:12px;margin-top:12px;border-top:0}
+  .mtR{--cb:241,237,228;position:relative;isolation:isolate;overflow:hidden;display:flex;min-height:244px;padding:0;border:0;border-radius:10px;background:rgb(var(--cb));color:var(--ink)}
+  .mtK{--cb:10,10,10;color:#FAFAF7}
+  .mtLg{min-height:300px}
+  .mtB{position:relative;display:flex;flex-direction:column;width:100%;padding:24px 20px 20px}
+  /* the image takes the right side and dissolves into the card under the text */
+  .mtBg{position:absolute;top:0;right:0;bottom:0;width:62%;z-index:-1;overflow:hidden}
+  .mtBg img{display:block;width:100%;height:100%;object-fit:cover}
+  .mtBg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(var(--cb)) 0%,rgba(var(--cb),.86) 26%,rgba(var(--cb),.36) 56%,rgba(var(--cb),0) 82%),linear-gradient(0deg,rgba(var(--cb),.55) 0%,rgba(var(--cb),0) 34%)}
+  .mtNo{background-image:radial-gradient(120% 90% at 100% 0%,rgba(225,220,206,.9) 0%,rgba(var(--cb),0) 62%)}
+  .mtN{max-width:84%;font-size:clamp(25px,7vw,28px);line-height:1.08;letter-spacing:-.018em}
+  .mtLg .mtN{font-size:clamp(28px,8vw,32px)}
+  .mtD{max-width:68%;margin-top:10px;font-size:14.5px;line-height:1.45}
+  .mtM{max-width:72%;margin-top:10px;font-size:12.5px}
+  .mtK .mtD{color:var(--onDeepMuted)}
+  .mtK .mtM,.mtK .mtP small{color:var(--onDeepQuiet)}
+  .mtP{margin-top:auto;padding-top:18px;font-size:21px;line-height:1.2;white-space:normal}
+  .mtP small{font-size:13px}
+  .mtA{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .mtA .btn{min-height:44px;padding:11px 17px;font-size:14.5px;white-space:nowrap}
+  .mtW .btn2{background:rgba(250,250,247,.6);border-color:rgba(10,10,10,.5)}
+  .mtK .btn2{background:rgba(10,10,10,.35);color:#FAFAF7;border-color:rgba(250,250,247,.5)}
+  .mtK .btn1{background:#FAFAF7;color:#0A0A0A}
   /* the hero: the phone photograph full-bleed, the hero text over it */
   .heroSec{position:relative;max-width:none;padding:0!important;overflow:hidden}
   .heroSec>.split{display:block}
@@ -1921,16 +1947,20 @@ function tEsc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 function tBook(cls,label,url){return '<a class="btn btn1 '+(cls||'')+'" href="'+(url||EP_BOOK)+'" target="_blank" rel="noopener noreferrer"><span>'+label+'</span> <span aria-hidden="true">→</span></a>';}
 function tLink(href,route,anchor,label){return '<a class="lnk" href="'+href+'" data-route="'+route+'"'+(anchor?' data-anchor="'+anchor+'"':'')+'><span>'+label+'</span> <span aria-hidden="true">→</span></a>';}
 function tIsHt(s){return s.tab==='ht';}
+var MTI={"ht":["/images/review.png","w","50% 46%","sepia(.3) saturate(.8)",1,"scale(1.45)"],"htc":["/images/consultation.webp","k","34% 50%","brightness(.72) saturate(.85)"],"hcfh":["/images/skin.jpg","w","60% 45%","grayscale(1) sepia(.45)"],"hcfht":["/images/card-sky.webp","k","30% 92%","grayscale(1) sepia(.5) brightness(.72)"],"dv":["/images/card-lake.webp","w","50% 40%","grayscale(1) sepia(.55) brightness(1.06) contrast(.92)"],"ms":["/images/card-cells.webp","k","50% 50%","grayscale(1) sepia(.5) brightness(.74)"],"bk":["/images/card-tubes.webp","w","50% 50%","grayscale(1) sepia(.42) contrast(.96)"],"mh":["/images/laptop.jpg","k","62% 40%","brightness(.78) saturate(.85)"],"th":["/images/card-neck.webp","w","40% 30%",""],"gm":["","w","",""],"fh":["/images/card-marble.webp","k","50% 50%","grayscale(1) sepia(.5) brightness(.62) contrast(1.1)"],"mb":["/images/report-deck.webp","k","30% 50%","brightness(.7) saturate(.85)"]};
+// the card around a product: the image (decorative; the name says what it is), then the text
+function mtCard(id,body){var m=MTI[id]||['','w','',''],n=id==='ht'||id==='htc'?'':' loading="lazy"';
+  return '<li class="mtR '+(m[1]==='k'?'mtK':'mtW')+(m[4]?' mtLg':'')+(m[0]?'':' mtNo')+'">'+(m[0]?'<div class="mtBg" aria-hidden="true"><img src="'+m[0]+'" alt=""'+n+' decoding="async" style="object-position:'+m[2]+(m[3]?';filter:'+m[3]:'')+(m[5]?';transform:'+m[5]:'')+'"></div>':'')+'<div class="mtB">'+body+'</div></li>';}
 function renderTests(){
   var el=document.getElementById('mTestList');if(!el)return;var X=TX[loc],da=loc==='da';
-  function row(s){return '<li class="mtR"><div class="mtHd"><h3 class="mtN">'+tEsc(tName(s))+'</h3><p class="mtP">'+dkk(s.p)+'</p></div>'+
+  function row(s){return mtCard(s.id,'<h3 class="mtN">'+tEsc(tName(s))+'</h3>'+
     '<p class="mtD">'+tEsc(da?s.mDa:s.mEn)+'</p>'+((s.id==='ht'||s.id==='htc')?'<p class="mtM">'+(da?'35+ biomarkører':'35+ biomarkers')+' · '+X.oneSample+'</p>':'')+
-    '<div class="mtA"><a class="btn btn2" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'">'+X.more+'</a>'+tBook('',X.book)+'</div></li>';}
+    '<p class="mtP">'+dkk(s.p)+'</p><div class="mtA"><a class="btn btn2" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'">'+X.more+'</a>'+tBook('',X.book)+'</div>');}
   var ht=['ht','htc','hcfh','hcfht'].map(tSvc);
   el.innerHTML='<p class="lab mtG">'+X.ht+'</p><ul class="mtL">'+ht.map(row).join('')+'</ul>'+
     '<p class="lab mtG">'+X.et+'</p><ul class="mtL">'+ESS.map(row).join('')+'</ul>'+
-    '<p class="lab mtG">'+X.mbG+'</p><ul class="mtL"><li class="mtR"><div class="mtHd"><h3 class="mtN">'+X.mbName+'</h3><p class="mtP">'+dkk(MB.inc)+'<small> '+X.perM+'</small></p></div>'+
-    '<p class="mtD">'+X.mbD+'</p><div class="mtA"><a class="btn btn2" href="#/book/pr-mb" data-route="book" data-anchor="pr-mb">'+X.more+'</a>'+tBook('',X.mb,MB.url)+'</div></li></ul>';
+    '<p class="lab mtG">'+X.mbG+'</p><ul class="mtL">'+mtCard('mb','<h3 class="mtN">'+X.mbName+'</h3>'+
+    '<p class="mtD">'+X.mbD+'</p><p class="mtP">'+dkk(MB.inc)+'<small> '+X.perM+'</small></p><div class="mtA"><a class="btn btn2" href="#/book/pr-mb" data-route="book" data-anchor="pr-mb">'+X.more+'</a>'+tBook('',X.mb,MB.url)+'</div>')+'</ul>';
 }
 function renderTest(id){
   var el=document.getElementById('tDetail');if(!el)return;tCur=id;var s=id&&tSvc(id),X=TX[loc],da=loc==='da';
