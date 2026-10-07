@@ -362,8 +362,21 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 .tSt{grid-area:t;font-family:var(--serif);font-size:21px;line-height:1.2;letter-spacing:-.01em}
 .tEnd{margin-top:44px;padding:26px 0 0;border-top:1px solid var(--rule)}
 .tEndN{font-family:var(--serif);font-size:26px;line-height:1.15;letter-spacing:-.015em}
+.mTrust{padding-block:44px 48px}
+.mTrH{margin-top:10px;font-size:27px;line-height:1.15;letter-spacing:-.015em}
+.mTrL{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--rule)}
+.mTrL li{padding-block:14px 16px;border-bottom:1px solid var(--ruleSoft)}
+.mTrL li p:not(.lab){margin-top:5px;font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.mHow{background:var(--sand);padding-block:36px 44px}
+.mHwL{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 0;font-family:var(--serif);font-size:22px;line-height:1.25;letter-spacing:-.01em}
+.mHwL li+li::before{content:"→";margin:0 10px;font-family:var(--sans);font-size:17px;color:var(--ink3)}
+.mHwGo{margin-top:16px}
+.tFacts{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid var(--ruleSoft)}
+.tFacts li{padding-block:9px;border-bottom:1px solid var(--ruleSoft);font-size:15px;line-height:1.4}
 @media(max-width:759px){
   .mOnly{display:block}
+  /* the phone homepage stops at the first decision; What we test keeps the systems and trends */
+  [data-page="home"] #mMaalerSlot{display:none}
   /* the hero: the phone photograph full-bleed, the hero text over it */
   .heroSec{position:relative;max-width:none;padding:0!important;overflow:hidden}
   .heroSec>.split{display:block}
@@ -891,6 +904,23 @@ html[data-locale="en"] [data-lang="da"]{display:none}
   <p class="mtI" data-da="Health Test giver det samlede overblik. De fokuserede tests svarer på ét bestemt spørgsmål. Prøven tages på samme måde — hjemme hos dig eller på vores laboratorium." data-en="The Health Test gives the full overview. The focused tests answer one specific question. The sample is taken the same way — at your home or at our laboratory.">Health Test giver det samlede overblik. De fokuserede tests svarer på ét bestemt spørgsmål. Prøven tages på samme måde — hjemme hos dig eller på vores laboratorium.</p>
   <div id="mTestList"></div>
 </div></section>
+<!-- Phones only: why Pandonia, in the site's own lines -->
+<section class="mOnly mTrust" aria-labelledby="mTrustH"><div class="wrap">
+  <p class="lab" data-da="Om Pandonia" data-en="About Pandonia">Om Pandonia</p>
+  <h2 class="s mTrH" id="mTrustH" data-da="Blodprøver hjemme hos dig i København, analyseret i vores eget laboratorium." data-en="Blood tests at your home in Copenhagen, analysed in our own laboratory.">Blodprøver hjemme hos dig i København, analyseret i vores eget laboratorium.</h2>
+  <ul class="mTrL">
+    <li><p class="lab" data-da="Eget laboratorium · København" data-en="Our own laboratory · Copenhagen">Eget laboratorium · København</p><p data-da="Analyseret i vores eget laboratorium. Kvalitetskontrolleret og godkendt." data-en="Processed in our own lab. Quality controlled, signed off.">Analyseret i vores eget laboratorium. Kvalitetskontrolleret og godkendt.</p></li>
+    <li><p class="lab" data-da="Blodprøvetagning" data-en="Blood draw">Blodprøvetagning</p><p data-da="Blodprøvetagning hjemme hos dig, eller på vores laboratorium i København." data-en="Blood draw at your home, or at our laboratory in Copenhagen.">Blodprøvetagning hjemme hos dig, eller på vores laboratorium i København.</p></li>
+    <li><p class="lab" data-da="Rapporten" data-en="The report">Rapporten</p><p data-da="Den er skrevet til at blive læst af dig — ikke af en læge." data-en="It's written for you to read — not for a doctor.">Den er skrevet til at blive læst af dig — ikke af en læge.</p></li>
+    <li><p class="lab" data-da="Gennemgang med læge" data-en="Doctor review">Gennemgang med læge</p><p data-da="20 minutter med en læge, i Health Test + Consultation" data-en="20 minutes with a doctor, with Health Test + Consultation">20 minutter med en læge, i Health Test + Consultation</p></li>
+  </ul>
+</div></section>
+<!-- Phones only: how it works in one line; the full page is one tap away -->
+<section class="mOnly mHow" aria-labelledby="mHowH"><div class="wrap">
+  <h2 class="lab" id="mHowH" data-da="Sådan fungerer det" data-en="How it works">Sådan fungerer det</h2>
+  <ol class="mHwL"><li><span data-da="Blodprøve" data-en="Blood draw">Blodprøve</span></li><li><span data-da="Laboratoriet" data-en="Laboratory">Laboratoriet</span></li><li><span data-da="Rapport" data-en="Report">Rapport</span></li><li><span data-da="Gennemgang" data-en="Review">Gennemgang</span></li></ol>
+  <p class="mHwGo"><a class="lnk" data-route="saadan"><span data-da="Læs mere" data-en="Learn more">Læs mere</span> <span aria-hidden="true">→</span></a></p>
+</div></section>
 <!-- The Hvad vi måler page is moved in here (see placeMaaler). -->
 <div id="mMaalerSlot"></div>
 
@@ -1075,7 +1105,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
 <!-- ═══════════ HVAD VI MÅLER ═══════════ -->
 <div data-page="maaler" hidden>
   <!-- The full biomarker list now lives in the biomarker library (#/biomarkers). -->
-  <section class="gDeep sysDark"><div class="wrap std">
+  <section class="gDeep sysDark" id="systems"><div class="wrap std">
     <ul id="sysPage"></ul>
     <div class="split sp5545 alCenter" style="margin-top:clamp(56px,7vw,104px)">
       <div>
@@ -1087,7 +1117,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     
     
   </div></section>
-  <section class="gSand ovt">
+  <section class="gSand ovt" id="trends">
     <div class="wrap ovtHead">
       <h2 class="s d2 fg ovtTitle" data-da="Følg dine egne tendenser over tid." data-en="Follow your own trends over time.">Følg dine egne tendenser over tid.</h2>
       
@@ -1894,14 +1924,22 @@ var TX={
   measTx:'Pandonia-modellen beskriver seks systemer. En markør hører sjældent kun ét sted til. Rapporten giver hvert system sin egen score.',
   repHt:'Hver måling står med sit optimale område og sit referenceområde. Seks systemer får hver sin score. Og en læge læser det med dig, hvis du vil.',
   repEt:'Den er skrevet til at blive læst af dig — ikke af en læge.',alt:'En kvinde ser Pandonias rapport på en bærbar computer.',
-  steps:[['01','Indsamling','Vi kommer til dig.'],['02','Transport','Direkte til laboratoriet.'],['03','Analyse','Avanceret analyse.'],['04','Rapport & samtalen','Din rapport og gennemgang.']]},
+  steps:[['01','Indsamling','Vi kommer til dig.'],['02','Transport','Direkte til laboratoriet.'],['03','Analyse','Avanceret analyse.'],['04','Rapport & samtalen','Din rapport og gennemgang.']],
+  measHt:'De 47 biomarkører i Pandonia Health Test — vist på samme måde som i din rapport.',
+  sysT:'Forstå dine resultater',sysGo:'Udforsk de seks systemer',trT:'Følg din sundhed over tid',trGo:'Se hvordan du følger udviklingen',
+  trTx:'Hver ny måling lægger et punkt til din samlede score. Du ser udviklingen fra test til test.',
+  facts:['35+ biomarkører','Én blodprøve','Pandonia Score og seks systemscorer','Gennemgang med læge, hvis ønsket','20 minutters lægekonsultation']},
  en:{all:'All tests',more:'Learn more',book:'Book',bookT:'Book your blood test',get:'What do you get?',meas:'What do we measure?',rep:'Your report',how:'How it works',
   bm:'See list of biomarkers',fullRep:'See the full report',seeHow:'See how it works',mb:'Become a member',perM:'per month',oneSample:'One blood sample',
   ht:'Pandonia Health Test',et:'Essential Tests',mbG:'Membership',mbD:'Follow your health over time',mbName:'The Pandonia Membership',
   measTx:'The Pandonia model describes six systems. A marker rarely belongs to just one. The report gives each system its own score.',
   repHt:'Every measurement is shown alongside its optimal range and its reference range. Each of the six systems gets its own score. And, if you like, a doctor will go through it with you.',
   repEt:"It's written for you to read — not for a doctor.",alt:'A woman looking at the Pandonia report on a laptop.',
-  steps:[['01','Collection','We come to you.'],['02','Transport','Straight to the laboratory.'],['03','Analysis','Advanced analysis.'],['04','Report & consultation','Your report and review.']]}};
+  steps:[['01','Collection','We come to you.'],['02','Transport','Straight to the laboratory.'],['03','Analysis','Advanced analysis.'],['04','Report & consultation','Your report and review.']],
+  measHt:'The 47 biomarkers in the Pandonia Health Test, shown the way your report shows them.',
+  sysT:'Understand your results',sysGo:'Explore the six systems',trT:'Follow your health over time',trGo:'See how trends work',
+  trTx:'Each new test adds a point to your overall score, so you can see how it develops from one test to the next.',
+  facts:['35+ biomarkers','One blood sample','The Pandonia Score and six system scores','An optional review by a doctor','A 20-minute consultation with a doctor']}};
 function tSvc(id){return SVC.filter(function(s){return s.id===id;})[0];}
 function tName(s){return s.id==='ht'?TX[loc].ht:(loc==='da'?s.da:s.en);}
 function tVat(p){return loc==='da'?'inkl. moms · '+new Intl.NumberFormat('da-DK').format(Math.round(p/1.25))+' ekskl.':'incl. VAT · '+new Intl.NumberFormat('en-GB').format(Math.round(p/1.25))+' excl.';}
@@ -1930,15 +1968,23 @@ function renderTest(id){
     // the package line says more than the short line only for Health Test + Consultation
     (s.id==='htc'?'<div><dt>'+(da?'Indhold':'Contents')+'</dt><dd>'+tEsc(da?s.lDa:s.lEn)+'</dd></div>':'')+
     rows.map(function(r){return '<div><dt>'+r[0]+'</dt><dd>'+tEsc(r[1][col])+'</dd></div>';}).join('')+'</dl></section>';
-  var meas=tIsHt(s)?'<section class="tSec"><p class="lab">'+X.meas+'</p><p class="tTx">'+X.measTx+'</p><p class="tGo">'+tLink('#/biomarkers','biomarkers','',X.bm)+'</p></section>':'';
+  // Health Test family: the facts under the name, then the deeper reading one step at a time —
+  // what we measure, the report, the six systems, the trend — each with a link to its own page
+  var F=X.facts,facts=s.id==='ht'?[F[0],F[1],F[2],F[3]]:s.id==='htc'?[F[0],F[1],F[2],F[4]]:[F[0],F[2],F[3]];
+  var factsH=tIsHt(s)?'<ul class="tFacts">'+facts.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul>':'';
+  var meas=tIsHt(s)?'<section class="tSec"><p class="lab">'+X.meas+'</p><p class="tTx">'+X.measHt+'</p><p class="tGo">'+tLink('#/biomarkers','biomarkers','',X.bm)+'</p></section>':'';
+  var sys=tIsHt(s)?'<section class="tSec"><p class="lab">'+X.sysT+'</p><p class="tTx">'+X.measTx+'</p><p class="tGo">'+tLink('#/maaler/systems','maaler','systems',X.sysGo)+'</p></section>':'';
+  var trend=tIsHt(s)?'<section class="tSec"><p class="lab">'+X.trT+'</p><p class="tTx">'+X.trTx+'</p><p class="tGo">'+tLink('#/maaler/trends','maaler','trends',X.trGo)+'</p></section>':'';
   var rep='<section class="tSec"><p class="lab">'+X.rep+'</p>'+(tIsHt(s)?'<div class="tImg"><img loading="lazy" decoding="async" src="/pandonia-preview/images/report-deck.webp" alt="'+X.alt+'"></div><p class="tTx">'+X.repHt+'</p><p class="tGo">'+tLink('#/rapport','rapport','',X.fullRep)+'</p>':'<p class="tTx">'+X.repEt+'</p>')+'</section>';
   // the four steps are the blood-sample journey; glucose monitoring is a sensor, so it has none
   var how=s.id==='gm'?'':'<section class="tSec"><p class="lab">'+X.how+'</p><ol class="tHow">'+X.steps.map(function(x){return '<li><span class="tNo">'+x[0]+'</span><span class="lab">'+tEsc(x[1])+'</span><span class="tSt">'+x[2]+'</span></li>';}).join('')+'</ol><p class="tGo">'+tLink('#/saadan','saadan','',X.seeHow)+'</p></section>';
-  el.innerHTML=back+'<header class="tHead">'+(s.id==='ht'?'':'<p class="lab">'+(tIsHt(s)?X.ht:X.et)+'</p>')+'<h1 class="s tName">'+tEsc(tName(s))+'</h1><p class="tLead">'+tEsc(da?s.mDa:s.mEn)+'</p>'+price+'<div class="tAct">'+tBook('',X.bookT)+'</div></header>'+
-    get+meas+rep+how+'<section class="tEnd"><p class="tEndN">'+tEsc(tName(s))+'</p>'+price+'<div class="tAct">'+tBook('',X.bookT)+'</div></section>';
+  el.innerHTML=back+'<header class="tHead">'+(s.id==='ht'?'':'<p class="lab">'+(tIsHt(s)?X.ht:X.et)+'</p>')+'<h1 class="s tName">'+tEsc(tName(s))+'</h1><p class="tLead">'+tEsc(da?s.mDa:s.mEn)+'</p>'+factsH+price+'<div class="tAct">'+tBook('',X.bookT)+'</div></header>'+
+    (tIsHt(s)?meas+rep+sys+trend:get+rep)+how+'<section class="tEnd"><p class="tEndN">'+tEsc(tName(s))+'</p>'+price+'<div class="tAct">'+tBook('',X.bookT)+'</div></section>';
 }
 function show(p,anchor,opt){
   opt=opt||{};
+  // phones: the homepage no longer carries What we test, so a link to that block opens its page
+  if(p==='home'&&anchor==='mMaalerSlot'&&phoneMq.matches){p='maaler';anchor=null;try{history.replaceState(null,'','#/maaler');}catch(e){}}
   page=p;
   if(p==="biomarkers")bmRoute(anchor);
   if(p==="test")renderTest(anchor);
