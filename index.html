@@ -795,7 +795,15 @@ html[data-locale="en"] [data-lang="da"]{display:none}
             mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.35) 12%,rgba(0,0,0,.85) 26%,#000 36%,#000 84%,rgba(0,0,0,.72) 90%,rgba(0,0,0,.28) 96%,transparent 100%),linear-gradient(180deg,transparent 0,rgba(0,0,0,.55) 9%,#000 20%);
             mask-composite:intersect}
   /* the phone (about a fifth to four fifths down the picture) centred on the hero */
-  .heroSec .heroPhoto img{position:absolute;left:0;top:50%;width:100%;height:auto;transform:translateY(-52%)}
+  .heroSec .heroPhoto img{position:absolute;left:0;top:50%;width:100%;height:auto;transform:translateY(-52%);filter:sepia(.12) brightness(1.01)}
+  /* the photograph is portrait, so on its own it is a narrow strip; behind it the same photograph,
+     enlarged and heavily blurred, carries its warm light out to the window edge and in towards the
+     text, fading to nothing well before the copy */
+  .heroSec::before{content:"";position:absolute;z-index:-2;top:0;bottom:0;right:0;left:38%;pointer-events:none;
+    background:url("/pandonia-preview/images/hero-phone.webp") 50% 6%/cover no-repeat;filter:blur(34px) saturate(1.15) sepia(.22) brightness(1.03);
+    transform:scale(1.12);transform-origin:70% 30%;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.12) 14%,rgba(0,0,0,.42) 32%,rgba(0,0,0,.8) 52%,#000 70%);
+            mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.12) 14%,rgba(0,0,0,.42) 32%,rgba(0,0,0,.8) 52%,#000 70%)}
 }
 
 /* ── biomarker library: rows on rules; a row opens into the report's own presentation */
