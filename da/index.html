@@ -782,6 +782,21 @@ html[data-locale="en"] [data-lang="da"]{display:none}
   .heroPhoto{margin:-26px calc(-1 * clamp(20px,4vw,64px)) 0 0;height:clamp(560px,46vw,700px)}
   .heroPhoto img{object-position:52% 42%}
 }
+@media(min-width:1024px){
+  /* the hero spans the window so the photograph can sit past the content edge; the text keeps the
+     .wrap alignment through --edge (the same left edge as the header) */
+  .heroSec{--hh:clamp(640px,46vw,820px);--edge:max(clamp(20px,4vw,64px),calc((100% - 1320px) / 2 + clamp(20px,4vw,64px)));
+    position:relative;isolation:isolate;overflow:clip;max-width:none;padding-inline:var(--edge);
+    min-height:var(--hh);display:grid;align-content:center}
+  .heroSec .heroPhoto{position:absolute;z-index:-1;margin:0;top:0;bottom:0;height:auto;aspect-ratio:auto;
+    right:calc(var(--edge) - 56px);width:calc(var(--hh) * .66);overflow:hidden;pointer-events:none;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.35) 12%,rgba(0,0,0,.85) 26%,#000 36%,#000 84%,rgba(0,0,0,.72) 90%,rgba(0,0,0,.28) 96%,transparent 100%),linear-gradient(180deg,transparent 0,rgba(0,0,0,.55) 9%,#000 20%);
+    -webkit-mask-composite:source-in;
+            mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.35) 12%,rgba(0,0,0,.85) 26%,#000 36%,#000 84%,rgba(0,0,0,.72) 90%,rgba(0,0,0,.28) 96%,transparent 100%),linear-gradient(180deg,transparent 0,rgba(0,0,0,.55) 9%,#000 20%);
+            mask-composite:intersect}
+  /* the phone (about a fifth to four fifths down the picture) centred on the hero */
+  .heroSec .heroPhoto img{position:absolute;left:0;top:50%;width:100%;height:auto;transform:translateY(-52%)}
+}
 
 /* ── biomarker library: rows on rules; a row opens into the report's own presentation */
 .bmTop{padding-block:clamp(36px,6vw,80px) clamp(22px,3vw,36px)}
