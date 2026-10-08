@@ -420,6 +420,9 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
    Warm beige under the light header, dark type, then straight into the black footer. Desktop:
    four columns with fine hairlines and a quiet arrow on each line. Phones: stacked, hairlines between. */
 .hw{background:var(--sand);color:var(--ink);--hwLine:rgba(10,10,10,.16)}
+/* the report link reads "Inside the report" from 760px up; phones keep "See the full report" */
+.hwRepM{display:none}
+@media(max-width:759px){.hwRepD{display:none}.hwRepM{display:inline}}
 .hw .btn1{gap:12px}
 .hwIn{padding-block:clamp(40px,7vh,84px) clamp(48px,8vh,96px)}
 .hwKick::before{content:"[ "}.hwKick::after{content:" ]"}
@@ -1312,7 +1315,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
         <p class="hwTx" data-da="Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret. Tyve minutter online." data-en="Book the consultation whenever suits you, as long as it is at least three hours after you receive your results. It takes twenty minutes, online.">Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret. Tyve minutter online.</p>
         <div class="hwAct">
           <a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer"><span data-da="Book din blodprøve" data-en="Book your blood test">Book din blodprøve</span> <span aria-hidden="true">→</span></a>
-          <a class="lnk" data-route="rapport"><span data-da="Se hele rapporten" data-en="See the full report">Se hele rapporten</span> <span aria-hidden="true">→</span></a>
+          <a class="lnk" data-route="rapport"><span class="hwRepD" data-da="Se hele rapporten" data-en="Inside the report">Se hele rapporten</span><span class="hwRepM" data-da="Se hele rapporten" data-en="See the full report">Se hele rapporten</span> <span aria-hidden="true">→</span></a>
         </div>
       </li>
     </ol>
