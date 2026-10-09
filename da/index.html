@@ -1330,7 +1330,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
           <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Dine resultater over tid</p>
           <div class="trendSlot" data-small="1" data-pts=".66,.68,.67,.70,.73,.72,.76,.78,.79"></div>
         </div>
-        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk.</figcaption>
+        <figcaption class="rcCap" data-da="Eksempelværdien og forløbet er illustrative. Områderne er fra Pandonias rapport." data-en="The example value and the trend are illustrative. The ranges are from Pandonia’s report.">Eksempelværdien og forløbet er illustrative. Områderne er fra Pandonias rapport.</figcaption>
       </figure>
       <figure class="rcard rcD" aria-labelledby="rcTitleF3">
         <div class="rcHead">
@@ -1343,7 +1343,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
           <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Dine resultater over tid</p>
           <div class="trendSlot" data-small="1" data-pts=".78,.72,.64,.62,.66,.72,.77,.70,.63"></div>
         </div>
-        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk.</figcaption>
+        <figcaption class="rcCap" data-da="Eksempelværdien og forløbet er illustrative. Områderne er fra Pandonias rapport." data-en="The example value and the trend are illustrative. The ranges are from Pandonia’s report.">Eksempelværdien og forløbet er illustrative. Områderne er fra Pandonias rapport.</figcaption>
       </figure>
       <figure class="rcard rcD" aria-labelledby="rcTitleF4">
         <div class="rcHead">
@@ -1356,7 +1356,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
           <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Dine resultater over tid</p>
           <div class="trendSlot" data-small="1" data-pts=".62,.64,.66,.65,.69,.72,.71,.75,.77"></div>
         </div>
-        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk.</figcaption>
+        <figcaption class="rcCap" data-da="Eksempelværdien og forløbet er illustrative. Områderne er fra Pandonias rapport." data-en="The example value and the trend are illustrative. The ranges are from Pandonia’s report.">Eksempelværdien og forløbet er illustrative. Områderne er fra Pandonias rapport.</figcaption>
       </figure>
       <figure class="rcard rcD" aria-labelledby="rcTitleF5">
         <div class="rcHead">
@@ -1382,7 +1382,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
           <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Dine resultater over tid</p>
           <div class="trendSlot" data-small="1" data-pts=".70,.71,.69,.72,.71,.73,.72,.74,.73"></div>
         </div>
-        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk.</figcaption>
+        <figcaption class="rcCap" data-da="Eksempelværdien og forløbet er illustrative. Områderne er fra Pandonias rapport." data-en="The example value and the trend are illustrative. The ranges are from Pandonia’s report.">Eksempelværdien og forløbet er illustrative. Områderne er fra Pandonias rapport.</figcaption>
       </figure>
       </div>
     </div>
@@ -1924,8 +1924,14 @@ function renderAll(){
       var bm=(typeof BM!=='undefined'?BM:[]).filter(function(x){return x.id===kind.slice(3);})[0];if(!bm||!bm.scale)return '';
       var ab={hba1c:'HbA1c',vitd:'VitD',chol:'CHOL',t:'T',hgb:'HGB'}[bm.id]||bm.abbr;
       var axB=bm.scale.map(function(q){return '<span style="left:'+(q[1]*100).toFixed(2)+'%">'+bmNum(q[0])+'</span>';}).join('');
-      return '<div class="rbar"><span class="ac">'+ab+'</span><div><div class="zb" style="background:'+bm.grad+'"></div><div class="zax">'+axB+'</div></div>'+
+      // illustrative example values (9 Oct 2026); testosterone has none until a general range is verified
+      var EXV={hba1c:'35',vitd:'80',chol:'4.6',hgb:'9.0'}[bm.id];
+      if(!EXV)return '<div class="rbar"><span class="ac">'+ab+'</span><div><div class="zb" style="background:'+bm.grad+'"></div><div class="zax">'+axB+'</div></div>'+
              '<span class="hex na"><b>—</b><small>'+bm.unit+'</small><span class="sr"> · '+(da?'ingen verificeret eksempelværdi':'no verified example value')+'</span></span></div>';
+      var v=parseFloat(EXV),inR=function(r){return r&&v>=r[0]&&v<=r[1];},st=inR(bm.opt)?'opt':inR(bm.ref)?'':'out';
+      var stL=st==='opt'?(da?'optimalt område':'optimal range'):st===''?(da?'referenceområde':'reference range'):(da?'uden for referenceområdet':'outside the reference range');
+      return '<div class="rbar"><span class="ac">'+ab+'</span><div><div class="zb" style="background:'+bm.grad+'"><i class="zv" style="left:'+bmPos(bm,v).toFixed(2)+'%"></i></div><div class="zax">'+axB+'</div></div>'+
+             '<span class="hex'+(st?' '+st:'')+'"><b>'+(da?EXV.replace('.',','):EXV)+'</b><small>'+bm.unit+'</small><span class="sr"> · '+stL+'</span></span></div>';
     }
     if(kind==='glu'){
       var ax=[3,4.5,6,7.5,9].map(function(n){return '<span style="left:'+((n-3)/6*100)+'%">'+n1(n)+'</span>';}).join('');
