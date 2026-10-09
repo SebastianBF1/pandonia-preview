@@ -645,6 +645,7 @@ body{font-size:16.5px;line-height:1.55}
 .rpP3 .rcards>div{padding:18px 18px 20px}
 .rpP3 .rcards h3{font-size:15px}.rpP3 .rcards p{font-size:14px}
 .rpP4 .rpIn{height:100%}.rpP4 .trendSlot{width:100%}
+.rpP4 .rpScore{display:block;width:100%;height:auto}
 @container (min-width:600px){
   .rpP1 .rpIn{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
   .rpP1 .rpImg{min-height:0}
@@ -1377,7 +1378,8 @@ html[data-locale="en"] [data-lang="da"]{display:none}
         <p class="bd" data-da="Hver ny måling lægger et punkt til din samlede score. Du ser udviklingen fra test til test." data-en="Each new test adds a point to your overall score, so you can see how it develops from one test to the next.">Hver ny måling lægger et punkt til din samlede score. Du ser udviklingen fra test til test.</p>
       </div>
       <div class="rpVis">
-        <div class="sheet"><div class="trendSlot"></div></div>
+        <!-- the report's own Score Over Time chart (supplied 9 Oct 2026), replacing the drawn schematic -->
+        <div class="sheet"><img class="rpScore" src="/pandonia-preview/images/score-over-time.webp" width="972" height="765" loading="lazy" decoding="async" data-alt-da="Score over tid: den samlede score vist måling for måling." data-alt-en="Score over time: the overall score plotted test by test." alt="Score over tid: den samlede score vist måling for måling."></div>
       </div>
     </div></div>
   </div></section>
