@@ -1369,7 +1369,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
           <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Your results over time</p>
           <div class="trendSlot" data-small="1" data-pts=".64,.66,.65,.69,.71,.70,.74,.76,.78"></div>
         </div>
-        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">The ranges are the report’s own. There is no verified example value yet. The trend is schematic.</figcaption>
+        <figcaption class="rcCap" data-da="Eksempelværdien og forløbet er illustrative. Områderne er fra Pandonias rapport." data-en="The example value and the trend are illustrative. The ranges are from Pandonia’s report.">The example value and the trend are illustrative. The ranges are from Pandonia’s report.</figcaption>
       </figure>
       <figure class="rcard rcD" aria-labelledby="rcTitleF6">
         <div class="rcHead">
@@ -1924,8 +1924,9 @@ function renderAll(){
       var bm=(typeof BM!=='undefined'?BM:[]).filter(function(x){return x.id===kind.slice(3);})[0];if(!bm||!bm.scale)return '';
       var ab={hba1c:'HbA1c',vitd:'VitD',chol:'CHOL',t:'T',hgb:'HGB'}[bm.id]||bm.abbr;
       var axB=bm.scale.map(function(q){return '<span style="left:'+(q[1]*100).toFixed(2)+'%">'+bmNum(q[0])+'</span>';}).join('');
-      // illustrative example values (9 Oct 2026); testosterone has none until a general range is verified
-      var EXV={hba1c:'35',vitd:'80',chol:'4.6',hgb:'9.0'}[bm.id];
+      // illustrative example values (9 Oct 2026, supplied); testosterone: the middle of the report's own interval
+      // (0.5–2.4 nmol/L) — the project holds no verified example value, and the client's own result is never used
+      var EXV={hba1c:'35',vitd:'80',chol:'4.6',hgb:'9.0',t:'1.5'}[bm.id];
       if(!EXV)return '<div class="rbar"><span class="ac">'+ab+'</span><div><div class="zb" style="background:'+bm.grad+'"></div><div class="zax">'+axB+'</div></div>'+
              '<span class="hex na"><b>—</b><small>'+bm.unit+'</small><span class="sr"> · '+(da?'ingen verificeret eksempelværdi':'no verified example value')+'</span></span></div>';
       var v=parseFloat(EXV),inR=function(r){return r&&v>=r[0]&&v<=r[1];},st=inR(bm.opt)?'opt':inR(bm.ref)?'':'out';
