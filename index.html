@@ -564,6 +564,10 @@ body{font-size:16.5px;line-height:1.55}
 .rcNav{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:4px}
 .rcBtn{width:44px;height:44px;display:inline-grid;place-content:center;background:none;border:1px solid var(--ink);color:var(--ink);font-size:17px;cursor:pointer}
 .rcBtn:disabled{opacity:.3;cursor:default}
+/* the over-time rail: phones keep their cards (.rcM); from 760px the six featured ones (.rcD) */
+.rcD{display:none}
+@media(min-width:760px){.rcD{display:revert}.rcM{display:none}}
+.hex.na{background:var(--ruleSoft)}
 .rcCount{min-width:5ch;text-align:center;font-size:11px;letter-spacing:.16em;color:var(--ink3);font-variant-numeric:tabular-nums}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media(prefers-reduced-motion:reduce){.rcRail{scroll-behavior:auto}}
@@ -1242,15 +1246,15 @@ html[data-locale="en"] [data-lang="da"]{display:none}
           <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
           <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
         </div>
-        <p class="rcTitle" id="rcTitle" data-da="Det, der har flyttet sig." data-en="What has changed.">What has changed.</p>
+        <p class="rcTitle" id="rcTitle"><span class="rcM" data-da="Det, der har flyttet sig." data-en="What has changed.">What has changed.</span><span class="rcD" data-da="Blodsukker." data-en="Blood sugar.">Blood sugar.</span></p>
         <div class="rbarSlot" data-kind="glu" style="margin-top:20px"></div>
         <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--ruleSoft)">
-          <p class="lab" style="margin-bottom:6px" data-da="Score over tid" data-en="Score over time">Score over time</p>
+          <p class="lab" style="margin-bottom:6px"><span class="rcM" data-da="Score over tid" data-en="Score over time">Score over time</span><span class="rcD" data-da="Dine resultater over tid" data-en="Your results over time">Your results over time</span></p>
           <div class="trendSlot" data-small="1"></div>
         </div>
         <figcaption class="rcCap" data-da="Målingen er rapportens eget vejledningseksempel. Forløbet er skematisk." data-en="The value is the worked example from the report's own guide. The trend is schematic.">The value is the worked example from the report's own guide. The trend is schematic.</figcaption>
       </figure>
-      <figure class="rcard" aria-labelledby="rcTitle2">
+      <figure class="rcard rcM" aria-labelledby="rcTitle2">
         <div class="rcHead">
           <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
           <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
@@ -1263,7 +1267,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
         </div>
         <figcaption class="rcCap" data-da="Eksempel på en måling. Områder og forløb er illustrative." data-en="An example value. The ranges and trend are illustrative.">An example value. The ranges and trend are illustrative.</figcaption>
       </figure>
-      <figure class="rcard" aria-labelledby="rcTitle3">
+      <figure class="rcard rcM" aria-labelledby="rcTitle3">
         <div class="rcHead">
           <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
           <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
@@ -1276,7 +1280,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
         </div>
         <figcaption class="rcCap" data-da="Eksempel på en måling. Områder og forløb er illustrative." data-en="An example value. The ranges and trend are illustrative.">An example value. The ranges and trend are illustrative.</figcaption>
       </figure>
-      <figure class="rcard" aria-labelledby="rcTitle4">
+      <figure class="rcard rcM" aria-labelledby="rcTitle4">
         <div class="rcHead">
           <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
           <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
@@ -1289,7 +1293,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
         </div>
         <figcaption class="rcCap" data-da="Eksempel på en måling. Områder og forløb er illustrative." data-en="An example value. The ranges and trend are illustrative.">An example value. The ranges and trend are illustrative.</figcaption>
       </figure>
-      <figure class="rcard" aria-labelledby="rcTitle5">
+      <figure class="rcard rcM" aria-labelledby="rcTitle5">
         <div class="rcHead">
           <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
           <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
@@ -1302,7 +1306,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
         </div>
         <figcaption class="rcCap" data-da="Eksempel på en måling. Områder og forløb er illustrative." data-en="An example value. The ranges and trend are illustrative.">An example value. The ranges and trend are illustrative.</figcaption>
       </figure>
-      <figure class="rcard" aria-labelledby="rcTitle6">
+      <figure class="rcard rcM" aria-labelledby="rcTitle6">
         <div class="rcHead">
           <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
           <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
@@ -1314,6 +1318,71 @@ html[data-locale="en"] [data-lang="da"]{display:none}
           <div class="trendSlot" data-small="1" data-pts=".62,.64,.66,.65,.69,.72,.71,.75,.77"></div>
         </div>
         <figcaption class="rcCap" data-da="Eksempel på en måling. Områder og forløb er illustrative." data-en="An example value. The ranges and trend are illustrative.">An example value. The ranges and trend are illustrative.</figcaption>
+      </figure>
+      <figure class="rcard rcD" aria-labelledby="rcTitleF2">
+        <div class="rcHead">
+          <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
+          <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
+        </div>
+        <p class="rcTitle" id="rcTitleF2" data-da="Langtidsblodsukker." data-en="Long-term blood sugar.">Long-term blood sugar.</p>
+        <div class="rbarSlot" data-kind="bm:hba1c" style="margin-top:20px"></div>
+        <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--ruleSoft)">
+          <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Your results over time</p>
+          <div class="trendSlot" data-small="1" data-pts=".66,.68,.67,.70,.73,.72,.76,.78,.79"></div>
+        </div>
+        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">The ranges are the report’s own. There is no verified example value yet. The trend is schematic.</figcaption>
+      </figure>
+      <figure class="rcard rcD" aria-labelledby="rcTitleF3">
+        <div class="rcHead">
+          <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
+          <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
+        </div>
+        <p class="rcTitle" id="rcTitleF3" data-da="D-vitamin." data-en="Vitamin D.">Vitamin D.</p>
+        <div class="rbarSlot" data-kind="bm:vitd" style="margin-top:20px"></div>
+        <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--ruleSoft)">
+          <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Your results over time</p>
+          <div class="trendSlot" data-small="1" data-pts=".78,.72,.64,.62,.66,.72,.77,.70,.63"></div>
+        </div>
+        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">The ranges are the report’s own. There is no verified example value yet. The trend is schematic.</figcaption>
+      </figure>
+      <figure class="rcard rcD" aria-labelledby="rcTitleF4">
+        <div class="rcHead">
+          <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
+          <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
+        </div>
+        <p class="rcTitle" id="rcTitleF4" data-da="Kolesterol." data-en="Cholesterol.">Cholesterol.</p>
+        <div class="rbarSlot" data-kind="bm:chol" style="margin-top:20px"></div>
+        <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--ruleSoft)">
+          <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Your results over time</p>
+          <div class="trendSlot" data-small="1" data-pts=".62,.64,.66,.65,.69,.72,.71,.75,.77"></div>
+        </div>
+        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">The ranges are the report’s own. There is no verified example value yet. The trend is schematic.</figcaption>
+      </figure>
+      <figure class="rcard rcD" aria-labelledby="rcTitleF5">
+        <div class="rcHead">
+          <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
+          <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
+        </div>
+        <p class="rcTitle" id="rcTitleF5" data-da="Testosteron." data-en="Testosterone.">Testosterone.</p>
+        <div class="rbarSlot" data-kind="bm:t" style="margin-top:20px"></div>
+        <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--ruleSoft)">
+          <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Your results over time</p>
+          <div class="trendSlot" data-small="1" data-pts=".64,.66,.65,.69,.71,.70,.74,.76,.78"></div>
+        </div>
+        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">The ranges are the report’s own. There is no verified example value yet. The trend is schematic.</figcaption>
+      </figure>
+      <figure class="rcard rcD" aria-labelledby="rcTitleF6">
+        <div class="rcHead">
+          <span class="lab" data-da="Én markør · over tid" data-en="One marker · over time">One marker · over time</span>
+          <span class="lab" data-da="Eksempel" data-en="Example">Example</span>
+        </div>
+        <p class="rcTitle" id="rcTitleF6" data-da="Hæmoglobin." data-en="Haemoglobin.">Haemoglobin.</p>
+        <div class="rbarSlot" data-kind="bm:hgb" style="margin-top:20px"></div>
+        <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--ruleSoft)">
+          <p class="lab" style="margin-bottom:6px" data-da="Dine resultater over tid" data-en="Your results over time">Your results over time</p>
+          <div class="trendSlot" data-small="1" data-pts=".70,.71,.69,.72,.71,.73,.72,.74,.73"></div>
+        </div>
+        <figcaption class="rcCap" data-da="Områderne er rapportens egne. Der er endnu ingen verificeret eksempelværdi. Forløbet er skematisk." data-en="The ranges are the report’s own. There is no verified example value yet. The trend is schematic.">The ranges are the report’s own. There is no verified example value yet. The trend is schematic.</figcaption>
       </figure>
       </div>
     </div>
@@ -1328,6 +1397,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
       <div class="ovtCta">
         <a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer" data-da="Book din blodprøve" data-en="Book your blood test">Book your blood test</a>
         <a class="lnk" data-route="rapport"><span data-da="Se hvordan resultatet ser ud" data-en="See what your results look like">See what your results look like</span> <span aria-hidden="true">→</span></a>
+        <a class="lnk rcD" href="#/biomarkers" data-route="biomarkers"><span data-da="Udforsk alle biomarkører" data-en="Explore all biomarkers">Explore all biomarkers</span> <span aria-hidden="true">→</span></a>
       </div>
     </div>
     </div>
@@ -1850,6 +1920,13 @@ function renderAll(){
       var axM=M.ticks.map(function(n){return '<span style="left:'+((n-M.min)/sp*100)+'%">'+n1(n)+'</span>';}).join('');
       return '<div class="rbar"><span class="ac">'+M.ac+'</span><div><div class="zb" style="background:linear-gradient(90deg,'+M.z+')"><i class="zv" style="left:'+((M.v-M.min)/sp*100).toFixed(1)+'%"></i></div><div class="zax">'+axM+'</div></div><span class="hex '+M.hex+'"><b>'+n1(M.v)+'</b><small>'+M.u+'</small><span class="sr"> · '+(M.hex==='opt'?(da?'optimalt område':'optimal range'):(da?'referenceområde':'reference range'))+'</span></span></div>';
     }
+    if(kind.indexOf('bm:')===0){
+      var bm=(typeof BM!=='undefined'?BM:[]).filter(function(x){return x.id===kind.slice(3);})[0];if(!bm||!bm.scale)return '';
+      var ab={hba1c:'HbA1c',vitd:'VitD',chol:'CHOL',t:'T',hgb:'HGB'}[bm.id]||bm.abbr;
+      var axB=bm.scale.map(function(q){return '<span style="left:'+(q[1]*100).toFixed(2)+'%">'+bmNum(q[0])+'</span>';}).join('');
+      return '<div class="rbar"><span class="ac">'+ab+'</span><div><div class="zb" style="background:'+bm.grad+'"></div><div class="zax">'+axB+'</div></div>'+
+             '<span class="hex na"><b>—</b><small>'+bm.unit+'</small><span class="sr"> · '+(da?'ingen verificeret eksempelværdi':'no verified example value')+'</span></span></div>';
+    }
     if(kind==='glu'){
       var ax=[3,4.5,6,7.5,9].map(function(n){return '<span style="left:'+((n-3)/6*100)+'%">'+n1(n)+'</span>';}).join('');
       var bar='<div class="rbar"><span class="ac">GLU</span><div><div class="zb glu"><i class="zv" style="left:35%"></i></div><div class="zax">'+ax+'</div></div><span class="hex"><b>'+n1(5.1)+'</b><small>mmol/L</small><span class="sr"> · '+(da?'referenceområde':'reference range')+'</span></span></div>';
@@ -1982,8 +2059,9 @@ function selectPricing(id,focus){
 (function(){
   var rail=document.getElementById('rcRail'),prev=document.getElementById('rcPrev'),next=document.getElementById('rcNext'),count=document.getElementById('rcCount');
   if(!rail||!prev||!next||!count)return;   // arrows removed: the rail is swiped or scrolled
-  var cards=[].slice.call(rail.children);
-  function current(){var mid=rail.scrollLeft+rail.clientWidth/2,best=0,d=1e9;
+  var all=[].slice.call(rail.children),cards=all;
+  function shown(){var ph=window.matchMedia('(max-width:759px)').matches;cards=all.filter(function(c){return !c.classList.contains(ph?'rcD':'rcM');});}
+  function current(){shown();var mid=rail.scrollLeft+rail.clientWidth/2,best=0,d=1e9;
     cards.forEach(function(c,i){var x=Math.abs(c.offsetLeft+c.offsetWidth/2-mid);if(x<d){d=x;best=i;}});return best;}
   function update(){var i=current();count.textContent=(i+1)+' / '+cards.length;prev.disabled=i===0;next.disabled=i===cards.length-1;}
   function go(i){i=Math.max(0,Math.min(cards.length-1,i));var c=cards[i];rail.scrollTo({left:c.offsetLeft-(rail.clientWidth-c.offsetWidth)/2});}
