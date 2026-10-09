@@ -417,40 +417,77 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
   .heroSec .heroHow{display:block;margin-top:14px}
 }
 /* ── HOW IT WORKS ─────────────────────────────────────────────────
-   Warm beige under the light header, dark type, then straight into the black footer. Desktop:
-   four columns with fine hairlines and a quiet arrow on each line. Phones: stacked, hairlines between. */
-.hw{background:var(--sand);color:var(--ink);--hwLine:rgba(10,10,10,.16)}
-/* the report link reads "Inside the report" from 760px up; phones keep "See the full report" */
-.hwRepM{display:none}
-@media(max-width:759px){.hwRepD{display:none}.hwRepM{display:inline}}
-.hw .btn1{gap:12px}
+   Warm ground, dark type, straight into the black footer. One markup: below 1024px each step is a row —
+   icon, number, text; from 1024px four columns on a shared row grid (number · label · title · text ·
+   icon or actions), fine dividers with an arrow on each, then the practical row. */
+.hw{background:var(--sand);color:var(--ink);--hwLine:rgba(10,10,10,.16);--hwDisc:color-mix(in srgb,var(--ruleSoft) 62%,var(--sand))}
 .hwIn{padding-block:clamp(40px,7vh,84px) clamp(48px,8vh,96px)}
-.hwKick::before{content:"[ "}.hwKick::after{content:" ]"}
-.hwT{margin-top:clamp(14px,2vh,22px);font-size:clamp(38px,3.2vw + 14px,76px);line-height:1.02;letter-spacing:-.03em}
-.hwLead{margin-top:clamp(10px,1.6vh,18px);font-size:clamp(17px,.7vw + 11px,22px);line-height:1.45;color:var(--ink2);max-width:68ch}
-.hwSteps{list-style:none;margin:clamp(36px,6vh,64px) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr)}
-.hwS{position:relative;padding-block:28px 32px;border-top:1px solid var(--hwLine)}
-.hwS:last-child{border-bottom:1px solid var(--hwLine)}
-.hwNo{display:inline-block;font-size:13px;letter-spacing:.08em;color:var(--ink);padding-bottom:10px;border-bottom:1px solid rgba(10,10,10,.6)}
-.hwLab{margin-top:clamp(14px,2vh,22px)}
-.hwHw{position:relative;margin-top:12px}
-.hwH{font-size:clamp(32px,1.6vw + 18px,48px);line-height:1.04;letter-spacing:-.025em}
-.hwH span{display:block}
-.hwTx{margin-top:14px;font-size:16px;line-height:1.55;color:var(--ink2);max-width:40ch}
-.hwNote{margin-top:18px;padding-top:14px;border-top:1px solid var(--hwLine);max-width:40ch}
-.hwNote .lab{margin-top:12px;color:var(--ink)}.hwNote .lab:first-child{margin-top:0}
-.hwNote p:not(.lab){margin-top:4px;font-size:14px;line-height:1.5;color:var(--ink2)}
-.hwAct{margin-top:22px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.hwT{font-size:clamp(38px,3.3vw + 14px,78px);line-height:1.02;letter-spacing:-.03em}
+.hwLead{margin-top:clamp(12px,1.6vh,18px);font-size:clamp(17px,.6vw + 12px,21px);line-height:1.45;color:var(--ink2);max-width:62ch}
+.hwIco{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--hwDisc);color:var(--ink)}
+.hwIco svg{width:20px;height:20px}
+.hwNo{font-size:12px;letter-spacing:.06em;color:var(--ink);font-variant-numeric:tabular-nums}
+.hwNo::after{content:"";display:block;width:12px;height:1px;margin-top:9px;background:rgba(10,10,10,.55)}
+.hwH{font-size:clamp(24px,1vw + 20px,28px);line-height:1.08;letter-spacing:-.02em}
+.hwTx{font-size:16px;line-height:1.58;color:var(--ink2)}
+.hwBody .hwTx+.hwTx{margin-top:12px}
+.hwSm{margin-top:10px;font-size:13.5px;line-height:1.5;color:var(--ink3)}
+.hwAct{margin-top:20px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.hw .btn1{min-height:54px;padding-inline:26px;gap:12px}
 .hwArw{display:none}
-@media(min-width:1024px){
-  .hwSteps{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .hwS{--pad:clamp(18px,2.4vw,44px);padding:0 var(--pad);border:0}
-  .hwS:first-child{padding-left:0}.hwS:last-child{padding-right:0;border-bottom:0}
+/* below 1024px: a row per step — [icon] [number] [label · title · text · more] */
+.hwSteps{list-style:none;margin:clamp(30px,5vh,56px) 0 0;padding:0}
+.hwS{display:grid;grid-template-columns:44px 26px minmax(0,1fr);grid-template-areas:"ico no lab" "ico no hh" "ico no tx" "ico no more";column-gap:14px;align-items:start;align-content:start;padding-block:22px 26px;border-top:1px solid var(--hwLine)}
+.hwS:first-child{border-top:0;padding-top:4px}
+.hwS>.hwIco{grid-area:ico}.hwS>.hwNo{grid-area:no;padding-top:2px}.hwS>.hwLab{grid-area:lab}
+.hwS>.hwHw{grid-area:hh;margin-top:6px}.hwS>.hwTx,.hwS>.hwBody{grid-area:tx;margin-top:10px}
+.hw .hwAct .btn1{align-self:stretch}
+@media(max-width:380px){
+  /* the narrowest phones: the number moves above the label, so the text keeps its width */
+  .hwS{grid-template-columns:40px minmax(0,1fr);grid-template-areas:"ico no" "ico lab" "ico hh" "ico tx" "ico more";column-gap:14px}
+  .hwIco{width:40px;height:40px}
+  .hwNo::after{display:none}.hwS>.hwLab{margin-top:4px}
+}
+/* the practical row */
+.hwPrac{margin-top:8px;padding-top:26px;border-top:1px solid var(--hwLine);display:grid;gap:24px}
+.hwPb{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:16px;align-items:start}
+.hwPh{color:var(--ink);padding-top:2px}
+.hwPb p:not(.lab){margin-top:8px;font-size:15.5px;line-height:1.55;color:var(--ink2)}
+.hwPb p+p{margin-top:4px}
+@media(min-width:700px) and (max-width:1199px){
+  .hwS{grid-template-columns:48px 30px minmax(0,1fr);column-gap:18px}.hwIco{width:48px;height:48px}
+  .hwH{font-size:30px}
+  .hw .hwAct .btn1{align-self:flex-start}
+}
+/* mid widths: two steps a row, 01 02 / 03 04, no arrows */
+@media(min-width:900px) and (max-width:1199px){
+  .hwSteps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(32px,4vw,56px)}
+  .hwS:nth-child(2){border-top:0;padding-top:4px}
+}
+@media(min-width:900px){
+  .hwPrac{margin-top:clamp(40px,6vh,64px);padding-top:clamp(28px,4vh,40px);grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:0}
+  .hwPrep{padding-right:clamp(24px,3vw,56px)}
+  .hwArea{padding-left:clamp(24px,3vw,56px);border-left:1px solid var(--hwLine)}
+  .hwPb p:not(.lab){font-size:16px}
+}
+@media(min-width:1200px){
+  /* four columns on one row grid: number · label · title · first paragraph · icon (01–03) or the rest (04) */
+  .hwSteps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(4,auto) 1fr;margin-top:clamp(44px,7vh,76px)}
+  .hwS{--pad:clamp(20px,2.2vw,40px);grid-row:span 5;grid-template-columns:minmax(0,1fr);grid-template-rows:subgrid;grid-template-areas:"no" "lab" "hh" "tx" "more";padding:0 var(--pad);border:0}
+  .hwS:first-child{padding:0 var(--pad) 0 0}.hwS:last-child{padding-right:0}
   .hwS+.hwS{border-left:1px solid var(--hwLine)}
-  /* the arrow sits on the hairline, centred on the step title, on a patch of the ground */
-  .hwArw{display:block;position:absolute;left:calc(-1 * var(--pad));top:50%;transform:translate(-50%,-50%);padding:10px 0;background:var(--sand);font-size:22px;line-height:1;color:var(--ink)}
-  .hwH{font-size:clamp(30px,1.3vw + 16px,46px)}
-  .hwTx{font-size:clamp(15px,.25vw + 12px,17px)}
+  .hwS>.hwIco{grid-area:more;width:64px;height:64px;margin-top:30px}
+  .hwS>.hwIco svg{width:28px;height:28px}
+  .hwS>.hwIco4{display:none}
+  .hwS>.hwLab{margin-top:22px}.hwS>.hwHw{margin-top:12px}.hwS>.hwTx{margin-top:16px}
+  .hwS>.hwBody{grid-area:auto;grid-row:4 / 6;grid-column:1;margin-top:16px}
+  .hwH{font-size:clamp(30px,2vw + 11px,46px);line-height:1.05}
+  .hwLead{max-width:none}
+  /* the arrow sits on the divider, level with the step title, on a patch of the ground */
+  .hwArw{display:block;position:absolute;left:calc(-1 * var(--pad));top:50%;transform:translate(-50%,-50%);padding:8px 0;background:var(--sand);font-size:20px;line-height:1;color:var(--ink)}
+  /* every title shares one row; the title block fills it, so the arrows line up across the dividers */
+  .hwS>.hwHw{position:relative;align-self:stretch}
+  .hw .hwAct .btn1{align-self:stretch;white-space:nowrap}
 }
 @media(max-width:1023px){.heroCard{aspect-ratio:auto;min-height:260px;margin-top:0}}
 .heroLine{padding-top:clamp(8px,1.5vw,24px);font-size:clamp(40px,4.6vw + 12px,80px)}   /* one clause per line on desktop */
@@ -1305,50 +1342,61 @@ html[data-locale="en"] [data-lang="da"]{display:none}
 
 <!-- ═══════════ SÅDAN FUNGERER DET ═══════════ -->
 <div data-page="saadan" hidden>
-  <!-- HOW IT WORKS — one beige screen under the light header, ending on the black footer: intro, then 01 → 02 → 03 → 04
-       side by side from 1024px (thin dividers, a quiet arrow on each), stacked on phones. -->
+  <!-- HOW IT WORKS — "From blood test to insight.": four steps (01 → 04), then preparation and home-visit areas.
+       Four columns from 1200px, thin dividers, an arrow on each; two a row from 900px; below that the steps stack, icon on the left. -->
   <section class="hw" aria-labelledby="hwTitle"><div class="wrap hwIn">
-    <p class="lab hwKick" data-da="Sådan fungerer det" data-en="How it works">How it works</p>
-    <h1 class="s hwT" id="hwTitle" data-da="Hvad der sker med din prøve." data-en="What happens to your sample.">What happens to your sample.</h1>
-    <p class="hwLead" data-da="Fire trin, på én dag: indsamling, transport, analyse og gennemgang." data-en="Four steps, in one day: collect, transport, analyse, review.">Four steps, in one day: collect, transport, analyse, review.</p>
+    <h1 class="s hwT" id="hwTitle" data-da="Fra blodprøve til indsigt." data-en="From blood test to insight.">From blood test to insight.</h1>
+    <p class="hwLead" data-da="Fire trin fra din blodprøve til en rapport, der hjælper dig med at forstå, hvor du står." data-en="Four steps from your blood sample to a report that helps you understand where you stand.">Four steps from your blood sample to a report that helps you understand where you stand.</p>
     <ol class="hwSteps">
       <li class="hwS">
+        <span class="hwIco"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v11.5h13V9"/><path d="M10 20.5v-6h4v6"/></svg></span>
         <p class="hwNo">01</p>
         <p class="lab hwLab" data-da="Indsamling" data-en="Collection">Collection</p>
-        <div class="hwHw"><h2 class="s hwH"><span data-da="Vi kommer" data-en="We come">We come</span> <span data-da="til dig." data-en="to you.">to you.</span></h2></div>
-        <p class="hwTx" data-da="Vores blodprøvetagere har erfaring fra flere forskellige hospitaler og arbejder under tæt supervision af vores ansvarlige læge." data-en="Our phlebotomists have experience from several hospitals and work under the close supervision of the doctor responsible for our service.">Our phlebotomists have experience from several hospitals and work under the close supervision of the doctor responsible for our service.</p>
-        <div class="hwNote">
-          <p class="lab" data-da="Aftenen inden" data-en="The evening before">The evening before</p>
-          <p data-da="Fast i mindst 12 timer, og undgå både kaffe og kosttilskud før prøven. Hård fysisk aktivitet frarådes de sidste 48 timer." data-en="Fast for at least 12 hours, and avoid coffee and supplements before the test. Avoid strenuous exercise for 48 hours beforehand.">Fast for at least 12 hours, and avoid coffee and supplements before the test. Avoid strenuous exercise for 48 hours beforehand.</p>
-          <p data-da="Vi anbefaler at prøven tages tidligt på dagen, da flere biomarkører naturligt topper om morgenen." data-en="We recommend taking the sample early in the day, as several biomarkers naturally peak in the morning.">We recommend taking the sample early in the day, as several biomarkers naturally peak in the morning.</p>
-          <p class="lab" data-da="Vi kommer i disse områder" data-en="We come to these areas">We come to these areas</p>
-          <p>København K, N, NV, V, S, SV, Ø, Frederiksberg <span data-da="og Hellerup — eller på vores laboratorium." data-en="and Hellerup — or come to our laboratory.">and Hellerup — or come to our laboratory.</span></p>
-        </div>
+        <div class="hwHw"><h2 class="s hwH" data-da="Hjemme hos dig eller hos os." data-en="At home or with us.">At home or with us.</h2></div>
+        <p class="hwTx" data-da="Vælg et hjemmebesøg, eller få taget prøven på vores laboratorium. Vores blodprøvetagere arbejder under supervision af vores ansvarlige læge." data-en="Choose a home visit or have your sample taken at our laboratory. Our phlebotomists work under the supervision of the doctor responsible for our service.">Choose a home visit or have your sample taken at our laboratory. Our phlebotomists work under the supervision of the doctor responsible for our service.</p>
       </li>
       <li class="hwS" id="laboratoriet">
+        <span class="hwIco"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 9.5h4l3.5 3.5v3.5h-7.5"/><circle cx="6.5" cy="17.5" r="1.75"/><circle cx="17" cy="17.5" r="1.75"/></svg></span>
         <p class="hwNo">02</p>
         <p class="lab hwLab" data-da="Transport" data-en="Transport">Transport</p>
-        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH"><span data-da="Direkte til" data-en="Straight to">Straight to</span> <span data-da="laboratoriet." data-en="the laboratory.">the laboratory.</span></h2></div>
-        <p class="hwTx" data-da="Prøven bringes direkte til vores eget laboratorium. Den sendes ikke videre til et eksternt laboratorium." data-en="Your sample goes straight to our own laboratory. It is not sent on to an outside lab.">Your sample goes straight to our own laboratory. It is not sent on to an outside lab.</p>
+        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Direkte til vores laboratorium." data-en="Straight to our lab.">Straight to our lab.</h2></div>
+        <p class="hwTx" data-da="Din prøve bringes direkte til vores eget laboratorium til analyse." data-en="Your sample is transported directly to our own laboratory for analysis.">Your sample is transported directly to our own laboratory for analysis.</p>
       </li>
       <li class="hwS">
+        <span class="hwIco"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 3.5h6"/><path d="M10 3.5v5.5L4.8 18.6a1.6 1.6 0 0 0 1.4 2.4h11.6a1.6 1.6 0 0 0 1.4-2.4L14 9V3.5"/><path d="M7.2 15h9.6"/></svg></span>
         <p class="hwNo">03</p>
         <p class="lab hwLab" data-da="Analyse" data-en="Analysis">Analysis</p>
-        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH"><span data-da="Avanceret" data-en="Advanced">Advanced</span> <span data-da="analyse." data-en="analysis.">analysis.</span></h2></div>
-        <p class="hwTx" data-da="Analyseret i vores eget laboratorium. Kvalitetskontrolleret og godkendt." data-en="Processed in our own lab. Quality controlled, signed off.">Processed in our own lab. Quality controlled, signed off.</p>
+        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Dine biomarkører, målt." data-en="Your biomarkers, measured.">Your biomarkers, measured.</h2></div>
+        <p class="hwTx" data-da="Vi analyserer din prøve i vores eget laboratorium, med kvalitetskontrol og godkendelse." data-en="We analyse your sample in our own laboratory, with quality control and sign-off.">We analyse your sample in our own laboratory, with quality control and sign-off.</p>
       </li>
       <li class="hwS">
+        <span class="hwIco hwIco4"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3.5h8l4 4v13H6z"/><path d="M14 3.5v4h4"/><path d="M9 12h6M9 15.5h6"/></svg></span>
         <p class="hwNo">04</p>
         <p class="lab hwLab" data-da="Rapport &amp; samtalen" data-en="Report &amp; consultation">Report &amp; consultation</p>
-        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH"><span data-da="Din rapport" data-en="Your report">Your report</span> <span data-da="og gennemgang." data-en="and review.">and review.</span></h2></div>
-        <p class="hwTx" data-da="Den er skrevet til at blive læst af dig — ikke af en læge." data-en="It's written for you to read — not for a doctor.">It's written for you to read — not for a doctor.</p>
-        <p class="hwTx" data-da="Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret. Tyve minutter online." data-en="Book the consultation whenever suits you, as long as it is at least three hours after you receive your results. It takes twenty minutes, online.">Book the consultation whenever suits you, as long as it is at least three hours after you receive your results. It takes twenty minutes, online.</p>
-        <div class="hwAct">
-          <a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer"><span data-da="Book din blodprøve" data-en="Book your blood test">Book your blood test</span> <span aria-hidden="true">→</span></a>
-          <a class="lnk" data-route="rapport"><span class="hwRepD" data-da="Se hele rapporten" data-en="Inside the report">Inside the report</span><span class="hwRepM" data-da="Se hele rapporten" data-en="See the full report">See the full report</span> <span aria-hidden="true">→</span></a>
+        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Forstå dine resultater." data-en="Understand your results.">Understand your results.</h2></div>
+        <div class="hwBody">
+          <p class="hwTx" data-da="Din rapport forklarer dine biomarkørresultater og viser, hvordan de ligger i forhold til Pandonias optimale område og det kliniske referenceområde." data-en="Your report explains your biomarker results and shows how they compare with Pandonia’s optimal interval and the clinical reference interval.">Your report explains your biomarker results and shows how they compare with Pandonia’s optimal interval and the clinical reference interval.</p>
+          <p class="hwTx" data-da="Du kan også booke en 20 minutters online konsultation med en læge, hvor I taler om dine resultater, og hvor du skal sætte ind." data-en="You can also book a 20-minute online consultation with a doctor to discuss your results and where to focus.">You can also book a 20-minute online consultation with a doctor to discuss your results and where to focus.</p>
+          <p class="hwSm" data-da="Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret." data-en="Book the consultation whenever suits you, as long as it is at least three hours after you receive your results.">Book the consultation whenever suits you, as long as it is at least three hours after you receive your results.</p>
+          <div class="hwAct">
+            <a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer"><span data-da="Book din blodprøve" data-en="Book your blood test">Book your blood test</span> <span aria-hidden="true">→</span></a>
+            <a class="lnk" href="#/rapport" data-route="rapport"><span data-da="Udforsk rapporten" data-en="Explore the report">Explore the report</span> <span aria-hidden="true">→</span></a>
+          </div>
         </div>
       </li>
     </ol>
+    <div class="hwPrac">
+      <div class="hwPb hwPrep"><span class="hwIco"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+        <div><h2 class="lab hwPh" data-da="Forbered din blodprøve" data-en="Prepare for your blood test">Prepare for your blood test</h2>
+          <p data-da="Fast i mindst 12 timer, og undgå både kaffe og kosttilskud før prøven. Hård fysisk aktivitet frarådes de sidste 48 timer." data-en="Fast for at least 12 hours, and avoid coffee and supplements before the test. Avoid strenuous exercise for 48 hours beforehand.">Fast for at least 12 hours, and avoid coffee and supplements before the test. Avoid strenuous exercise for 48 hours beforehand.</p>
+          <p data-da="Vi anbefaler at prøven tages tidligt på dagen, da flere biomarkører naturligt topper om morgenen." data-en="We recommend taking the sample early in the day, as several biomarkers naturally peak in the morning.">We recommend taking the sample early in the day, as several biomarkers naturally peak in the morning.</p></div>
+      </div>
+      <div class="hwPb hwArea"><span class="hwIco"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0c0 5.2-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+        <div><h2 class="lab hwPh" data-da="Områder for hjemmebesøg" data-en="Home visit areas">Home visit areas</h2>
+          <p data-da="København K, N, NV, V, S, SV og Ø, Frederiksberg og Hellerup." data-en="Copenhagen K, N, NV, V, S, SV and Ø, Frederiksberg and Hellerup.">Copenhagen K, N, NV, V, S, SV and Ø, Frederiksberg and Hellerup.</p>
+          <p data-da="Du kan også få taget prøven på vores laboratorium." data-en="You can also have your sample taken at our laboratory.">You can also have your sample taken at our laboratory.</p></div>
+      </div>
+    </div>
   </div></section>
 </div>
 
