@@ -632,6 +632,10 @@ body{font-size:16.5px;line-height:1.55}
 /* headings scale with their panel; the max-widths give the report's own line breaks (measured in em) */
 .rpH{margin-top:12px;font-size:clamp(32px,4.4cqi + 12px,46px)}
 .rpP1 .rpH{max-width:7.5em}.rpP2 .rpH{max-width:6.6em}.rpP3 .rpH{max-width:6.2em}
+/* "Your blood tells a story." / "Discover yours." — one sentence per line; the English rules leave the Danish lines as they were */
+.rpH1 span{display:block}
+[data-locale="en"] .rpH1{max-width:9em}[data-locale="en"] .rpH1 span{text-wrap:wrap}
+[data-locale="en"] .rpP1 .bd{text-wrap:pretty}
 .rpTx p.bd{margin-top:16px;max-width:46ch}.rpTx p.bd+p.bd{margin-top:12px}
 @media(max-width:1023px){.rpTx>.lab:first-child::before{content:"0" counter(rp) " · "}}
 .rpP1 .rpIn{padding:0;gap:0}.rpP1 .rpTx{padding:var(--pp)}
@@ -1334,8 +1338,8 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     <div class="rpP rpP1"><div class="rpIn">
       <div class="rpTx">
         <p class="lab" data-da="Din rapport" data-en="Your report">Din rapport</p>
-        <h1 class="s d3 fg rpH" data-da="Det, du får, er ikke en liste med tal." data-en="What you get is not a list of numbers.">Det, du får, er ikke en liste med tal.</h1>
-        <p class="bd" data-da="Hver måling står med sit optimale område og sit referenceområde. Seks systemer får hver sin score. Og en læge læser det med dig, hvis du vil." data-en="Every measurement is shown alongside its optimal range and its reference range. Each of the six systems gets its own score. And, if you like, a doctor will go through it with you.">Hver måling står med sit optimale område og sit referenceområde. Seks systemer får hver sin score. Og en læge læser det med dig, hvis du vil.</p>
+        <h1 class="s d3 fg rpH rpH1"><span data-da="Det, du får, er ikke en liste med tal." data-en="Your blood tells a story.">Det, du får, er ikke en liste med tal.</span> <span data-da="" data-en="Discover yours."></span></h1>
+        <p class="bd" data-da="Hver måling står med sit optimale område og sit referenceområde. Seks systemer får hver sin score. Og en læge læser det med dig, hvis du vil." data-en="Your biomarkers reveal insights into your health. See how your measurements compare with Pandonia’s optimal intervals and clinical reference intervals, and explore your scores across six health systems. An optional consultation with a doctor helps you understand your results and where to focus.">Hver måling står med sit optimale område og sit referenceområde. Seks systemer får hver sin score. Og en læge læser det med dig, hvis du vil.</p>
       </div>
       <div class="rpImg"><img loading="lazy" decoding="async" class="ph" src="/pandonia-preview/images/report-deck.webp" data-alt-da="En kvinde ser Pandonias rapport på en bærbar computer." data-alt-en="A woman looking at the Pandonia report on a laptop." alt="En kvinde ser Pandonias rapport på en bærbar computer."></div>
     </div></div>
