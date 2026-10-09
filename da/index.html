@@ -657,11 +657,36 @@ body{font-size:16.5px;line-height:1.55}
   .rpP2 .rpTx{align-self:start}
   /* side by side with the marker panel, the chart sheet spans the same height as the marker visual */
   .rpP4 .rpVis{flex:1;display:flex;flex-direction:column}.rpP4 .sheet{flex:1;display:flex;align-items:center}
-  .rpP3 .rcards{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .rpP3 .rcards>div{padding:16px 15px 18px}
-  .rpP3 .rcards p{font-size:13.5px}
 }
 @container (max-width:520px){.rpP4 .trend text{font-size:18px}}
+/* panel 3: two sentences, two lines (English); the Danish heading keeps its own measure */
+.rpH3 span{display:block}
+[data-locale="en"] .rpP3 .rpH{max-width:none}
+.rpSub{margin-top:14px}.rpSub:empty{display:none}
+/* the annotated example */
+.gAnno{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"bio bio res" "ac bar hex" "rng rng rng";gap:16px clamp(14px,2vw,24px);align-items:center}
+.gBio{grid-area:bio;align-self:end}.gRes{grid-area:res;align-self:end;text-align:right}
+.gAnno .gAc{grid-area:ac;font:700 clamp(30px,1.8vw + 16px,44px)/1 var(--sans);letter-spacing:-.03em}.gBar{grid-area:bar;min-width:0}.gRng{grid-area:rng}
+.gAnno .gHex{grid-area:hex;grid-column:auto;justify-self:end}
+.gAnno .anno{font-size:13px}
+/* the three definitions: serif headings, full text, one column until there is room for three readable ones */
+.rpP3 .rcards{grid-template-columns:minmax(0,1fr);gap:8px;margin-top:8px}
+.rpP3 .rcards>div{padding:22px 22px 24px}
+.rpP3 .rcards h3{font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.2;letter-spacing:-.01em}
+.rpP3 .rcards p{margin-top:10px;font-size:15.5px;line-height:1.55}
+.rpSrc{margin-top:14px}
+@container (min-width:840px){
+  .rpP3 .rcards{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto}
+  .rpP3 .rcards>div{display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:10px;padding:20px 18px 22px}
+  .rpP3 .rcards p{margin-top:0;font-size:15px}
+}
+@container (max-width:520px){
+  .gAnno{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"bio bio" "ac ac" "bar bar" "hex res" "rng rng";gap:12px 16px}
+  .gRes{align-self:center;text-align:left}
+  .gAnno .gHex{justify-self:start}
+  .rpP3 .rcards>div{padding:20px 18px 22px}
+  .rpP3 .rcards p{font-size:16px}
+}
 .prev{display:flex;gap:clamp(14px,2vw,26px);align-items:flex-end}
 .prev div{display:grid;gap:5px}
 .prev small{font-size:11px;letter-spacing:.06em;color:var(--ink3)}
@@ -1363,16 +1388,17 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     <div class="rpP rpP3"><div class="rpIn">
       <div class="rpTx">
         <p class="lab" data-da="Én markør" data-en="One marker">Én markør</p>
-        <h2 class="s d3 fg rpH" data-da="Sådan læser du en måling." data-en="How to read a measurement.">Sådan læser du en måling.</h2>
+        <h2 class="s d3 fg rpH rpH3"><span data-da="Sådan læser du en måling." data-en="Understand your numbers.">Sådan læser du en måling.</span> <span data-da="" data-en="Know where to focus."></span></h2>
+        <p class="bd rpSub" data-da="" data-en="See how your result compares with Pandonia’s optimal interval and the clinical reference interval."></p>
       </div>
       <div class="rpVis">
         <div class="sheet"><div class="rbarSlot" data-kind="glu" data-anno="1"></div></div>
         <div class="rcards">
-          <div class="rc-opt"><h3 data-da="Optimalt område" data-en="Optimal range">Optimalt område</h3><p data-da="Viser de niveauer, hvor vi vurderer, at kroppen fungerer mest balanceret og robust — både her og nu og på lang sigt." data-en="The levels at which we consider the body to work at its most balanced and robust, both now and in the long term.">Viser de niveauer, hvor vi vurderer, at kroppen fungerer mest balanceret og robust — både her og nu og på lang sigt.</p></div>
-          <div class="rc-ref"><h3 data-da="Referenceområde" data-en="Reference range">Referenceområde</h3><p data-da="De værdier, sundhedsvæsenet i Danmark bruger som normale. For nogle biomarkører svarer referenceområdet til det optimale område." data-en="The values the Danish healthcare system treats as normal. For some biomarkers, the reference range and the optimal range are the same.">De værdier, sundhedsvæsenet i Danmark bruger som normale. For nogle biomarkører svarer referenceområdet til det optimale område.</p></div>
-          <div class="rc-out"><h3 data-da="Uden for området" data-en="Outside range">Uden for området</h3><p data-da="Værdier uden for de anbefalede grænser. Det kan være tegn på en ubalance eller mangel og bør ses i sammenhæng med dit samlede helbred." data-en="Values outside the recommended limits. This may be a sign of an imbalance or deficiency and should be viewed in the context of your overall health.">Værdier uden for de anbefalede grænser. Det kan være tegn på en ubalance eller mangel og bør ses i sammenhæng med dit samlede helbred.</p></div>
+          <div class="rc-opt"><h3 data-da="Optimalt område" data-en="Pandonia optimal interval">Optimalt område</h3><p data-da="Viser de niveauer, hvor vi vurderer, at kroppen fungerer mest balanceret og robust — både her og nu og på lang sigt." data-en="Our calculated interval where this biomarker is typically associated with robust function and long-term health. This range can be narrower than the clinical reference interval because it is designed for prevention and performance optimisation.">Viser de niveauer, hvor vi vurderer, at kroppen fungerer mest balanceret og robust — både her og nu og på lang sigt.</p></div>
+          <div class="rc-ref"><h3 data-da="Referenceområde" data-en="Clinical reference interval">Referenceområde</h3><p data-da="De værdier, sundhedsvæsenet i Danmark bruger som normale. For nogle biomarkører svarer referenceområdet til det optimale område." data-en="The interval used in the Danish healthcare system for routine interpretation. It is typically based on results from a large group of healthy individuals (often the central 95%), meaning it reflects what is common in the population—not necessarily what is optimal for prevention or performance.">De værdier, sundhedsvæsenet i Danmark bruger som normale. For nogle biomarkører svarer referenceområdet til det optimale område.</p></div>
+          <div class="rc-out"><h3 data-da="Uden for området" data-en="Outside the clinical reference interval">Uden for området</h3><p data-da="Værdier uden for de anbefalede grænser. Det kan være tegn på en ubalance eller mangel og bør ses i sammenhæng med dit samlede helbred." data-en="Your result is outside the interval used in the healthcare system. This can occur even in healthy people, but it may also indicate something that should be interpreted in a medical context. We do not diagnose—if a value is flagged here (especially if it persists or you have symptoms), we recommend sharing the report with your GP.">Værdier uden for de anbefalede grænser. Det kan være tegn på en ubalance eller mangel og bør ses i sammenhæng med dit samlede helbred.</p></div>
         </div>
-        <p class="lab" style="margin-top:14px" data-da="Definitionerne er fra Pandonias rapport · eksemplet er rapportens eget" data-en="Definitions from Pandonia's report · the example is the report's own">Definitionerne er fra Pandonias rapport · eksemplet er rapportens eget</p>
+        <p class="lab rpSrc" data-da="Definitionerne er fra Pandonias rapport · eksemplet er rapportens eget" data-en="Definitions from Pandonia’s Health Report · Example from the report">Definitionerne er fra Pandonias rapport · eksemplet er rapportens eget</p>
       </div>
     </div></div>
     <div class="rpP rpP4"><div class="rpIn">
@@ -1776,9 +1802,11 @@ function renderAll(){
       var ax=[3,4.5,6,7.5,9].map(function(n){return '<span style="left:'+((n-3)/6*100)+'%">'+n1(n)+'</span>';}).join('');
       var bar='<div class="rbar"><span class="ac">GLU</span><div><div class="zb glu"><i class="zv" style="left:35%"></i></div><div class="zax">'+ax+'</div></div><span class="hex"><b>'+n1(5.1)+'</b><small>mmol/L</small><span class="sr"> · '+(da?'referenceområde':'reference range')+'</span></span></div>';
       if(!anno) return bar;
-      return '<div class="annoTop"><span class="anno"><b>'+(da?'Biomarkør':'Biomarker')+'</b>'+(da?'Forkortelse — her glukose':'Abbreviation — here, glucose')+'</span>'+
-             '<span class="anno" style="text-align:right"><b>'+(da?'Dagens måling':"Today's measurement")+'</b>'+(da?'Værdi og måleenhed':'Value and unit')+'</span></div>'+bar+
-             '<div class="annoBot"><span class="anno"><b>'+(da?'Områderne':'The ranges')+'</b>'+(da?'Optimalt, reference og uden for området — på samme bjælke':'Optimal, reference and outside range — all on one bar')+'</span></div>';
+      return '<div class="gAnno"><span class="anno gBio"><b>'+(da?'Biomarkør':'Biomarker')+'</b>'+(da?'Forkortelse — her glukose':'Abbreviation — here, glucose')+'</span>'+
+             '<span class="ac gAc">GLU</span><div class="gBar"><div class="zb glu"><i class="zv" style="left:35%"></i></div><div class="zax">'+ax+'</div></div>'+
+             '<span class="anno gRes"><b>'+(da?'Dagens måling':'Example result')+'</b>'+(da?'Værdi og måleenhed':'Value and unit')+'</span>'+
+             '<span class="hex gHex"><b>'+n1(5.1)+'</b><small>mmol/L</small><span class="sr"> · '+(da?'referenceområde':'reference range')+'</span></span>'+
+             '<span class="anno gRng"><b>'+(da?'Områderne':'The intervals')+'</b>'+(da?'Optimalt, reference og uden for området — på samme bjælke':'Pandonia’s optimal interval and the clinical reference interval, shown on one scale.')+'</span></div>';
     }
     return '<div class="rbar"><span class="ac">ABC</span><div><div class="zb gen"><i class="zv" style="left:76%"></i></div></div><span class="hex out"><b>'+XX+'</b><small>'+(da?'enhed':'unit')+'</small><span class="sr"> · '+(da?'uden for området':'outside range')+'</span></span></div>'+
            '<div class="prev" style="margin-top:18px"><div><small>'+(da?'Forrige måling':'Previous')+'</small><b>'+XX+'</b></div><div><small>'+(da?'Måling før':'Before that')+'</small><b>'+XX+'</b></div></div>';
