@@ -101,6 +101,19 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--cream);border-bottom:1px solid transparent}
 .nav.stuck{border-bottom-color:var(--ruleSoft)}
+@media(max-width:759px){
+  /* the homepage header: clear over the photograph at the very top, off-white once the page moves */
+  .nav{transition:background-color .28s ease,border-color .28s ease}
+  html[data-cur="home"] .nav.atTop{background-color:transparent;border-bottom-color:transparent}
+  /* the hero reaches up behind the header by the header's own height (measured; these are the
+     fallbacks), the content stays put */
+  :root{--navH:61px}
+  html[data-cur="home"] .heroSec{margin-top:calc(-1 * var(--navH));padding-top:var(--navH)!important}
+  /* a soft light veil at the very top of the picture, behind the logo and the menu, so both read clearly */
+  html[data-cur="home"] .heroSec .heroPhoto::before{content:"";position:absolute;z-index:1;left:0;right:0;top:0;height:calc(var(--navH) + 40px);background:linear-gradient(180deg,rgba(250,250,247,.62) 0%,rgba(250,250,247,.4) 55%,rgba(250,250,247,0) 100%);pointer-events:none}
+}
+@media(min-width:421px) and (max-width:759px){:root{--navH:62.890625px}}
+@media(max-width:759px) and (prefers-reduced-motion:reduce){.nav{transition:none}}
 .navin{max-width:1320px;margin:0 auto;padding-inline:clamp(20px,4vw,64px);min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 @media(min-width:1024px){.navin{min-height:72px}}
 .wm{font-family:var(--serif);font-size:25px;letter-spacing:-.01em;color:var(--forest);cursor:pointer}
@@ -2184,7 +2197,7 @@ function show(p,anchor,opt){
   opt=opt||{};
   // phones: the homepage no longer carries What we test, so a link to that block opens its page
   if(p==='home'&&anchor==='mMaalerSlot'&&phoneMq.matches){p='maaler';anchor=null;try{history.replaceState(null,'','#/maaler');}catch(e){}}
-  page=p;
+  page=p;document.documentElement.setAttribute('data-cur',p);
   if(p==="biomarkers")bmRoute(anchor);
   if(p==="test")renderTest(anchor);
   placeMaaler();
@@ -2253,7 +2266,10 @@ document.getElementById('btnDa').addEventListener('click',function(){setLocale('
 document.getElementById('btnEn').addEventListener('click',function(){setLocale('en');});
 document.querySelectorAll('.mlang').forEach(function(b){b.addEventListener('click',function(){setLocale(b.getAttribute('data-loc'));});});
 document.addEventListener('input',function(e){if(e.target.id==='mkf')filter();});
-window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('stuck',window.scrollY>8);},{passive:true});
+(function(){var n=document.getElementById('nav');function f(){n.classList.toggle('stuck',window.scrollY>8);n.classList.toggle('atTop',window.scrollY<=0);}
+  // the hero reaches up by exactly the header's height (61px on most phones, a little more from 421px)
+  function h(){document.documentElement.style.setProperty('--navH',n.getBoundingClientRect().height+'px');}
+  window.addEventListener('scroll',f,{passive:true});window.addEventListener('resize',h);f();h();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(h);})();
 
 // Review layer. Customer view is the default; the gate itself is untouched —
 // unapproved copy is hidden here, never promoted to plain body text.
