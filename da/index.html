@@ -423,7 +423,7 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
   /* the photograph is brighter and set low, so the phone and the top of its report (Highway Score, the
      chart) sit clear above the headline; the dark ground starts just above the text, measured from the
      bottom where the text is, so every line still reads at full contrast (12 Oct 2026) */
-  .heroSec .heroPhoto img{object-position:50% 100%;filter:brightness(1.1) contrast(1.05) saturate(.96)}
+  .heroSec .heroPhoto img{object-position:60% 100%;filter:brightness(1.1) contrast(1.05) saturate(.96)}
   .heroSec .heroPhoto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0) 0%,rgba(10,10,10,.03) calc(100% - 520px),rgba(10,10,10,.56) calc(100% - 450px),rgba(10,10,10,.85) calc(100% - 360px),rgba(10,10,10,.9) 100%)}
   .heroSec .heroLine,.heroSec .heroLine span{color:#FAFAF7}
   .heroSec .heroLine{font-size:clamp(46px,13vw,58px)}
@@ -889,7 +889,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     -webkit-mask-composite:source-in;
             mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.18) 12%,rgba(0,0,0,.55) 24%,rgba(0,0,0,.88) 36%,#000 46%,#000 calc(100% - var(--rf)),transparent 100%),linear-gradient(180deg,rgba(0,0,0,.35) 0,#000 9%);
             mask-composite:intersect}
-  .heroSec .heroPhoto img{width:100%;height:100%;object-fit:cover;object-position:100% 50%;filter:none}
+  .heroSec .heroPhoto img{width:100%;height:100%;object-fit:cover;object-position:100% 6%;filter:none}
 }
 
 /* ── biomarker library: rows on rules; a row opens into the report's own presentation */
@@ -1027,7 +1027,7 @@ html[data-locale="en"] [data-lang="da"]{display:none}
     </div>
     <!-- Pandonia's own line from the feed, in English on both sites like the hero -->
     <!-- hero photograph: the report in someone's hand (right of the headline on desktop, after the CTA on phones) -->
-    <figure class="heroPhoto"><picture><source media="(min-width:1024px)" srcset="/pandonia-preview/images/hero-wide.webp" width="1672" height="941"><img src="/pandonia-preview/images/hero-phone.webp" width="887" height="1774" fetchpriority="high" decoding="async" data-alt-da="En hånd holder en telefon med en sundhedsrapport: scorer og biomarkører vist på farvede intervaller." data-alt-en="A hand holding a phone showing a health report, with scores and biomarkers shown on coloured ranges." alt="En hånd holder en telefon med en sundhedsrapport: scorer og biomarkører vist på farvede intervaller."></picture></figure>
+    <figure class="heroPhoto"><picture><source media="(min-width:1024px)" srcset="/pandonia-preview/images/hero-dashboard.webp" width="1254" height="1254"><img src="/pandonia-preview/images/hero-dashboard.webp" width="1254" height="1254" fetchpriority="high" decoding="async" data-alt-da="En hånd holder en telefon med en sundhedsrapport: scorer og biomarkører vist på farvede intervaller." data-alt-en="A hand holding a phone showing a health report, with scores and biomarkers shown on coloured ranges." alt="En hånd holder en telefon med en sundhedsrapport: scorer og biomarkører vist på farvede intervaller."></picture></figure>
     <div class="heroCard mCut" lang="en">
       <p><span>You can't</span><span>optimise</span><span>what you</span><span>haven't measured.</span></p>
     </div>
