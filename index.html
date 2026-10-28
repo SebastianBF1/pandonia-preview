@@ -2675,8 +2675,23 @@ function parseHash(h){var m=/^#\/([a-z]+)(?:\/([A-Za-z0-9_-]+))?/.exec(h||'');
   if(!m||!document.querySelector('[data-page="'+m[1]+'"]'))return null;return {page:m[1],anchor:m[2]||null};}
 // ── Phones: the tests catalogue and a product page per test ───────────
 // Everything shown comes from SVC/ESS/HTS/MB/CMP (the Prices page's own data) and existing copy.
-// EasyPractice has one booking page for every service, so "Book" opens it (no per-test deep link).
+// EasyPractice's general booking page; each test's own "Book" opens its service directly (EP_SVC).
 var EP_BOOK='https://system.easypractice.net/book/pandonia#choose-service',tCur=null;
+// the one place the per-test booking links live: EasyPractice service ids, verified by Pandonia (28 Oct 2026, supplied);
+// URLs exactly as supplied, parameters and fragment kept. A test without an entry opens the general page.
+var EP_SVC={
+ htc:'https://system.easypractice.net/book/pandonia?service=229722',
+ ht:'https://system.easypractice.net/book/pandonia?service=228252#choose-time',
+ fh:'https://system.easypractice.net/book/pandonia?service=298849',
+ mh:'https://system.easypractice.net/book/pandonia?service=328461',
+ hcfh:'https://system.easypractice.net/book/pandonia?service=298848',
+ hcfht:'https://system.easypractice.net/book/pandonia?service=300271',
+ gm:'https://system.easypractice.net/book/pandonia?service=246132',
+ dv:'https://system.easypractice.net/book/pandonia?service=246133',
+ th:'https://system.easypractice.net/book/pandonia?service=246129',
+ hcmh:'https://system.easypractice.net/book/pandonia?service=328459',
+ hcmht:'https://system.easypractice.net/book/pandonia?service=328460'};
+function epUrl(id){return EP_SVC[id]||EP_BOOK;}
 var TX={
  da:{all:'Alle tests',more:'Læs mere',book:'Book',bookT:'Book din blodprøve',get:'Hvad får du?',meas:'Hvad måler vi?',rep:'Din rapport',how:'Sådan fungerer det',
   bm:'Se liste over biomarkører',fullRep:'Se hele rapporten',seeHow:'Se hvordan det fungerer',mb:'Bliv medlem',perM:'pr. måned',oneSample:'Én blodprøve',
@@ -2715,7 +2730,7 @@ function renderTests(){
   var el=document.getElementById('mTestList');if(!el)return;var X=TX[loc],da=loc==='da';
   function row(s){return mtCard(s.id,'<h3 class="mtN">'+tEsc(tName(s))+'</h3>'+
     '<p class="mtD">'+tEsc(da?s.mDa:s.mEn)+'</p>'+((s.id==='ht'||s.id==='htc')?'<p class="mtM">'+(da?'35+ biomarkører':'35+ biomarkers')+' · '+X.oneSample+'</p>':'')+
-    '<p class="mtP">'+dkk(s.p)+'</p><div class="mtA"><a class="btn btn2" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'">'+X.more+'</a>'+tBook('',X.book)+'</div>');}
+    '<p class="mtP">'+dkk(s.p)+'</p><div class="mtA"><a class="btn btn2" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'">'+X.more+'</a>'+tBook('',X.book,epUrl(s.id))+'</div>');}
   var ht=['ht','htc','hcfh','hcfht','hcmh','hcmht'].map(tSvc);
   el.innerHTML='<p class="lab mtG">'+X.ht+'</p><ul class="mtL">'+ht.map(row).join('')+'</ul>'+
     '<p class="lab mtG">'+X.et+'</p><ul class="mtL">'+ESS.map(row).join('')+'</ul>'+
@@ -2784,7 +2799,7 @@ function nxPk(s){var L=NX[loc],X=TX[loc],da=loc==='da',bm=nxBm(s.id),tag=da?s.ta
   return '<article class="nxPk">'+(tag?'<p class="lab nxPkTag">'+tEsc(tag)+'</p>':'')+'<h3 class="s nxPkN">'+tEsc(tName(s))+'</h3>'+
     '<p class="nxPkD">'+tEsc(da?s.mDa:s.mEn)+'</p>'+inc+
     '<div class="nxPkF"><p class="nxPkP">'+dkk(s.p)+'</p><p class="lab">'+tVat(s.p)+'</p></div>'+
-    '<div class="nxPkA"><a class="btn btn2" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'">'+X.more+'</a>'+tBook('',L.time)+'</div></article>';}
+    '<div class="nxPkA"><a class="btn btn2" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'">'+X.more+'</a>'+tBook('',L.time,epUrl(s.id))+'</div></article>';}
 function nxPkList(c){return '<div class="nxPkL'+(c.tests.length===1?' nxPk1':'')+'">'+c.tests.map(function(id){return nxPk(tSvc(id));}).join('')+'</div>';}
 function nxRender(){var da=loc==='da';
   var g=document.getElementById('nxCatGrid');
@@ -2796,7 +2811,7 @@ function nxRender(){var da=loc==='da';
   CATS.forEach(function(c){var p=document.getElementById('pk-'+c.id);if(p)p.innerHTML=nxPkList(c);});
   var m=document.getElementById('nxMoreList'),X=TX[loc];
   if(m)m.innerHTML=NX_MORE.map(tSvc).map(function(s){return '<li class="nxMr"><div class="nxMrT"><h3 class="nxMrN">'+tEsc(tName(s))+'</h3><p class="nxMrD">'+tEsc(da?s.mDa:s.mEn)+'</p></div>'+
-    '<p class="nxMrP">'+dkk(s.p)+'</p><div class="nxMrA"><a class="lnk" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'"><span>'+X.more+'</span> <span aria-hidden="true">→</span></a>'+tBook('',NX[loc].time)+'</div></li>';}).join('');
+    '<p class="nxMrP">'+dkk(s.p)+'</p><div class="nxMrA"><a class="lnk" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'"><span>'+X.more+'</span> <span aria-hidden="true">→</span></a>'+tBook('',NX[loc].time,epUrl(s.id))+'</div></li>';}).join('');
   if(page==='health')renderCat(nxCur);
 }
 // a health area: what it is, its tests, what the results look like, the practical side, then prices
@@ -2854,6 +2869,9 @@ var TG_R={
  R8:{name:'Thyroid panel',text:'A look at how your thyroid is working, which plays a part in your metabolism.',areas:false,thyroid:false,inc:['thy']},
  R9:{name:'CGM',text:'A small sensor shows how your glucose levels change through the day, over several days, rather than in a single measurement.',areas:false,thyroid:false,inc:['cgm']}};
 var TG_AREAS=['Blood sugar','Cholesterol','Liver','Kidneys','Blood cells','Inflammation'];
+// the suggestion's own booking service (EP_SVC): the Thyroid panel toggle picks the + Thyroid package, a consultation
+// with the Health Test is Health Test + Consultation; R2/R3 combine several services, so they open the general page
+function tgSvc(id,s){return {R1:s.consultOn?'htc':'ht',R4:'fh',R5:'mh',R6:s.thyroidOn?'hcfht':'hcfh',R7:s.thyroidOn?'hcmht':'hcmh',R8:'th',R9:'gm'}[id];}
 function tgResultId(s){
   if(s.area==='metabolism')return 'R8';
   if(s.area==='glucose')return 'R9';
@@ -2897,7 +2915,7 @@ function tgRender(focus){
       '<div class="tgBox">'+(r.thyroid?'<label class="tgChk"><input type="checkbox" data-tg="thy"'+(s.thyroidOn?' checked':'')+'><span>Add the Thyroid panel</span></label>':'')+
       '<label class="tgChk"><input type="checkbox" data-tg="cons"'+(s.consultOn?' checked':'')+'><span>Would you like to go through your results with a doctor? Add a consultation.</span></label></div>'+
       '<p class="tgNote">If you have symptoms or a specific concern, talk to your own doctor first.</p>'+
-      '<div class="tgAct"><a class="btn btn1 tgCta" href="'+EP_BOOK+'" target="_blank" rel="noopener noreferrer">Book this test</a><button type="button" class="tgLink" data-tg="restart">Start again</button></div>';
+      '<div class="tgAct"><a class="btn btn1 tgCta" href="'+epUrl(tgSvc(tgResultId(s),s))+'" target="_blank" rel="noopener noreferrer">Book this test</a><button type="button" class="tgLink" data-tg="restart">Start again</button></div>';
   }
   el.setAttribute('data-screen',s.screen);
   el.innerHTML=head+'<div class="tgBody">'+body+'</div>'+back;
@@ -2933,8 +2951,8 @@ function renderTest(id){
   var rep='<section class="tSec"><p class="lab">'+X.rep+'</p>'+(tIsHt(s)?'<div class="tImg"><img loading="lazy" decoding="async" src="/pandonia-preview/images/report-deck.webp" alt="'+X.alt+'"></div><p class="tTx">'+X.repHt+'</p><p class="tGo">'+tLink('#/rapport','rapport','',X.fullRep)+'</p>':'<p class="tTx">'+X.repEt+'</p>')+'</section>';
   // the four steps are the blood-sample journey; glucose monitoring is a sensor, so it has none
   var how=s.id==='gm'?'':'<section class="tSec"><p class="lab">'+X.how+'</p><ol class="tHow">'+X.steps.map(function(x){return '<li><span class="tNo">'+x[0]+'</span><span class="lab">'+tEsc(x[1])+'</span><span class="tSt">'+x[2]+'</span></li>';}).join('')+'</ol><p class="tGo">'+tLink('#/saadan','saadan','',X.seeHow)+'</p></section>';
-  el.innerHTML=back+'<header class="tHead"><p class="lab">'+(c?c.n+' · '+tEsc(nxCatName(c)):NX[loc].more)+'</p>'+'<h1 class="s tName">'+tEsc(tName(s))+'</h1><p class="tLead">'+tEsc(da?s.mDa:s.mEn)+'</p>'+factsH+price+'<div class="tAct">'+tBook('',X.bookT)+'</div></header>'+nxIncSec(s)+
-    (tIsHt(s)?meas+rep+sys+trend:get+rep)+how+'<section class="tEnd"><p class="tEndN">'+tEsc(tName(s))+'</p>'+price+'<div class="tAct">'+tBook('',X.bookT)+'</div></section>';
+  el.innerHTML=back+'<header class="tHead"><p class="lab">'+(c?c.n+' · '+tEsc(nxCatName(c)):NX[loc].more)+'</p>'+'<h1 class="s tName">'+tEsc(tName(s))+'</h1><p class="tLead">'+tEsc(da?s.mDa:s.mEn)+'</p>'+factsH+price+'<div class="tAct">'+tBook('',X.bookT,epUrl(s.id))+'</div></header>'+nxIncSec(s)+
+    (tIsHt(s)?meas+rep+sys+trend:get+rep)+how+'<section class="tEnd"><p class="tEndN">'+tEsc(tName(s))+'</p>'+price+'<div class="tAct">'+tBook('',X.bookT,epUrl(s.id))+'</div></section>';
 }
 function show(p,anchor,opt){
   opt=opt||{};
