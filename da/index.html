@@ -1313,15 +1313,16 @@ html[data-cur="individuals"] .nxSub a[data-for~="individuals"],html[data-cur="he
 
 /* For clinics (23 Oct 2026): the landscape photograph of a blood draw, as large as the headline allows. From 1024px
    the text column is exactly as wide as the headline (the paragraph wraps to that width instead of widening it) and
-   the photograph takes everything to the right, out to the window edge, in its own proportions */
+   the photograph takes everything to the right in its own proportions, stopping a margin short of the window edge
+   (28 Oct 2026: a little air on the right, all four corners rounded) */
 [data-page="clinics"] .nxPgImg{aspect-ratio:1672/941;border-radius:8px}
 [data-page="clinics"] .nxPgImg img{object-position:55% 50%}
 @media(min-width:1024px){
   [data-page="clinics"] .nxPg{padding-block:clamp(24px,3vw,48px) clamp(40px,4vw,72px)}
   [data-page="clinics"] .nxPgIn{grid-template-columns:max-content minmax(0,1fr);gap:clamp(32px,2.6vw,56px);align-items:center}
   [data-page="clinics"] .nxPgTx .nxLead{contain:inline-size}
-  [data-page="clinics"] .nxPgImg{aspect-ratio:1672/941;max-height:none;border-radius:8px 0 0 8px;
-    margin-right:calc(-1 * max(clamp(20px,4vw,64px),calc((100vw - 1320px) / 2 + clamp(20px,4vw,64px))))}
+  [data-page="clinics"] .nxPgImg{aspect-ratio:1672/941;max-height:none;border-radius:8px;
+    margin-right:calc(clamp(32px,4vw,80px) - max(clamp(20px,4vw,64px),calc((100vw - 1320px) / 2 + clamp(20px,4vw,64px))))}
 }
 /* phones and tablets: the photograph runs the full screen width */
 @media(max-width:1023px){[data-page="clinics"] .nxPgImg{margin-inline:calc(-1 * clamp(20px,4vw,64px));border-radius:0}}
