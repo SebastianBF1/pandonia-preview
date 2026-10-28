@@ -2321,7 +2321,13 @@ var SVC=[
   tagDa:'Med kvindelige hormoner',tagEn:'With female hormones',lDa:'Health Test med kvindelige hormoner.',lEn:'The Health Test with female hormones.'},
  {id:'hcfht',cat:'pt',tab:'ht',ep:11,da:'Health Test + Female hormones + Thyroid panel',en:'Health Test + Female hormones + Thyroid panel',p:6300,min:10,online:0,
   mDa:'Health Test med kvindelige hormoner og skjoldbruskkirtel.',mEn:'The Health Test with female hormones and a thyroid panel.',
-  tagDa:'Med hormoner og skjoldbruskkirtel',tagEn:'With hormones and thyroid',lDa:'Health Test med kvindelige hormoner og et skjoldbruskkirtelpanel.',lEn:'The Health Test with female hormones and a thyroid panel.'}
+  tagDa:'Med hormoner og skjoldbruskkirtel',tagEn:'With hormones and thyroid',lDa:'Health Test med kvindelige hormoner og et skjoldbruskkirtelpanel.',lEn:'The Health Test with female hormones and a thyroid panel.'},
+ {id:'hcmh',cat:'pt',tab:'ht',ep:12,da:'Health Test + Male hormones',en:'Health Test + Male hormones',p:5200,min:10,online:0,
+  mDa:'Health Test med mandlige hormoner.',mEn:'The Health Test with male hormones.',
+  tagDa:'Med mandlige hormoner',tagEn:'With male hormones',lDa:'Health Test med mandlige hormoner.',lEn:'The Health Test with male hormones.'},
+ {id:'hcmht',cat:'pt',tab:'ht',ep:13,da:'Health Test + Male hormones + Thyroid panel',en:'Health Test + Male hormones + Thyroid panel',p:6300,min:10,online:0,
+  mDa:'Health Test med mandlige hormoner og skjoldbruskkirtel.',mEn:'The Health Test with male hormones and a thyroid panel.',
+  tagDa:'Med mandlige hormoner og skjoldbruskkirtel',tagEn:'With male hormones and thyroid',lDa:'Health Test med mandlige hormoner og et skjoldbruskkirtelpanel.',lEn:'The Health Test with male hormones and a thyroid panel.'}
 ];
 var SVC_CAT={ht:'Health Tests',et:{da:'Essentielle tests',en:'Essential Tests'},pt:'Pandonia test'};
 // Essential Tests tab, in the site's existing order, then the standalone hormone test
@@ -2710,7 +2716,7 @@ function renderTests(){
   function row(s){return mtCard(s.id,'<h3 class="mtN">'+tEsc(tName(s))+'</h3>'+
     '<p class="mtD">'+tEsc(da?s.mDa:s.mEn)+'</p>'+((s.id==='ht'||s.id==='htc')?'<p class="mtM">'+(da?'35+ biomarkører':'35+ biomarkers')+' · '+X.oneSample+'</p>':'')+
     '<p class="mtP">'+dkk(s.p)+'</p><div class="mtA"><a class="btn btn2" href="#/test/'+s.id+'" data-route="test" data-anchor="'+s.id+'">'+X.more+'</a>'+tBook('',X.book)+'</div>');}
-  var ht=['ht','htc','hcfh','hcfht'].map(tSvc);
+  var ht=['ht','htc','hcfh','hcfht','hcmh','hcmht'].map(tSvc);
   el.innerHTML='<p class="lab mtG">'+X.ht+'</p><ul class="mtL">'+ht.map(row).join('')+'</ul>'+
     '<p class="lab mtG">'+X.et+'</p><ul class="mtL">'+ESS.map(row).join('')+'</ul>'+
     '<p class="lab mtG">'+X.mbG+'</p><ul class="mtL">'+mtCard('mb','<h3 class="mtN">'+X.mbName+'</h3>'+
@@ -2731,7 +2737,7 @@ var CATS=[
   dDa:['Udforsk relevante hormonniveauer, og få en bedre forståelse af et vigtigt aspekt af din sundhed.'],
   dEn:['Explore relevant hormone levels to gain a better understanding of an important aspect of your health.'],
   gDa:'Udforsk hormonel sundhed',gEn:'Explore Hormonal Health'},
- {id:'comprehensive',n:'03',da:'Omfattende sundhed',en:'Comprehensive Health',img:"/pandonia-preview/images/card-sky.webp",pos:'50% 30%',filt:'grayscale(1) sepia(.35) brightness(1.04) contrast(.95)',tests:['hcfh','hcfht'],
+ {id:'comprehensive',n:'03',da:'Omfattende sundhed',en:'Comprehensive Health',img:"/pandonia-preview/images/card-sky.webp",pos:'50% 30%',filt:'grayscale(1) sepia(.35) brightness(1.04) contrast(.95)',tests:['hcfh','hcfht','hcmh','hcmht'],
   hDa:'Udforsk din sundhed mere i dybden.',hEn:'Explore your health in greater depth.',
   dDa:['Kombinér en generel sundhedsvurdering med hormontest og, hvor det er relevant, skjoldbruskkirtelmarkører for et bredere billede.'],
   dEn:['Combine a general health assessment with hormone testing and, where relevant, thyroid markers for a broader picture.'],
@@ -2745,7 +2751,7 @@ var CATS=[
 // (28 Oct 2026, supplied: Vitamin D Test, then Skjoldbruskkirtel Test; Basic Metabolic and Digestion Health Test removed)
 var NX_MORE=['dv','th'];
 // which verified biomarker-sheet columns make up each package (BM[].inc); null = no sheet column
-var PK_BM={ht:['ht'],htc:['ht'],fh:['fh'],mh:['mh'],th:['th'],hcfh:['hcfh'],hcfht:['hcfh','th']};
+var PK_BM={ht:['ht'],htc:['ht'],fh:['fh'],mh:['mh'],th:['th'],hcfh:['hcfh'],hcfht:['hcfh','th'],hcmh:['ht','mh'],hcmht:['ht','mh','th']};
 var NX={
  da:{avail1:'Tilgængelig test',availN:'Tilgængelige tests',inc:'Indhold',seeBm:'Se biomarkørerne',time:'Vælg tid',back:'Alle sundhedsområder',
   pkH:'Tests i dette område',res:'Sådan ser resultaterne ud',resTx:'Dine resultater præsenteres i en klar rapport, der hjælper dig med at forstå de enkelte biomarkører og se, hvordan de hænger sammen med din sundhed.',
