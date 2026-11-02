@@ -1331,6 +1331,9 @@ html[data-cur="individuals"] .nxSub a[data-for~="individuals"],html[data-cur="he
 .trend .tVal{font-size:14px;font-weight:600;fill:var(--ink);font-variant-numeric:tabular-nums;paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round}
 .tNote{margin:8px 0 0;font-size:12px;line-height:1.4;color:var(--ink3)}
 
+/* How it works, step 02 (2 Nov 2026): its line is two paragraphs */
+.hwTx>p+p{margin-top:12px}
+
 /* ── Test guide (27 Oct 2026): one calm panel on the site's warm ground; the logo top left, one question at a time.
    Pandonia's type (Tinos headings, Arimo text), black primary button, fine rules; the four test colours from the guide
    are kept only on the small icons and the result's test cards, where they tell the tests apart. */
@@ -1934,14 +1937,14 @@ html[data-cur="individuals"] .nxSub a[data-for~="individuals"],html[data-cur="he
         <p class="hwNo">02</p>
         <p class="lab hwLab" data-da="Blodprøven" data-en="Your sample">Blodprøven</p>
         <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Afgiv din blodprøve" data-en="Give your blood sample">Afgiv din blodprøve</h2></div>
-        <p class="hwTx" data-da="Besøg vores imødekommende testlounge i det centrale København. Vores blodprøvetagere arbejder under supervision af vores ansvarlige læge." data-en="Visit our welcoming testing lounge in central Copenhagen. Our phlebotomists work under the supervision of the doctor responsible for our service.">Besøg vores imødekommende testlounge i det centrale København. Vores blodprøvetagere arbejder under supervision af vores ansvarlige læge.</p>
+        <div class="hwTx"><p data-da="Før prøven har du en kort samtale med en af vores sundhedsprofessionelle om, hvad du gerne vil forstå, og om din helbredsprofil, inkl. eventuel medicin eller kosttilskud, du tager." data-en="Before your sample, you’ll have a short conversation with one of our health professionals about what you’d like to understand, your health profile incl. any medication or supplements you take.">Før prøven har du en kort samtale med en af vores sundhedsprofessionelle om, hvad du gerne vil forstå, og om din helbredsprofil, inkl. eventuel medicin eller kosttilskud, du tager.</p><p data-da="Selve besøget er hurtigt, og du er velkommen til at blive lidt bagefter i de rolige omgivelser i vores lounge." data-en="The visit itself is quick, and you are welcome to stay a while afterwards in the calm surroundings of our lounge.">Selve besøget er hurtigt, og du er velkommen til at blive lidt bagefter i de rolige omgivelser i vores lounge.</p></div>
       </li>
       <li class="hwS">
         <span class="hwIco"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3.5h8l4 4v13H6z"/><path d="M14 3.5v4h4"/><path d="M9 12h6M9 15.5h6"/></svg></span>
         <p class="hwNo">03</p>
         <p class="lab hwLab" data-da="Resultaterne" data-en="Your results">Resultaterne</p>
         <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Få dine resultater" data-en="Get your results">Få dine resultater</h2></div>
-        <p class="hwTx" data-da="Modtag dine resultater i en klar rapport, der er nem at navigere i. Vi analyserer din prøve i vores eget laboratorium, med kvalitetskontrol og godkendelse." data-en="Receive your results in a clear, easy-to-navigate report. We analyse your sample in our own laboratory, with quality control and sign-off.">Modtag dine resultater i en klar rapport, der er nem at navigere i. Vi analyserer din prøve i vores eget laboratorium, med kvalitetskontrol og godkendelse.</p>
+        <p class="hwTx" data-da="Modtag dine resultater i en klar rapport, der er nem at navigere i. Hvis noget kræver opfølgning, kontakter vi dig direkte." data-en="Receive your results in a clear, easy-to-navigate report. If something needs follow-up, we’ll contact you directly.">Modtag dine resultater i en klar rapport, der er nem at navigere i. Hvis noget kræver opfølgning, kontakter vi dig direkte.</p>
       </li>
       <li class="hwS">
         <span class="hwIco hwIco4"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h13"/><path d="M13 6.5 18.5 12 13 17.5"/></svg></span>
@@ -1949,8 +1952,7 @@ html[data-cur="individuals"] .nxSub a[data-for~="individuals"],html[data-cur="he
         <p class="lab hwLab" data-da="Næste skridt" data-en="Next steps">Næste skridt</p>
         <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Beslut, hvad der skal ske nu" data-en="Decide what comes next">Beslut, hvad der skal ske nu</h2></div>
         <div class="hwBody">
-          <p class="hwTx" data-da="Brug dine resultater til at informere dine næste skridt. Har du spørgsmål eller bekymringer, kan du tale med din egen læge eller booke en konsultation med en Pandonia-læge." data-en="Use your results to inform your next steps. If you have questions or concerns, you can speak with your own doctor or book a consultation with a Pandonia doctor.">Brug dine resultater til at informere dine næste skridt. Har du spørgsmål eller bekymringer, kan du tale med din egen læge eller booke en konsultation med en Pandonia-læge.</p>
-          <p class="hwTx" data-da="Du kan også booke en 20 minutters online konsultation med en læge, hvor I taler om dine resultater, og hvor du skal sætte ind." data-en="You can also book a 20-minute online consultation with a doctor to discuss your results and where to focus.">Du kan også booke en 20 minutters online konsultation med en læge, hvor I taler om dine resultater, og hvor du skal sætte ind.</p>
+          <p class="hwTx" data-da="Hvis du ønsker en mere personlig fortolkning, kan du booke en 20 minutters online konsultation med en læge, hvor I taler om dine resultater, og hvor du skal sætte ind." data-en="If you’d like a more personalised interpretation, you can book a 20-minute online consultation with a doctor to discuss your results and where to focus.">Hvis du ønsker en mere personlig fortolkning, kan du booke en 20 minutters online konsultation med en læge, hvor I taler om dine resultater, og hvor du skal sætte ind.</p>
           <p class="hwSm" data-da="Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret." data-en="Book the consultation whenever suits you, as long as it is at least three hours after you receive your results.">Du booker konsultationen, når det passer dig — vi skal blot have mindst tre timer fra du modtager svaret.</p>
           <div class="hwAct">
             <a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer"><span data-da="Book din blodprøve" data-en="Book your blood test">Book din blodprøve</span> <span aria-hidden="true">→</span></a>
