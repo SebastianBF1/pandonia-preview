@@ -490,7 +490,7 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 }
 @media(min-width:1200px){
   /* four columns on one row grid: number · label · title · first paragraph · icon (01–03) or the rest (04) */
-  .hwSteps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(4,auto) 1fr;margin-top:clamp(44px,7vh,76px)}
+  .hwSteps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(4,auto) 1fr;margin-top:clamp(44px,7vh,76px)}
   .hwS{--pad:clamp(20px,2.2vw,40px);grid-row:span 5;grid-template-columns:minmax(0,1fr);grid-template-rows:subgrid;grid-template-areas:"no" "lab" "hh" "tx" "more";padding:0 var(--pad);border:0}
   .hwS:first-child{padding:0 var(--pad) 0 0}.hwS:last-child{padding-right:0}
   .hwS+.hwS{border-left:1px solid var(--hwLine)}
@@ -499,7 +499,7 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
   .hwS>.hwIco4{display:none}
   .hwS>.hwLab{margin-top:22px}.hwS>.hwHw{margin-top:12px}.hwS>.hwTx{margin-top:16px}
   .hwS>.hwBody{grid-area:auto;grid-row:4 / 6;grid-column:1;margin-top:16px}
-  .hwH{font-size:clamp(30px,2vw + 11px,46px);line-height:1.05}
+  .hwH{font-size:clamp(30px,2vw + 11px,40px);line-height:1.05}
   .hwLead{max-width:none}
   /* the arrow sits on the divider, level with the step title, on a patch of the ground */
   .hwArw{display:block;position:absolute;left:calc(-1 * var(--pad));top:50%;transform:translate(-50%,-50%);padding:8px 0;background:var(--sand);font-size:20px;line-height:1;color:var(--ink)}
@@ -1938,23 +1938,30 @@ html[data-cur="individuals"] .nxSub a[data-for~="individuals"],html[data-cur="he
         <div class="hwHw"><h2 class="s hwH" data-da="Vælg din test" data-en="Choose your test">Vælg din test</h2></div>
         <p class="hwTx" data-da="Udforsk vores sundhedspakker, og vælg den, der passer til dine interesser." data-en="Explore our health packages and select the one that fits your interests.">Udforsk vores sundhedspakker, og vælg den, der passer til dine interesser.</p>
       </li>
+      <li class="hwS">
+        <span class="hwIco"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="4.5" width="17" height="16.5" rx="2"/><path d="M3.5 9.5h17M8 2.5v4M16 2.5v4"/><path d="M8.5 15.2l2.4 2.4 4.6-4.8"/></svg></span>
+        <p class="hwNo">02</p>
+        <p class="lab hwLab" data-da="Din booking" data-en="Your booking">Din booking</p>
+        <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Book din test" data-en="Book your test">Book din test</h2></div>
+        <p class="hwTx" data-da="Book online via vores sikre bookingsystem. Dine personlige oplysninger og helbredsoplysninger er beskyttet og behandles i overensstemmelse med GDPR." data-en="Book online through our secure booking system. Your personal and health information is protected and handled in line with GDPR.">Book online via vores sikre bookingsystem. Dine personlige oplysninger og helbredsoplysninger er beskyttet og behandles i overensstemmelse med GDPR.</p>
+      </li>
       <li class="hwS" id="laboratoriet">
         <span class="hwIco"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.2c3.2 3.9 5.6 7.1 5.6 10.2a5.6 5.6 0 0 1-11.2 0c0-3.1 2.4-6.3 5.6-10.2z"/></svg></span>
-        <p class="hwNo">02</p>
+        <p class="hwNo">03</p>
         <p class="lab hwLab" data-da="Blodprøven" data-en="Your sample">Blodprøven</p>
         <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Afgiv din blodprøve" data-en="Give your blood sample">Afgiv din blodprøve</h2></div>
         <div class="hwTx"><p data-da="Før prøven har du en kort samtale med en af vores sundhedsprofessionelle om, hvad du gerne vil forstå, og om din helbredsprofil, inkl. eventuel medicin eller kosttilskud, du tager." data-en="Before your sample, you’ll have a short conversation with one of our health professionals about what you’d like to understand, your health profile incl. any medication or supplements you take.">Før prøven har du en kort samtale med en af vores sundhedsprofessionelle om, hvad du gerne vil forstå, og om din helbredsprofil, inkl. eventuel medicin eller kosttilskud, du tager.</p><p data-da="Selve besøget er hurtigt, og du er velkommen til at blive lidt bagefter i de rolige omgivelser i vores lounge." data-en="The visit itself is quick, and you are welcome to stay a while afterwards in the calm surroundings of our lounge.">Selve besøget er hurtigt, og du er velkommen til at blive lidt bagefter i de rolige omgivelser i vores lounge.</p></div>
       </li>
       <li class="hwS">
         <span class="hwIco"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3.5h8l4 4v13H6z"/><path d="M14 3.5v4h4"/><path d="M9 12h6M9 15.5h6"/></svg></span>
-        <p class="hwNo">03</p>
+        <p class="hwNo">04</p>
         <p class="lab hwLab" data-da="Resultaterne" data-en="Your results">Resultaterne</p>
         <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Få dine resultater" data-en="Get your results">Få dine resultater</h2></div>
         <p class="hwTx" data-da="Modtag dine resultater i en klar rapport, der er nem at navigere i. Hvis noget kræver opfølgning, kontakter vi dig direkte." data-en="Receive your results in a clear, easy-to-navigate report. If something needs follow-up, we’ll contact you directly.">Modtag dine resultater i en klar rapport, der er nem at navigere i. Hvis noget kræver opfølgning, kontakter vi dig direkte.</p>
       </li>
       <li class="hwS">
         <span class="hwIco hwIco4"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h13"/><path d="M13 6.5 18.5 12 13 17.5"/></svg></span>
-        <p class="hwNo">04</p>
+        <p class="hwNo">05</p>
         <p class="lab hwLab" data-da="Næste skridt" data-en="Next steps">Næste skridt</p>
         <div class="hwHw"><span class="hwArw" aria-hidden="true">→</span><h2 class="s hwH" data-da="Beslut, hvad der skal ske nu" data-en="Decide what comes next">Beslut, hvad der skal ske nu</h2></div>
         <div class="hwBody">
