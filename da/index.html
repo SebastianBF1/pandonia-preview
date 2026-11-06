@@ -1584,7 +1584,7 @@ html[data-cur="individuals"] .nxSub a[data-for~="individuals"],html[data-cur="he
     </a>
     <a class="pkC" data-route="book" data-anchor="pr-more">
       <div class="pkA a2"><span data-da="Mænd" data-en="Men">Mænd</span><span>Test · 02</span></div>
-      <div class="pkB"><h3 class="pkT" data-da="Mænds sundhed" data-en="Men's health">Mænds sundhed</h3><p class="pkM" data-da="Testosteron · D-vitamin" data-en="Testosterone · vitamin D">Testosteron · D-vitamin</p><p class="pkF"><span data-da="2 markører" data-en="2 markers">2 markører</span><b data-da="1.600 kr." data-en="DKK 1,600">1.600 kr.</b></p></div>
+      <div class="pkB"><h3 class="pkT" data-da="Mænds sundhed" data-en="Men's health">Mænds sundhed</h3><p class="pkM" data-da="Testosteron · D-vitamin" data-en="Testosterone · vitamin D">Testosteron · D-vitamin</p><p class="pkF"><span data-da="2 markører" data-en="2 markers">2 markører</span><b data-da="2.200 kr." data-en="DKK 2,200">2.200 kr.</b></p></div>
     </a>
     <a class="pkC" data-route="book" data-anchor="pr-more">
       <div class="pkA a3"><span data-da="Skjoldbruskkirtel" data-en="Thyroid">Skjoldbruskkirtel</span><span>Test · 03</span></div>
@@ -1686,7 +1686,7 @@ html[data-cur="individuals"] .nxSub a[data-for~="individuals"],html[data-cur="he
     <li style="align-items:flex-start;padding-block:18px"><span class="l" style="flex-direction:column;align-items:flex-start;gap:4px"><span class="hh3">Health Test</span><span class="bdS measN" data-da="Samme markører, Pandonia Score og seks systemscorer." data-en="The same markers, the Pandonia Score and six system scores.">Samme markører, Pandonia Score og seks systemscorer.</span></span><span class="v" style="font-size:15px"><span data-da="3.500 kr." data-en="DKK 3,500">3.500 kr.</span></span></li>
     <li style="align-items:flex-start;padding-block:18px"><span class="l" style="flex-direction:column;align-items:flex-start;gap:4px"><span class="hh3">Health Test + Female hormones</span><span class="bdS measN" data-da="Health Test med kvindelige hormoner." data-en="The Health Test with female hormones.">Health Test med kvindelige hormoner.</span></span><span class="v" style="font-size:15px"><span data-da="5.200 kr." data-en="DKK 5,200">5.200 kr.</span></span></li>
   </ul>
-  <p class="bdS" style="margin-top:18px;max-width:54ch" data-da="Enkelte tests fra 1.000 kr., hvis du vil begynde mindre. Også som virksomhedsordning." data-en="Single tests from DKK 1,000 if you would rather start smaller. Also available as a workplace programme.">Enkelte tests fra 1.000 kr., hvis du vil begynde mindre. Også som virksomhedsordning.</p>
+  <p class="bdS" style="margin-top:18px;max-width:54ch" data-da="Enkelte tests fra 1.200 kr., hvis du vil begynde mindre. Også som virksomhedsordning." data-en="Single tests from DKK 1,200 if you would rather start smaller. Also available as a workplace programme.">Enkelte tests fra 1.200 kr., hvis du vil begynde mindre. Også som virksomhedsordning.</p>
   <p class="bdS" style="margin-top:10px;max-width:54ch"><span data-da="Eller følg din sundhed løbende med et medlemskab — 2.000 kr. pr. måned." data-en="Or follow your health continuously with a membership — DKK 2,000 per month.">Eller følg din sundhed løbende med et medlemskab — 2.000 kr. pr. måned.</span> <a class="lnk" style="padding-block:4px" data-route="book" data-anchor="pr-mb"><span data-da="Se medlemskabet" data-en="See the membership">Se medlemskabet</span> <span aria-hidden="true">→</span></a></p>
   <div style="margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:22px">
     <a class="btn btn1" href="https://system.easypractice.net/book/pandonia#choose-service" target="_blank" rel="noopener noreferrer" data-da="Book din blodprøve" data-en="Book your blood test">Book din blodprøve</a>
@@ -2326,7 +2326,7 @@ var SVC=[
 ];
 var SVC_CAT={ht:'Health Tests',et:{da:'Essentielle tests',en:'Essential Tests'},pt:'Pandonia test'};
 // Essential Tests tab, in the site's existing order, then the standalone hormone test
-var ESS=['dv','ms','bk','mh','th','gm','fh'].map(function(id){return SVC.filter(function(s){return s.id===id;})[0];});
+var ESS=['mh','th','gm','fh'].map(function(id){return SVC.filter(function(s){return s.id===id;})[0];});
 // Health Test tab: the recommended package first, then the test, then the packages built on it
 var HTS=['htc','ht','hcfh','hcfht'].map(function(id){return SVC.filter(function(s){return s.id===id;})[0];});
 // Membership: booking-system subscription 806, confirmed identical on pandonia.com/en.
@@ -2350,21 +2350,21 @@ var CMP={
       ['Du får',['35+ biomarkører, Pandonia Score og seks systemscorer','Én fokuseret testpakke','En Health Test hvert kvartal — og otte ting mere']],
       ['Konsultation',['20 minutter med en læge, i Health Test + Consultation','Ikke inkluderet','Hvert kvartal']],
       ['Betaling',['Én gang','Én gang','Månedligt']],
-      ['Pris',['Fra 3.500 kr.','Fra 1.000 kr.','2.000 kr. pr. måned'],1]],
+      ['Pris',['Fra 3.500 kr.','Fra 1.200 kr.','2.000 kr. pr. måned'],1]],
   en:[['Suits',['A full overview, once','One specific question','Following changes over time']],
       ['You get',['35+ biomarkers, the Pandonia Score and six system scores','One focused test panel','A Health Test every quarter, plus eight more benefits']],
       ['Consultation',['20 minutes with a doctor, with Health Test + Consultation','Not included','Quarterly']],
       ['Payment',['One-off','One-off','Monthly']],
-      ['Price',['From DKK 3,500','From DKK 1,000','DKK 2,000 per month'],1]]
+      ['Price',['From DKK 3,500','From DKK 1,200','DKK 2,000 per month'],1]]
  }};
 var FAQ={da:[
- ['Før du booker',[['Hvor kan prøven tages?','Vi kommer hjem til dig eller på din arbejdsplads i København K, N, NV, V, S, SV, Ø, Frederiksberg og Hellerup. Du kan også møde op på Langebrogade 3A.',1],['Hvad koster det?','Health Test koster 3.500 kr. Health Test med konsultation som samlet pakke koster 4.750 kr. Enkelte tests fra 1.000 kr. Medlemskabet koster 2.000 kr. pr. måned.',1],['Er konsultationen med i prisen?','',0]]],
+ ['Før du booker',[['Hvor kan prøven tages?','Vi kommer hjem til dig eller på din arbejdsplads i København K, N, NV, V, S, SV, Ø, Frederiksberg og Hellerup. Du kan også møde op på Langebrogade 3A.',1],['Hvad koster det?','Health Test koster 3.500 kr. Health Test med konsultation som samlet pakke koster 4.750 kr. Enkelte tests fra 1.200 kr. Medlemskabet koster 2.000 kr. pr. måned.',1],['Er konsultationen med i prisen?','',0]]],
  ['Prøvetagningen',[['Hvordan forbereder jeg mig?','Fast i mindst 12 timer, og undgå både kaffe og kosttilskud før prøven. Hård fysisk aktivitet frarådes de sidste 48 timer.',1],['Hvorfor om morgenen?','Flere biomarkører topper naturligt om morgenen.',1],['Hvem tager prøven?','Vores blodprøvetager har erfaring fra flere forskellige hospitaler og arbejder under tæt supervision af vores ansvarlige læge.',1],['Hvor lang tid tager det?','',0]]],
  ['Laboratoriet',[['Hvor analyseres min prøve?','I vores eget laboratorium på Langebrogade i København.',1],['Hvordan sikrer I kvaliteten?','',0]]],
  ['Resultater og samtale',[['Hvornår får jeg svar?','',0],['Hvad gør jeg, hvis jeg er i tvivl om mine resultater?','Vi anbefaler altid, at du booker en konsultation med vores læge, som gennemgår rapporten med dig.',1],['Hvordan foregår konsultationen?','Du booker den, når det passer dig — vi skal blot have mindst 24 timer fra du modtager svaret. Tyve minutter online.',1],['Kan resten af sundhedsvæsenet se mine svar?','',0]]],
  ['Praktisk',[['Kan flere medarbejdere testes samtidig?','Ja. Vi kommer ud til arbejdspladsen og tager prøver på mange medarbejdere i ét samlet besøg. Skriv til labs@pandonia.com.',1],['Kan jeg afbestille?','',0]]]
 ],en:[
- ['Before you book',[['Where can the sample be taken?','We come to your home or workplace in Copenhagen K, N, NV, V, S, SV, Ø, Frederiksberg and Hellerup. Or you can come to us at Langebrogade 3A.',1],['How much does it cost?','The Health Test costs DKK 3,500, or DKK 4,750 as a package with a consultation. Single tests start at DKK 1,000. Membership is DKK 2,000 per month.',1],['Is the consultation included in the price?','',0]]],
+ ['Before you book',[['Where can the sample be taken?','We come to your home or workplace in Copenhagen K, N, NV, V, S, SV, Ø, Frederiksberg and Hellerup. Or you can come to us at Langebrogade 3A.',1],['How much does it cost?','The Health Test costs DKK 3,500, or DKK 4,750 as a package with a consultation. Single tests start at DKK 1,200. Membership is DKK 2,000 per month.',1],['Is the consultation included in the price?','',0]]],
  ['The sample',[['How do I prepare?','Fast for at least 12 hours, and avoid coffee and supplements before the test. Avoid strenuous exercise for 48 hours beforehand.',1],['Why in the morning?','Several biomarkers naturally peak in the morning.',1],['Who takes the sample?','Our phlebotomist has experience from several hospitals and works under the close supervision of the doctor responsible for our service.',1],['How long does it take?','',0]]],
  ['The laboratory',[['Where is my sample analysed?','In our own laboratory on Langebrogade in Copenhagen.',1],['How do you ensure quality?','',0]]],
  ['Results and consultation',[['When do I get my result?','',0],['What if I\'m unsure about my results?','We always recommend that you book a consultation with our doctor to review the report.',1],['How does the consultation work?','Book it whenever suits you, as long as it is at least 24 hours after you receive your results. It takes twenty minutes, online.',1],['Can the rest of the health service see my results?','',0]]],
@@ -2682,7 +2682,6 @@ var EP_SVC={
  hcfh:'https://system.easypractice.net/book/pandonia?service=298848',
  hcfht:'https://system.easypractice.net/book/pandonia?service=300271',
  gm:'https://system.easypractice.net/book/pandonia?service=246132',
- dv:'https://system.easypractice.net/book/pandonia?service=246133',
  th:'https://system.easypractice.net/book/pandonia?service=246129',
  hcmh:'https://system.easypractice.net/book/pandonia?service=328459',
  hcmht:'https://system.easypractice.net/book/pandonia?service=328460'};
@@ -2953,6 +2952,7 @@ function show(p,anchor,opt){
   opt=opt||{};
   // phones: the homepage no longer carries What we test, so a link to that block opens its page
   if(p==='home'&&anchor==='mMaalerSlot'&&phoneMq.matches){p='maaler';anchor=null;try{history.replaceState(null,'','#/maaler');}catch(e){}}
+  if(p==='test'&&['dv','ms','bk'].indexOf(anchor)>=0){p='individuals';anchor=null;try{history.replaceState(null,'','#/individuals');}catch(e){}}
   page=p;document.documentElement.setAttribute('data-cur',p);
   if(p==="biomarkers")bmRoute(anchor);
   if(p==="test")renderTest(anchor);
