@@ -1333,6 +1333,9 @@ html[data-cur="individuals"] .nxSub a[data-for~="individuals"],html[data-cur="he
 /* How it works, step 02 (2 Nov 2026): its line is two paragraphs */
 .hwTx>p+p{margin-top:12px}
 
+/* the consultation add-on note (6 Nov 2026): under the booking button on the five add-on test pages */
+.tConsult{margin-top:12px;font-size:14px;line-height:1.5;color:var(--ink2)}
+
 /* ── Test guide (27 Oct 2026): one calm panel on the site's warm ground; the logo top left, one question at a time.
    Pandonia's type (Tinos headings, Arimo text), black primary button, fine rules; the four test colours from the guide
    are kept only on the small icons and the result's test cards, where they tell the tests apart. */
@@ -1420,6 +1423,12 @@ html[data-cur="individuals"] .nxSub a[data-for~="individuals"],html[data-cur="he
   .tgEntryT{font-size:clamp(30px,8.4vw,38px)}
   .tgEntry .btn{width:100%;margin-top:clamp(56px,16vw,84px)}
 }
+
+/* the consultation, once ticked: price and total, then how to add it in EasyPractice (6 Nov 2026) */
+.tgCons{margin:0 0 0 32px;padding-bottom:10px;font-size:14px;line-height:1.5;color:var(--ink2)}
+.tgCons+.tgCons{margin-top:-4px}
+.tgCons:first-of-type{font-weight:500;color:var(--ink)}
+.tgConsBack{font-size:13px;color:var(--ink3)}
 
 </style>
 </head>
@@ -2672,20 +2681,39 @@ function parseHash(h){var m=/^#\/([a-z]+)(?:\/([A-Za-z0-9_-]+))?/.exec(h||'');
 // Everything shown comes from SVC/ESS/HTS/MB/CMP (the Prices page's own data) and existing copy.
 // EasyPractice's general booking page; each test's own "Book" opens its service directly (EP_SVC).
 var EP_BOOK='https://system.easypractice.net/book/pandonia#choose-service',tCur=null;
-// the one place the per-test booking links live: EasyPractice service ids, verified by Pandonia (28 Oct 2026, supplied);
-// URLs exactly as supplied, parameters and fragment kept. A test without an entry opens the general page.
-var EP_SVC={
- htc:'https://system.easypractice.net/book/pandonia?service=229722',
- ht:'https://system.easypractice.net/book/pandonia?service=228252#choose-time',
- fh:'https://system.easypractice.net/book/pandonia?service=298849',
- mh:'https://system.easypractice.net/book/pandonia?service=328461',
- hcfh:'https://system.easypractice.net/book/pandonia?service=298848',
- hcfht:'https://system.easypractice.net/book/pandonia?service=300271',
- gm:'https://system.easypractice.net/book/pandonia?service=246132',
- th:'https://system.easypractice.net/book/pandonia?service=246129',
- hcmh:'https://system.easypractice.net/book/pandonia?service=328459',
- hcmht:'https://system.easypractice.net/book/pandonia?service=328460'};
+// the one booking configuration for the 10 active tests, used by every page. Service ids verified by Pandonia
+// (28 Oct 2026, supplied); links exactly as supplied. consult: 'included' = the service itself contains the doctor
+// consultation; 'addon' = EasyPractice offers "Konsultation" as an add-on (tillægsydelse) on it, which the visitor
+// selects there (verified 6 Nov 2026: no booking link can preselect it); 'none' = no consultation with this service.
+// A test without an entry opens the general page.
+var BOOK={
+ htc:{svc:229722,consult:'included'},
+ ht:{svc:228252,consult:'addon',hash:'#choose-time'},
+ fh:{svc:298849,consult:'none'},
+ mh:{svc:328461,consult:'none'},
+ hcfh:{svc:298848,consult:'addon'},
+ hcfht:{svc:300271,consult:'addon'},
+ gm:{svc:246132,consult:'none'},
+ th:{svc:246129,consult:'none'},
+ hcmh:{svc:328459,consult:'addon'},
+ hcmht:{svc:328460,consult:'addon'}};
+// the add-on itself (EasyPractice add-on 328464): hand-managed, not part of the automatic price sync
+var CONSULT={addon:328464,min:20,p:1250};
+var EP_SVC={};
+for(var bkId in BOOK)EP_SVC[bkId]='https://system.easypractice.net/book/pandonia?service='+BOOK[bkId].svc+(BOOK[bkId].hash||'');
 function epUrl(id){return EP_SVC[id]||EP_BOOK;}
+function consultOf(id){return (BOOK[id]||{}).consult||'none';}
+// the one explanation, in parts, wherever a consultation can be added in EasyPractice (same words everywhere):
+// line = what it is and costs; how = the visitor selects it in EasyPractice (nothing is preselected there, verified
+// 6 Nov 2026); back = only for direct service links, which skip EasyPractice's add-on step
+function consultText(lang){var p=CONSULT.p,da=lang==='da',kr=da?new Intl.NumberFormat('da-DK').format(p)+' kr.':'DKK '+new Intl.NumberFormat('en-GB').format(p);
+  return da?{line:'Valgfri konsultation med en læge, '+CONSULT.min+' minutter: '+kr+', ikke med i prisen.',
+      how:"Vælg 'Konsultation' under tillægsydelser i EasyPractice for at gennemføre din booking.",
+      back:"Går bookingen direkte til dato og tid, så klik én gang på 'Tilbage' for at se tillægsydelserne."}
+    :{line:'Optional consultation with a doctor, '+CONSULT.min+' minutes: '+kr+', not included in the price.',
+      how:"Please select 'Konsultation' under additional services in EasyPractice to complete your booking.",
+      back:"If the booking goes straight to date and time, click 'Tilbage' once to see the additional services."};}
+function consultNote(lang){var t=consultText(lang);return t.line+' '+t.how+' '+t.back;}
 var TX={
  da:{all:'Alle tests',more:'Læs mere',book:'Book',bookT:'Vælg tid',get:'Hvad får du?',meas:'Hvad måler vi?',rep:'Din rapport',how:'Sådan fungerer det',
   bm:'Se liste over biomarkører',fullRep:'Se hele rapporten',seeHow:'Se hvordan det fungerer',mb:'Bliv medlem',perM:'pr. måned',oneSample:'Én blodprøve',
@@ -2769,6 +2797,8 @@ var NX={
   prep:'Forberedelse',prepTx:'Fast i mindst 12 timer, og undgå både kaffe og kosttilskud før prøven. Undgå hård træning i 48 timer forinden.',
   cons:'Konsultation',consTx:'Har du spørgsmål eller bekymringer, kan du tale med din egen læge eller booke en konsultation med en Pandonia-læge.',
   consHt:'Health Test + Consultation indeholder 20 minutters konsultation med en læge.',
+  // Hormonel sundhed holds only the standalone hormone tests, which have no consultation (6 Nov 2026)
+  consHor:'Har du spørgsmål eller bekymringer, kan du tale med din egen læge. De enkeltstående hormontests indeholder ikke en konsultation med en Pandonia-læge; den kan tilføjes til Health Test-pakkerne med hormoner.',
   gmHow:'Sådan foregår det',prices:'Se priser og book',other:'Andre sundhedsområder',more:'Flere muligheder',moreGo:'Se flere muligheder'},
  en:{avail1:'Available test',availN:'Available tests',inc:'Included',seeBm:'See the biomarkers',time:'Choose a time',back:'All health areas',
   pkH:'Tests in this area',res:'What the results look like',resTx:'Your results are presented in a clear report that helps you understand individual biomarkers and see how they relate to your health.',
@@ -2777,6 +2807,7 @@ var NX={
   prep:'Preparation',prepTx:'Fast for at least 12 hours, and avoid coffee and supplements before the test. Avoid strenuous exercise for 48 hours beforehand.',
   cons:'Consultation',consTx:'If you have questions or concerns, you can speak with your own doctor or book a consultation with a Pandonia doctor.',
   consHt:'Health Test + Consultation includes a 20-minute consultation with a doctor.',
+  consHor:'If you have questions or concerns, you can speak with your own doctor. The standalone hormone tests do not include a consultation with a Pandonia doctor; one can be added to the Health Test packages with hormones.',
   gmHow:'How it works',prices:'See prices and book',other:'Other health areas',more:'More options',moreGo:'See more options'}};
 var nxCur=null;
 function nxCat(id){return CATS.filter(function(c){return c.id===id;})[0];}
@@ -2820,7 +2851,7 @@ function renderCat(id){var el=document.getElementById('nxCatPg');if(!el)return;
   var res=gm?'':'<section class="nxCS nxRes"><div class="nxResT"><h2 class="s nxCSt">'+L.res+'</h2><p class="nxCHd">'+L.resTx+'</p><p class="tGo">'+tLink('#/rapport','rapport','',L.resGo)+'</p></div>'+
     '<div class="nxResI"><img src="/pandonia-preview/images/hero-dashboard.webp" alt="'+(da?'En hånd holder en telefon med en sundhedsrapport: scorer og biomarkører vist på farvede intervaller.':'A hand holding a phone showing a health report, with scores and biomarkers shown on coloured ranges.')+'" loading="lazy" decoding="async"></div></section>';
   var g=tSvc('gm'),facts=gm?[[L.gmHow,tEsc(da?g.mDa:g.mEn)]]:
-    [[L.where,L.whereTx+' '+L.homeTx+' '+'<a class="nxIn" href="#/saadan" data-route="saadan">'+L.homeGo+'</a>'],[L.get,L.getTx],[L.prep,L.prepTx],[L.cons,L.consTx+(c.id==='general'?' '+L.consHt:'')]];
+    [[L.where,L.whereTx+' '+L.homeTx+' '+'<a class="nxIn" href="#/saadan" data-route="saadan">'+L.homeGo+'</a>'],[L.get,L.getTx],[L.prep,L.prepTx],[L.cons,c.id==='hormonal'?L.consHor:L.consTx+(c.id==='general'?' '+L.consHt:'')]];
   var prac='<section class="nxCS"><h2 class="s nxCSt">'+L.prac+'</h2><dl class="nxFacts">'+facts.map(function(f){return '<div><dt class="lab">'+f[0]+'</dt><dd>'+f[1]+'</dd></div>';}).join('')+'</dl>'+
     '<p class="tGo">'+tLink('#/book/pr-'+c.id,'book','pr-'+c.id,L.prices)+'</p></section>';
   var other='<section class="nxCS"><h2 class="lab nxCSh">'+L.other+'</h2><ul class="nxOther">'+CATS.filter(function(x){return x!==c;}).map(function(x){
@@ -2863,9 +2894,26 @@ var TG_R={
  R8:{name:'Thyroid panel',text:'A look at how your thyroid is working, which plays a part in your metabolism.',areas:false,thyroid:false,inc:['thy']},
  R9:{name:'CGM',text:'A small sensor shows how your glucose levels change through the day, over several days, rather than in a single measurement.',areas:false,thyroid:false,inc:['cgm']}};
 var TG_AREAS=['Blood sugar','Cholesterol','Liver','Kidneys','Blood cells','Inflammation'];
-// the suggestion's own booking service (EP_SVC): the Thyroid panel toggle picks the + Thyroid package, a consultation
-// with the Health Test is Health Test + Consultation; R2/R3 combine several services, so they open the general page
-function tgSvc(id,s){return {R1:s.consultOn?'htc':'ht',R4:'fh',R5:'mh',R6:s.thyroidOn?'hcfht':'hcfh',R7:s.thyroidOn?'hcmht':'hcmh',R8:'th',R9:'gm'}[id];}
+// the services behind each suggestion (booking config BOOK): the Thyroid panel toggle picks the + Thyroid package, a
+// consultation with the Health Test is Health Test + Consultation; R2/R3 combine two services, so they open the
+// general page
+function tgSvcs(id,s){return {R1:[s.consultOn?'htc':'ht'],R2:['hcfht','gm'],R3:['hcmht','gm'],R4:['fh'],R5:['mh'],R6:[s.thyroidOn?'hcfht':'hcfh'],R7:[s.thyroidOn?'hcmht':'hcmh'],R8:['th'],R9:['gm']}[id];}
+function tgSvc(id,s){var l=tgSvcs(id,s);return l.length===1?l[0]:null;}
+// how a consultation can be had with this suggestion: 'included' (R1 switches to Health Test + Consultation),
+// 'addon' (added in EasyPractice) or 'none' (not offered: no verified consultation for these services)
+function tgConsult(id,s){if(id==='R1')return 'included';return tgSvcs(id,s).some(function(k){return consultOf(k)==='addon';})?'addon':'none';}
+function tgKr(n){return 'DKK '+new Intl.NumberFormat('en-GB').format(n);}
+function tgTotal(id,s){return tgSvcs(id,s).reduce(function(a,k){return a+tSvc(k).p;},0);}
+// shown once the consultation box is ticked: duration, price and total, and that it is selected in EasyPractice.
+// With two services (R2/R3) the consultation belongs to the Health Test package, never to CGM, and the general
+// booking page shows the add-on step itself; a direct service link skips it, hence the 'Tilbage' line
+function tgConsultInfo(id,s){
+  if(!s.consultOn)return '';
+  if(tgConsult(id,s)==='included')return '<p class="tgCons">Health Test + Consultation: '+tgKr(tgTotal(id,s))+'. The '+CONSULT.min+'-minute consultation is included.</p>';
+  var t=consultText('en'),l=tgSvcs(id,s),host=l.filter(function(k){return consultOf(k)==='addon';})[0],multi=l.length>1,hn=tEsc(tSvc(host).en);
+  return '<p class="tgCons">Consultation, '+CONSULT.min+' minutes'+(multi?', with '+hn:'')+': + '+tgKr(CONSULT.p)+' · total '+tgKr(tgTotal(id,s)+CONSULT.p)+'</p>'+
+    '<p class="tgCons">'+tEsc(t.how)+(multi?' It is an add-on to '+hn+', not to CGM.':'')+'</p>'+
+    (multi?'':'<p class="tgCons tgConsBack">'+tEsc(t.back)+'</p>');}
 function tgResultId(s){
   if(s.area==='metabolism')return 'R8';
   if(s.area==='glucose')return 'R9';
@@ -2901,15 +2949,16 @@ function tgRender(focus){
       return '<li><button type="button" class="tgOpt" data-tg="pick" data-i="'+i+'">'+(m?'<span class="tgIco" style="color:'+m.color+';background:'+m.tint+'">'+TG_ICO[o[2]]+'</span>':'')+
         '<span class="tgOptT"><span class="tgOptL">'+o[0]+'</span>'+(o[1]?'<span class="tgOptH">'+o[1]+'</span>':'')+'</span><span class="tgArr" aria-hidden="true">→</span></button></li>';}).join('')+'</ul>';
   } else {
-    var r=TG_R[tgResultId(s)],inc=r.inc.slice();if(r.thyroid&&s.thyroidOn)inc.push('thy');
+    var rid=tgResultId(s),r=TG_R[rid],inc=r.inc.slice();if(r.thyroid&&s.thyroidOn)inc.push('thy');
+    var box=(r.thyroid?'<label class="tgChk"><input type="checkbox" data-tg="thy"'+(s.thyroidOn?' checked':'')+'><span>Add the Thyroid panel</span></label>':'')+
+      (tgConsult(rid,s)!=='none'?'<label class="tgChk"><input type="checkbox" data-tg="cons"'+(s.consultOn?' checked':'')+'><span>Would you like to go through your results with a doctor? Add a consultation.</span></label>'+tgConsultInfo(rid,s):'');
     var mods=['ht','hor','thy','cgm'].map(function(k){var m=TG_M[k],on=inc.indexOf(k)>=0,added=on&&r.inc.indexOf(k)<0;
       return '<li class="tgMod'+(on?' on':'')+'" style="--c:'+m.color+';--t:'+m.tint+'"><span class="tgIco">'+TG_ICO[k]+'</span><span class="tgModT"><span class="tgModL">'+m.label+'</span><span class="tgModS">'+(added?'Added':(on?'Included':'Not included'))+'</span></span></li>';}).join('');
     body='<p class="tgStep">Our suggestion for you</p><h1 class="s tgH tgRes" tabindex="-1">'+r.name+'</h1><ul class="tgMods">'+mods+'</ul><p class="tgLead">'+r.text+'</p>'+
       (r.areas?'<ul class="tgAreas">'+TG_AREAS.map(function(a){return '<li>'+a+'</li>';}).join('')+'</ul>':'')+
-      '<div class="tgBox">'+(r.thyroid?'<label class="tgChk"><input type="checkbox" data-tg="thy"'+(s.thyroidOn?' checked':'')+'><span>Add the Thyroid panel</span></label>':'')+
-      '<label class="tgChk"><input type="checkbox" data-tg="cons"'+(s.consultOn?' checked':'')+'><span>Would you like to go through your results with a doctor? Add a consultation.</span></label></div>'+
+      (box?'<div class="tgBox">'+box+'</div>':'')+
       '<p class="tgNote">If you have symptoms or a specific concern, talk to your own doctor first.</p>'+
-      '<div class="tgAct"><a class="btn btn1 tgCta" href="'+epUrl(tgSvc(tgResultId(s),s))+'" target="_blank" rel="noopener noreferrer">Book this test</a><button type="button" class="tgLink" data-tg="restart">Start again</button></div>';
+      '<div class="tgAct"><a class="btn btn1 tgCta" href="'+epUrl(tgSvc(rid,s))+'" target="_blank" rel="noopener noreferrer">Book this test</a><button type="button" class="tgLink" data-tg="restart">Start again</button></div>';
   }
   el.setAttribute('data-screen',s.screen);
   el.innerHTML=head+'<div class="tgBody">'+body+'</div>'+back;
@@ -2945,7 +2994,7 @@ function renderTest(id){
   var rep='<section class="tSec"><p class="lab">'+X.rep+'</p>'+(tIsHt(s)?'<div class="tImg"><img loading="lazy" decoding="async" src="/pandonia-preview/images/report-deck.webp" alt="'+X.alt+'"></div><p class="tTx">'+X.repHt+'</p><p class="tGo">'+tLink('#/rapport','rapport','',X.fullRep)+'</p>':'<p class="tTx">'+X.repEt+'</p>')+'</section>';
   // the four steps are the blood-sample journey; glucose monitoring is a sensor, so it has none
   var how=s.id==='gm'?'':'<section class="tSec"><p class="lab">'+X.how+'</p><ol class="tHow">'+X.steps.map(function(x){return '<li><span class="tNo">'+x[0]+'</span><span class="lab">'+tEsc(x[1])+'</span><span class="tSt">'+x[2]+'</span></li>';}).join('')+'</ol><p class="tGo">'+tLink('#/saadan','saadan','',X.seeHow)+'</p></section>';
-  el.innerHTML=back+'<header class="tHead"><p class="lab">'+(c?c.n+' · '+tEsc(nxCatName(c)):NX[loc].more)+'</p>'+'<h1 class="s tName">'+tEsc(tName(s))+'</h1><p class="tLead">'+tEsc(da?s.mDa:s.mEn)+'</p>'+factsH+price+'<div class="tAct">'+tBook('',X.bookT,epUrl(s.id))+'</div></header>'+nxIncSec(s)+
+  el.innerHTML=back+'<header class="tHead"><p class="lab">'+(c?c.n+' · '+tEsc(nxCatName(c)):NX[loc].more)+'</p>'+'<h1 class="s tName">'+tEsc(tName(s))+'</h1><p class="tLead">'+tEsc(da?s.mDa:s.mEn)+'</p>'+factsH+price+'<div class="tAct">'+tBook('',X.bookT,epUrl(s.id))+'</div>'+(consultOf(s.id)==='addon'?'<p class="tConsult">'+tEsc(consultNote(loc))+'</p>':'')+'</header>'+nxIncSec(s)+
     (tIsHt(s)?meas+rep+sys+trend:get+rep)+how+'<section class="tEnd"><p class="tEndN">'+tEsc(tName(s))+'</p>'+price+'<div class="tAct">'+tBook('',X.bookT,epUrl(s.id))+'</div></section>';
 }
 function show(p,anchor,opt){
